@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "inverse-surface": "#2e3132",
+                        "on-primary-fixed-variant": "#474747",
+                        "on-background": "#191c1d",
+                        "surface-container": "#edeeef",
+                        "on-tertiary-container": "#6e85ab",
+                        "on-secondary-container": "#fffbff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary-fixed": "#ffdad8",
+                        "on-tertiary-fixed-variant": "#30476a",
+                        "tertiary-container": "#001b3c",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed": "#410007",
+                        "error": "#ba1a1a",
+                        "primary-container": "#1b1b1b",
+                        "on-surface-variant": "#4c4546",
+                        "inverse-on-surface": "#f0f1f2",
+                        "on-error": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f8f9fa",
+                        "surface-dim": "#d9dadb",
+                        "background": "#f8f9fa",
+                        "surface-tint": "#5e5e5e",
+                        "on-tertiary-fixed": "#001b3c",
+                        "surface-variant": "#e1e3e4",
+                        "surface-container-low": "#f3f4f5",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "on-primary-container": "#848484",
+                        "secondary-fixed-dim": "#ffb3b1",
+                        "outline-variant": "#cfc4c5",
+                        "tertiary-fixed-dim": "#b0c7f1",
+                        "primary": "#000000",
+                        "surface-container-highest": "#e1e3e4",
+                        "secondary": "#b7102a",
+                        "secondary-container": "#db313f",
+                        "inverse-primary": "#c6c6c6",
+                        "outline": "#7e7576",
+                        "on-surface": "#191c1d",
+                        "primary-fixed": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9fa",
+                        "tertiary-fixed": "#d5e3ff",
+                        "tertiary": "#000000",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-secondary-fixed-variant": "#92001c",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "24px",
+                        "stack-xl": "96px",
+                        "stack-sm": "12px",
+                        "margin": "48px",
+                        "gutter": "24px",
+                        "stack-xs": "4px",
+                        "baseline": "8px",
+                        "stack-lg": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "mono-data": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Space Grotesk"],
+                        "label-caps": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "headline-xl": ["Space Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "mono-data": ["14px", {"lineHeight": "1.4", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400"}],
+                        "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "letterSpacing": "0", "fontWeight": "500"}],
+                        "headline-xl": ["64px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-black text-black dark:text-white font-['Space_Grotesk'] tracking-tighter uppercase text-sm font-medium docked full-width top-0 border-b border-black dark:border-zinc-800 flex justify-between items-center w-full px-12 h-20 fixed z-50">
+<div class="text-2xl font-bold tracking-tighter text-black dark:text-white">CDS</div>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="text-black dark:text-white border-b-2 border-black dark:border-white pb-1 transition-none" href="/">INICIO</a>
+</nav>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="px-12 py-stack-xl border-b border-black">
+<div class="max-w-screen-xl">
+<p class="font-label-caps text-label-caps text-secondary mb-stack-sm uppercase">Archive Index / 01</p>
+<h1 class="font-headline-xl text-headline-xl max-w-4xl mb-stack-md">
+                    classic design systems: A curated collection of timeless principles.
+                </h1>
+<div class="grid grid-cols-12 gap-gutter">
+<p class="col-span-12 md:col-span-6 font-body-lg text-body-lg text-on-surface-variant">
+                        Compiler is a technical repository dedicated to the preservation of visual languages that shaped the modern world. From the rigorous grids of the Swiss to the functional geometry of the Bauhaus.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Grid Indices / Visual Divider -->
+<div class="px-12 py-stack-sm border-b border-black flex justify-between items-center bg-surface-container-low">
+
+<a href="https://facundouferer.ar/" target="_blank" rel="noopener" class="hover:underline">FACUNDO UFERER →</a>
+</div>
+<!-- Systems Grid -->
+<section class="px-12 py-stack-xl">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-black">
+<!-- Card 01: Bauhaus -->
+<div class="border-r border-b border-black p-8 group flex flex-col justify-between bg-white hover:bg-black hover:text-white transition-none h-[600px]">
+<div>
+<div class="flex justify-between items-start mb-stack-lg">
+<span class="font-mono-data text-mono-data opacity-50">01 / GEOMETRY</span>
+<span class="material-symbols-outlined" data-icon="architecture">architecture</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-stack-sm uppercase">Bauhaus: Functionalism &amp; Geometry</h3>
+<p class="font-body-md text-body-md opacity-70 mb-stack-md">The integration of art, craft, and technology. Primary colors and radical reduction.</p>
+</div>
+<div class="relative w-full aspect-square border border-black mb-stack-md overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-none" data-alt="Abstract minimalist composition with primary colors red blue and yellow in geometric shapes inspired by Bauhaus posters" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWc7Di79zOMgTY142m23IDHqfEGOBN230-LnVvd_j0igDhp4BYUIFIpEsuRzqQccBH8l5ipwZYjPVEendhO-u4nGkJkXYNFNj9mxXYg8P4bM2Rj_7rgJnpQmbJCzrnBTfkmhgbh4TymFuUlMF7gH-VpM4h0ZuSeSAatwUljkLZQgBeRLVQl0pAlCiddgzTbY9iJZvHIOJikw-5cCenJEZy4QXlLHMa8U9ud4iS4gbYY7wgSLEwBmj3eCOq1N9FQUTaXpKNtXTpwT9h"/>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps border-b border-current w-fit pb-1 group-hover:border-white" href="#">
+                        EXPLORE <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Card 02: Swiss Style -->
+<div class="border-r border-b border-black p-8 group flex flex-col justify-between bg-white hover:bg-black hover:text-white transition-none h-[600px]">
+<div>
+<div class="flex justify-between items-start mb-stack-lg">
+<span class="font-mono-data text-mono-data opacity-50">02 / CLARITY</span>
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-stack-sm uppercase">Swiss Style: Order &amp; Clarity</h3>
+<p class="font-body-md text-body-md opacity-70 mb-stack-md">The objective pursuit of visual harmony through rigorous grid systems and sans-serif type.</p>
+</div>
+<div class="relative w-full aspect-square border border-black mb-stack-md overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-none" data-alt="Modernist typographic poster design with heavy black sans-serif lettering and bold white grid lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgwfZFjF_cJj-zDIxQ4-YmU9I5UMBN4mCMiHUov6BSjMBq0jRgH52-h2lSUCHAHO3O61T1LgPUsQD4Vwqn7u8wio7VmxxL9WbF02nJnyk85wphnrulCBdA_mLZkT2nbjxT9DiAHg-t17Vff00HcLekIMSFtxE7JQX1a1GV-g_t2Y2hbYFG-dOyWS5vjXMJ8mLh1A7Xaakh5w50J76O4lEE0UTxGQYgy0g0Rju2pjw5hDxOA-oUOqHHRrlmqLdokK5P3FbFZ7cYZ3ep"/>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps border-b border-current w-fit pb-1 group-hover:border-white" href="#">
+                        EXPLORE <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<!-- Card 03: Modernism -->
+<div class="border-r border-b border-black p-8 group flex flex-col justify-between bg-white hover:bg-black hover:text-white transition-none h-[600px]">
+<div>
+<div class="flex justify-between items-start mb-stack-lg">
+<span class="font-mono-data text-mono-data opacity-50">03 / FUNCTION</span>
+<span class="material-symbols-outlined" data-icon="square">square</span>
+</div>
+<h3 class="font-headline-md text-headline-md mb-stack-sm uppercase">Modernism: Form follows Function</h3>
+<p class="font-body-md text-body-md opacity-70 mb-stack-md">A rejection of ornament in favor of industrial efficiency and structural honesty.</p>
+</div>
+<div class="relative w-full aspect-square border border-black mb-stack-md overflow-hidden bg-surface-container-high">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-none" data-alt="Brutalist architectural detail showing concrete structural lines and rhythmic shadows under bright daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxVAMZ4bF9F2N0yyKICIktKj3uHrB6haxnBuC3O2TZZRWKWzRiM3Isv_MeLz6gGYw2iGUAdAA2wmEkq2sTESeOvfhUWeSTNatCIbW9CPFxn2tgOtAalGd4Erga1fTIuaqSDZQ_7AVtccjTwgeKBCJBCNmMl8aw3Cs6qshJFzRxP2LVgjHa49QTP5U4SLllt4HSy5sR3T2SXUAERyE-IFvIn2s49TEmumxt8lV2HDteL76h38m52jGwRpRPRMrvrAXnPSI1yQfFO36g"/>
+</div>
+<a class="inline-flex items-center gap-2 font-label-caps text-label-caps border-b border-current w-fit pb-1 group-hover:border-white" href="#">
+                        EXPLORE <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Technical Specs Section -->
+<section class="px-12 py-stack-xl bg-black text-white">
+<div class="grid grid-cols-12 gap-gutter items-end">
+<div class="col-span-12 md:col-span-8">
+<h2 class="font-headline-lg text-headline-lg uppercase mb-stack-md">Mathematical Harmony in UI</h2>
+<p class="font-body-lg text-body-lg opacity-60 max-w-2xl">
+                        Our internal tools use a strict 8px baseline grid to ensure all components align with a central aesthetic logic. The Compiler Dashboard is the primary interface for managing these assets across distributed systems.
+                    </p>
+</div>
+<div class="col-span-12 md:col-span-4 flex flex-col gap-4">
+<div class="border border-white p-6">
+<span class="font-label-caps text-[10px] block mb-2 text-secondary">SYSTEM_VAR_01</span>
+<div class="h-1 bg-white w-full"></div>
+</div>
+<div class="border border-white p-6">
+<span class="font-label-caps text-[10px] block mb-2 text-secondary">SYSTEM_VAR_02</span>
+<div class="h-1 bg-zinc-800 w-full"></div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-white dark:bg-black text-black dark:text-white font-['Space_Grotesk'] tracking-tight text-[10px] uppercase docked full-width bottom-0 border-t border-black dark:border-zinc-800 flex flex-row justify-between items-center w-full px-12 py-8 mt-stack-xl">
+<div class="flex flex-col gap-2">
+<div class="font-bold text-black dark:text-white">CDS ARCHIVE v1.0.4</div>
+<div class="text-zinc-500">© 2024 DESIGN ARCHIVE. BUILT FOR MATHEMATICAL HARMONY.</div>
+</div>
+<div class="flex gap-12">
+<a class="text-zinc-500 hover:text-black dark:hover:text-white transition-none underline font-bold" href="#">DOCUMENTATION</a>
+<a class="text-zinc-500 hover:text-black dark:hover:text-white transition-none" href="#">LICENSE</a>
+<a class="text-zinc-500 hover:text-black dark:hover:text-white transition-none" href="#">GITHUB</a>
+<a class="text-zinc-500 hover:text-black dark:hover:text-white transition-none" href="#">CONTACT</a>
+</div>
+</footer>
+</body></html>

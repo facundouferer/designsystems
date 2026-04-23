@@ -1,0 +1,70 @@
+---
+import SystemCard from "./SystemCard.astro";
+
+const systems = [
+	{
+		index: "01",
+		category: "GEOMETRY",
+		icon: "architecture",
+		title: "Blueprint: Technical Drawing",
+		description:
+			"Monospaced grids, cyanotype palette, and engineering rigor. A reference language for schematics and data.",
+		href: "/systems-raw/blueprint.html",
+		target: "_blank",
+		rel: "noopener",
+		accent: "#0A1628",
+		accentInk: "#DDEEFF",
+		motif: "BP",
+	},
+	{
+		index: "02",
+		category: "RAW",
+		icon: "bolt",
+		title: "Brutalist: Unfiltered Structure",
+		description:
+			"Loud neons, heavy display type, and unapologetic contrast. Function screaming over polish.",
+		href: "/systems-raw/brutalist.html",
+		target: "_blank",
+		rel: "noopener",
+		accent: "#FFE500",
+		accentInk: "#000000",
+		motif: "BR",
+	},
+	{
+		index: "03",
+		category: "REDUCTION",
+		icon: "remove",
+		title: "Minimalism: Silent Interface",
+		description:
+			"Ample whitespace, muted greys, and one sharp accent. Every element earns its place.",
+		href: "/systems-raw/minimalism.html",
+		target: "_blank",
+		rel: "noopener",
+		accent: "#F4F4F4",
+		accentInk: "#212121",
+		motif: "MN",
+	},
+	{
+		index: "04",
+		category: "CLARITY",
+		icon: "grid_view",
+		title: "Swiss: Order & Hierarchy",
+		description:
+			"Editorial grids and the objective voice of the International Typographic Style. Clarity as method.",
+		href: "/systems-raw/swiss.html",
+		target: "_blank",
+		rel: "noopener",
+		accent: "#E63329",
+		accentInk: "#ffffff",
+		motif: "SW",
+	},
+];
+---
+
+<section class="px-margin py-stack-xl">
+	<div
+		class="grid grid-cols-1 gap-0 border-l border-t border-black md:grid-cols-2 xl:grid-cols-4"
+	>
+		{systems.map((system) => <SystemCard {...system} />)}
+	</div>
+</section>

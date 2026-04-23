@@ -1,0 +1,25 @@
+---
+interface Props {
+	left?: string;
+	right?: string;
+	rightHref?: string;
+}
+
+const {
+	left = "",
+	right = "FACUNDO UFERER →",
+	rightHref = "https://facundouferer.ar/",
+} = Astro.props;
+---
+
+<div
+	class="flex items-center justify-between border-b border-black bg-surface-container-low px-margin py-stack-sm"
+>
+	<span class="font-mono-data text-mono-data">{left}</span>
+	<a
+		href={rightHref}
+		target="_blank"
+		rel="noopener"
+		class="font-mono-data text-mono-data hover:underline"
+	>{right}</a>
+</div>

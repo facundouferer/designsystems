@@ -1,0 +1,2009 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRUTALIST UI — DESIGN SYSTEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CSS CUSTOM PROPERTIES — DESIGN TOKENS
+   ============================================ */
+:root {
+  /* COLOR */
+  --color-base:        #FFFFFF;
+  --color-ink:         #000000;
+  --color-accent-1:    #FFE500; /* NEON YELLOW */
+  --color-accent-2:    #FF2200; /* RAW RED */
+  --color-accent-3:    #0033FF; /* ELECTRIC BLUE */
+  --color-accent-4:    #00FF99; /* ACID GREEN */
+  --color-accent-5:    #FF00CC; /* HOT PINK */
+  --color-surface:     #F0F0F0;
+  --color-ink-subtle:  #444444;
+
+  /* TYPOGRAPHY */
+  --font-display:      'Anton', 'Impact', sans-serif;
+  --font-ui:           'Oswald', 'Arial Narrow', sans-serif;
+  --font-mono:         'Space Mono', 'Courier New', monospace;
+
+  --text-xs:    12px;
+  --text-sm:    16px;
+  --text-base:  18px;
+  --text-lg:    24px;
+  --text-xl:    36px;
+  --text-2xl:   54px;
+  --text-3xl:   80px;
+  --text-4xl:   120px;
+
+  /* SPACING */
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-3:    16px;
+  --space-4:    24px;
+  --space-5:    32px;
+  --space-6:    48px;
+  --space-7:    64px;
+  --space-8:    96px;
+
+  /* BORDERS */
+  --border-sm:  2px solid var(--color-ink);
+  --border-md:  3px solid var(--color-ink);
+  --border-lg:  4px solid var(--color-ink);
+  --border-xl:  6px solid var(--color-ink);
+
+  /* SHADOWS */
+  --shadow-sm:  3px 3px 0px var(--color-ink);
+  --shadow-md:  5px 5px 0px var(--color-ink);
+  --shadow-lg:  8px 8px 0px var(--color-ink);
+  --shadow-xl:  12px 12px 0px var(--color-ink);
+  --shadow-accent: 5px 5px 0px var(--color-accent-2);
+
+  /* RADIUS — BRUTALIST = NONE */
+  --radius:     0px;
+}
+
+/* ============================================
+   BASE RESET
+   ============================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-base);
+  color: var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.page-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.section {
+  padding: var(--space-7) 0;
+  border-top: var(--border-xl);
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-ink-subtle);
+  margin-bottom: var(--space-2);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-5);
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-3); }
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--space-3); }
+
+/* ============================================
+   MASTHEAD / HERO
+   ============================================ */
+.masthead {
+  background: var(--color-ink);
+  color: var(--color-base);
+  padding: var(--space-6) var(--space-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.masthead-noise {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255,255,255,0.03) 3px,
+    rgba(255,255,255,0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.masthead-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.masthead-eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-accent-1);
+  margin-bottom: var(--space-3);
+}
+
+.masthead-title {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 12vw, 160px);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-4);
+}
+
+.masthead-title span {
+  display: block;
+}
+
+.masthead-title .accent {
+  color: var(--color-accent-1);
+  -webkit-text-stroke: 2px var(--color-accent-1);
+}
+
+.masthead-title .outline {
+  color: transparent;
+  -webkit-text-stroke: 3px var(--color-base);
+}
+
+.masthead-desc {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  max-width: 480px;
+  line-height: 1.7;
+  color: #aaaaaa;
+  margin-bottom: var(--space-5);
+}
+
+.masthead-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.masthead-nav a {
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--color-ink);
+  background: var(--color-base);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-sm);
+  border-color: var(--color-base);
+  transition: background 0.05s, color 0.05s, box-shadow 0.05s, transform 0.05s;
+}
+
+.masthead-nav a:hover {
+  background: var(--color-accent-1);
+  border-color: var(--color-accent-1);
+  color: var(--color-ink);
+  box-shadow: 3px 3px 0 var(--color-accent-1);
+  transform: translate(-2px, -2px);
+}
+
+/* ============================================
+   TOKENS — COLOR SWATCHES
+   ============================================ */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: var(--space-3);
+}
+
+.swatch {
+  border: var(--border-md);
+  cursor: default;
+}
+
+.swatch-color {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-1) var(--space-2);
+}
+
+.swatch-info {
+  padding: var(--space-2);
+  background: var(--color-base);
+  border-top: var(--border-sm);
+}
+
+.swatch-name {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+.swatch-var {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-subtle);
+  display: block;
+}
+
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-ink-subtle);
+  display: block;
+}
+
+/* ============================================
+   TOKENS — TYPOGRAPHY SCALE
+   ============================================ */
+.type-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.type-row:first-child { border-top: 1px solid #e0e0e0; }
+
+.type-meta {
+  width: 120px;
+  flex-shrink: 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-subtle);
+}
+
+.type-sample-display { font-family: var(--font-display); text-transform: uppercase; }
+.type-sample-ui      { font-family: var(--font-ui); font-weight: 700; text-transform: uppercase; }
+.type-sample-mono    { font-family: var(--font-mono); }
+
+/* ============================================
+   TOKENS — SPACING
+   ============================================ */
+.spacing-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.spacing-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.spacing-bar-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.spacing-bar {
+  height: 100%;
+  background: var(--color-ink);
+  display: inline-block;
+}
+
+.spacing-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.spacing-val {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-subtle);
+  width: 48px;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   TOKENS — SHADOWS
+   ============================================ */
+.shadow-samples {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: flex-end;
+  padding: var(--space-5) 0;
+}
+
+.shadow-sample {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.shadow-box {
+  width: 80px;
+  height: 80px;
+  border: var(--border-md);
+  background: var(--color-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.shadow-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-subtle);
+}
+
+/* ============================================
+   TOKENS — BORDERS
+   ============================================ */
+.border-samples {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.border-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.border-demo {
+  flex: 1;
+  height: 48px;
+  background: var(--color-surface);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-subtle);
+}
+
+/* ============================================
+   COMPONENT — BUTTONS
+   ============================================ */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+  margin-bottom: var(--space-4);
+}
+
+.btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-5);
+  border: var(--border-lg);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: box-shadow 0.06s, transform 0.06s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: var(--color-ink);
+  color: var(--color-base);
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translate(-2px, -2px);
+}
+.btn-primary:active {
+  box-shadow: 2px 2px 0 var(--color-ink);
+  transform: translate(2px, 2px);
+}
+
+.btn-secondary {
+  background: var(--color-base);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+}
+.btn-secondary:hover {
+  background: var(--color-accent-1);
+  box-shadow: var(--shadow-lg);
+  transform: translate(-2px, -2px);
+}
+.btn-secondary:active {
+  box-shadow: 2px 2px 0 var(--color-ink);
+  transform: translate(2px, 2px);
+}
+
+.btn-danger {
+  background: var(--color-accent-2);
+  color: var(--color-base);
+  border-color: var(--color-ink);
+  box-shadow: 5px 5px 0 var(--color-ink);
+}
+.btn-danger:hover {
+  box-shadow: 8px 8px 0 var(--color-ink);
+  transform: translate(-2px, -2px);
+}
+.btn-danger:active {
+  box-shadow: 2px 2px 0 var(--color-ink);
+  transform: translate(2px, 2px);
+}
+
+.btn-accent {
+  background: var(--color-accent-1);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-md);
+}
+.btn-accent:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translate(-2px, -2px);
+}
+
+.btn:disabled, .btn[disabled] {
+  opacity: 0.35;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.btn-sm {
+  font-size: var(--text-xs);
+  padding: var(--space-2) var(--space-3);
+}
+
+.btn-lg {
+  font-size: var(--text-lg);
+  padding: var(--space-4) var(--space-6);
+  box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   COMPONENT — INPUTS
+   ============================================ */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.form-input {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  padding: var(--space-3);
+  border: var(--border-lg);
+  border-radius: var(--radius);
+  background: var(--color-base);
+  color: var(--color-ink);
+  outline: none;
+  transition: box-shadow 0.06s;
+  width: 100%;
+}
+
+.form-input:focus {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent-3);
+}
+
+.form-input.error {
+  border-color: var(--color-accent-2);
+  box-shadow: 4px 4px 0 var(--color-accent-2);
+}
+
+.form-input::placeholder { color: #aaa; }
+
+.form-hint {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-ink-subtle);
+}
+
+.form-error {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent-2);
+  font-weight: 700;
+}
+
+.form-hint::before { content: "// "; }
+.form-error::before { content: "! "; }
+
+textarea.form-input { resize: vertical; min-height: 96px; }
+
+/* ============================================
+   COMPONENT — CARDS
+   ============================================ */
+.card {
+  border: var(--border-lg);
+  background: var(--color-base);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: box-shadow 0.06s, transform 0.06s;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-xl);
+  transform: translate(-3px, -3px);
+}
+
+.card-img {
+  width: 100%;
+  height: 160px;
+  background: var(--color-ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  color: var(--color-accent-1);
+  letter-spacing: 0.05em;
+  overflow: hidden;
+  position: relative;
+}
+
+.card-img-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(255,229,0,0.1) 8px,
+    rgba(255,229,0,0.1) 9px
+  );
+}
+
+.card-body {
+  padding: var(--space-4);
+}
+
+.card-tag {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--color-accent-1);
+  color: var(--color-ink);
+  display: inline-block;
+  padding: 2px var(--space-2);
+  margin-bottom: var(--space-2);
+  border: var(--border-sm);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.card-text {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.7;
+  color: var(--color-ink-subtle);
+  margin-bottom: var(--space-3);
+}
+
+.card-accent {
+  border-color: var(--color-accent-3);
+  box-shadow: 6px 6px 0 var(--color-accent-3);
+}
+
+.card-accent .card-img {
+  background: var(--color-accent-3);
+  color: var(--color-base);
+}
+
+/* ============================================
+   COMPONENT — BADGES / TAGS
+   ============================================ */
+.badge-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.badge {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 3px var(--space-2);
+  border: var(--border-sm);
+  border-radius: var(--radius);
+  display: inline-block;
+}
+
+.badge-default  { background: var(--color-ink);     color: var(--color-base); }
+.badge-accent1  { background: var(--color-accent-1); color: var(--color-ink); }
+.badge-accent2  { background: var(--color-accent-2); color: var(--color-base); }
+.badge-accent3  { background: var(--color-accent-3); color: var(--color-base); }
+.badge-accent4  { background: var(--color-accent-4); color: var(--color-ink); }
+.badge-accent5  { background: var(--color-accent-5); color: var(--color-base); }
+.badge-outline  { background: transparent; color: var(--color-ink); }
+
+/* ============================================
+   COMPONENT — ALERTS / BANNERS
+   ============================================ */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: var(--border-lg);
+  border-radius: var(--radius);
+  margin-bottom: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.alert-icon {
+  font-family: var(--font-ui);
+  font-weight: 900;
+  font-size: var(--text-xl);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.alert-content strong {
+  display: block;
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.alert-info    { background: #e8f0ff; border-color: var(--color-accent-3); box-shadow: 4px 4px 0 var(--color-accent-3); }
+.alert-success { background: #e0fff2; border-color: var(--color-accent-4); box-shadow: 4px 4px 0 var(--color-accent-4); }
+.alert-warning { background: #fffde0; border-color: var(--color-accent-1); box-shadow: 4px 4px 0 var(--color-accent-1); }
+.alert-error   { background: #ffe8e6; border-color: var(--color-accent-2); box-shadow: 4px 4px 0 var(--color-accent-2); }
+
+.alert-info    .alert-icon { color: var(--color-accent-3); }
+.alert-success .alert-icon { color: var(--color-accent-4); }
+.alert-warning .alert-icon { color: #886600; }
+.alert-error   .alert-icon { color: var(--color-accent-2); }
+
+/* ============================================
+   COMPONENT — TABLE
+   ============================================ */
+.brutalist-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--border-lg);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.brutalist-table th {
+  background: var(--color-ink);
+  color: var(--color-base);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border: 2px solid #333;
+}
+
+.brutalist-table td {
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-sm);
+  vertical-align: top;
+}
+
+.brutalist-table tr:nth-child(even) td {
+  background: var(--color-surface);
+}
+
+.brutalist-table tr:hover td {
+  background: var(--color-accent-1);
+}
+
+.brutalist-table .status-ok   { color: var(--color-accent-4); font-weight: 700; }
+.brutalist-table .status-warn { color: var(--color-accent-2); font-weight: 700; }
+.brutalist-table .status-off  { color: var(--color-ink-subtle); }
+
+/* ============================================
+   COMPONENT — NAVIGATION
+   ============================================ */
+.brutalist-nav {
+  background: var(--color-ink);
+  border-bottom: var(--border-xl);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brutalist-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  height: 56px;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: var(--color-accent-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  padding-right: var(--space-5);
+  border-right: var(--border-md);
+  border-color: #333;
+  letter-spacing: 0.04em;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+
+.nav-links li a {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ccc;
+  padding: 0 var(--space-4);
+  height: 56px;
+  display: flex;
+  align-items: center;
+  border-bottom: 4px solid transparent;
+  transition: color 0.06s, border-color 0.06s, background 0.06s;
+}
+
+.nav-links li a:hover {
+  color: var(--color-base);
+  background: rgba(255,255,255,0.05);
+  border-bottom-color: var(--color-accent-1);
+}
+
+.nav-links li a.active {
+  color: var(--color-base);
+  border-bottom-color: var(--color-accent-1);
+}
+
+.nav-cta {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* ============================================
+   COMPONENT — TYPOGRAPHY SHOWCASE
+   ============================================ */
+.type-showcase { display: flex; flex-direction: column; gap: var(--space-4); }
+
+.type-item { padding: var(--space-3) 0; border-bottom: 1px solid #e0e0e0; }
+
+.type-item .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--color-ink-subtle);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-1);
+}
+
+h1.specimen { font-family: var(--font-display); font-size: var(--text-4xl); text-transform: uppercase; line-height: 0.85; letter-spacing: -0.02em; }
+h2.specimen { font-family: var(--font-display); font-size: var(--text-3xl); text-transform: uppercase; line-height: 0.9; }
+h3.specimen { font-family: var(--font-display); font-size: var(--text-2xl); text-transform: uppercase; line-height: 0.95; }
+h4.specimen { font-family: var(--font-ui); font-size: var(--text-xl); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em; }
+h5.specimen { font-family: var(--font-ui); font-size: var(--text-lg); text-transform: uppercase; font-weight: 700; letter-spacing: 0.08em; }
+h6.specimen { font-family: var(--font-ui); font-size: var(--text-lg); text-transform: uppercase; font-weight: 600; }
+
+p.specimen   { font-family: var(--font-mono); font-size: var(--text-base); line-height: 1.7; max-width: 600px; color: var(--color-ink-subtle); }
+
+caption.specimen, .caption-specimen {
+  font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--color-ink-subtle);
+}
+
+.mono-specimen {
+  font-family: var(--font-mono); font-size: var(--text-sm);
+  background: var(--color-ink); color: var(--color-accent-4);
+  padding: var(--space-3) var(--space-4); display: inline-block;
+}
+
+blockquote.specimen {
+  font-family: var(--font-display); font-size: var(--text-xl);
+  text-transform: uppercase; line-height: 1.1;
+  border-left: var(--border-xl); padding-left: var(--space-4);
+  color: var(--color-ink);
+}
+
+/* ============================================
+   COMPONENT — TOGGLE / CHECKBOX / RADIO
+   ============================================ */
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.custom-check, .custom-radio {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  user-select: none;
+}
+
+.custom-check input, .custom-radio input { display: none; }
+
+.check-box {
+  width: 24px; height: 24px;
+  border: var(--border-lg);
+  background: var(--color-base);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 900;
+  transition: background 0.06s, box-shadow 0.06s;
+}
+
+.custom-check input:checked + .check-box {
+  background: var(--color-ink);
+  color: var(--color-accent-1);
+  box-shadow: var(--shadow-sm);
+}
+
+.radio-box {
+  width: 24px; height: 24px;
+  border: var(--border-lg);
+  background: var(--color-base);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.06s;
+}
+
+.custom-radio input:checked + .radio-box {
+  background: var(--color-ink);
+  box-shadow: var(--shadow-sm);
+}
+
+.radio-dot {
+  width: 8px; height: 8px;
+  background: var(--color-accent-1);
+  opacity: 0;
+  transition: opacity 0.06s;
+}
+
+.custom-radio input:checked + .radio-box .radio-dot { opacity: 1; }
+
+/* TOGGLE SWITCH */
+.toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.toggle-track {
+  width: 56px;
+  height: 28px;
+  border: var(--border-lg);
+  background: var(--color-base);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.toggle-track.on {
+  background: var(--color-ink);
+}
+
+.toggle-thumb {
+  position: absolute;
+  top: 2px; left: 2px;
+  width: 20px; height: 20px;
+  background: var(--color-ink);
+  border: var(--border-sm);
+  transition: left 0.1s, background 0.1s;
+}
+
+.toggle-track.on .toggle-thumb {
+  left: 30px;
+  background: var(--color-accent-1);
+}
+
+.toggle-label {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  min-width: 48px;
+}
+
+/* ============================================
+   COMPONENT — TOOLTIP
+   ============================================ */
+.tooltip-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-target {
+  cursor: help;
+  border-bottom: 3px dotted var(--color-ink);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.tooltip-box {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 0;
+  min-width: 220px;
+  background: var(--color-ink);
+  color: var(--color-base);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+  padding: var(--space-3);
+  border: 3px solid var(--color-accent-1);
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.08s, transform 0.08s;
+  z-index: 200;
+  white-space: normal;
+}
+
+.tooltip-box::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 16px;
+  width: 12px; height: 12px;
+  background: var(--color-ink);
+  border-right: 3px solid var(--color-accent-1);
+  border-bottom: 3px solid var(--color-accent-1);
+  transform: rotate(45deg) translateY(-50%);
+}
+
+.tooltip-wrap:hover .tooltip-box {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tooltip-demo-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: center;
+  padding: var(--space-5) 0;
+}
+
+/* ============================================
+   PRINCIPLES SECTION
+   ============================================ */
+.principles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.principle-card {
+  border: var(--border-lg);
+  padding: var(--space-4);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow 0.06s, transform 0.06s;
+}
+
+.principle-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translate(-2px, -2px);
+}
+
+.principle-num {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  color: var(--color-accent-1);
+  -webkit-text-stroke: 2px var(--color-ink);
+  line-height: 1;
+  margin-bottom: var(--space-2);
+}
+
+.principle-title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.principle-body {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.8;
+  color: var(--color-ink-subtle);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.site-footer {
+  background: var(--color-ink);
+  color: var(--color-base);
+  padding: var(--space-6) var(--space-4);
+  margin-top: var(--space-7);
+  border-top: var(--border-xl);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.footer-brand span { color: var(--color-accent-1); }
+
+.footer-meta {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: #888;
+  text-align: right;
+}
+
+/* ============================================
+   SECTION ANCHORS — NAV
+   ============================================ */
+.section-anchor { scroll-margin-top: 80px; }
+
+/* ============================================
+   TABS
+   ============================================ */
+.tab-bar {
+  display: flex;
+  border-bottom: var(--border-lg);
+  margin-bottom: var(--space-5);
+  gap: 0;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: var(--text-sm);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-surface);
+  border: var(--border-md);
+  border-bottom: none;
+  cursor: pointer;
+  transition: background 0.06s;
+  margin-bottom: -4px;
+  position: relative;
+}
+
+.tab-btn.active {
+  background: var(--color-ink);
+  color: var(--color-base);
+  z-index: 1;
+}
+
+.tab-btn:hover:not(.active) { background: var(--color-accent-1); }
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Utility */
+.mt-2 { margin-top: var(--space-2); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.flex { display: flex; }
+.gap-3 { gap: var(--space-3); }
+.gap-4 { gap: var(--space-4); }
+.flex-wrap { flex-wrap: wrap; }
+.items-start { align-items: flex-start; }
+
+/* ============================================
+   CODE INLINE
+   ============================================ */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--color-ink);
+  color: var(--color-accent-4);
+  padding: 1px var(--space-2);
+  border: 1px solid #333;
+}
+
+/* scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-surface); }
+::-webkit-scrollbar-thumb { background: var(--color-ink); }
+
+</style>
+</head>
+<body>
+
+<!-- ============================
+     STICKY NAV
+     ============================ -->
+<nav class="brutalist-nav">
+  <div class="brutalist-nav-inner">
+    <a href="#" class="nav-logo">BRUTAL</a>
+    <ul class="nav-links">
+      <li><a href="#tokens" class="active">TOKENS</a></li>
+      <li><a href="#buttons">BUTTONS</a></li>
+      <li><a href="#forms">FORMS</a></li>
+      <li><a href="#cards">CARDS</a></li>
+      <li><a href="#data">DATA</a></li>
+      <li><a href="#type">TYPE</a></li>
+      <li><a href="#controls">CONTROLS</a></li>
+      <li><a href="#principles">PRINCIPLES</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="btn btn-accent btn-sm">GET STARTED</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================
+     MASTHEAD
+     ============================ -->
+<header class="masthead">
+  <div class="masthead-noise"></div>
+  <div class="masthead-inner">
+    <p class="masthead-eyebrow">// Design System v1.0 — Web UI</p>
+    <h1 class="masthead-title">
+      <span>BRUT</span>
+      <span class="accent">ALIST</span>
+      <span class="outline">UI</span>
+    </h1>
+    <p class="masthead-desc">Un sistema de diseño sin concesiones. Crudo, audaz, honesto. Rechaza lo decorativo, abraza lo estructural. El diseño que incomoda es el diseño que se recuerda.</p>
+    <div class="masthead-nav">
+      <a href="#tokens">↓ TOKENS</a>
+      <a href="#buttons">↓ BOTONES</a>
+      <a href="#cards">↓ CARDS</a>
+      <a href="#principles">↓ PRINCIPIOS</a>
+    </div>
+  </div>
+</header>
+
+
+<!-- ============================
+     PAGE WRAP START
+     ============================ -->
+<div class="page-wrap">
+
+<!-- ============================
+  SECTION: COLOR TOKENS
+     ============================ -->
+<section class="section section-anchor" id="tokens">
+  <p class="section-label">01 — TOKENS VISUALES</p>
+  <h2 class="section-title">PALETA DE COLOR</h2>
+
+  <div class="swatch-grid">
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFFFFF; border-bottom: 2px solid #000;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Base</span>
+        <span class="swatch-var">--color-base</span>
+        <span class="swatch-hex">#FFFFFF</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#000000;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Ink</span>
+        <span class="swatch-var">--color-ink</span>
+        <span class="swatch-hex">#000000</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FFE500;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Accent 1</span>
+        <span class="swatch-var">--color-accent-1</span>
+        <span class="swatch-hex">#FFE500</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FF2200;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Accent 2</span>
+        <span class="swatch-var">--color-accent-2</span>
+        <span class="swatch-hex">#FF2200</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#0033FF;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Accent 3</span>
+        <span class="swatch-var">--color-accent-3</span>
+        <span class="swatch-hex">#0033FF</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#00FF99;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Accent 4</span>
+        <span class="swatch-var">--color-accent-4</span>
+        <span class="swatch-hex">#00FF99</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#FF00CC;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Accent 5</span>
+        <span class="swatch-var">--color-accent-5</span>
+        <span class="swatch-hex">#FF00CC</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#F0F0F0; border-bottom: 2px solid #ccc;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Surface</span>
+        <span class="swatch-var">--color-surface</span>
+        <span class="swatch-hex">#F0F0F0</span>
+      </div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color" style="background:#444444;"></div>
+      <div class="swatch-info">
+        <span class="swatch-name">Ink Subtle</span>
+        <span class="swatch-var">--color-ink-subtle</span>
+        <span class="swatch-hex">#444444</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY SCALE -->
+  <h2 class="section-title mt-5">ESCALA TIPOGRÁFICA</h2>
+
+  <div>
+    <div class="type-row">
+      <div class="type-meta">4xl / 120px<br>Anton Display</div>
+      <div class="type-sample-display" style="font-size: 64px; line-height:1;">BRUTAL</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">3xl / 80px<br>Anton Display</div>
+      <div class="type-sample-display" style="font-size: 48px; line-height:1;">DESIGN</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">2xl / 54px<br>Anton Display</div>
+      <div class="type-sample-display" style="font-size: 36px; line-height:1;">NO RULES</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">xl / 36px<br>Oswald UI</div>
+      <div class="type-sample-ui" style="font-size: 28px;">TYPOGRAPHY IS POWER</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">lg / 24px<br>Oswald UI</div>
+      <div class="type-sample-ui" style="font-size: 22px;">SECTION HEADERS</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">base / 18px<br>Space Mono</div>
+      <div class="type-sample-mono" style="font-size: 16px;">Body text goes here. Readable, purposeful, raw.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">sm / 16px<br>Space Mono</div>
+      <div class="type-sample-mono" style="font-size: 14px;">Secondary information, descriptions, UI labels.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta">xs / 12px<br>Space Mono</div>
+      <div class="type-sample-mono" style="font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">CAPTIONS, META, TIMESTAMPS, SMALL LABELS</div>
+    </div>
+  </div>
+
+  <!-- SPACING SCALE -->
+  <h2 class="section-title mt-5">ESCALA DE ESPACIADO</h2>
+  <div class="spacing-grid">
+    <div class="spacing-row">
+      <span class="spacing-label">--space-1</span>
+      <span class="spacing-val">4px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:4px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-2</span>
+      <span class="spacing-val">8px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:8px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-3</span>
+      <span class="spacing-val">16px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:16px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-4</span>
+      <span class="spacing-val">24px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:24px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-5</span>
+      <span class="spacing-val">32px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:32px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-6</span>
+      <span class="spacing-val">48px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:48px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-7</span>
+      <span class="spacing-val">64px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:64px; height: 20px;"></div></div>
+    </div>
+    <div class="spacing-row">
+      <span class="spacing-label">--space-8</span>
+      <span class="spacing-val">96px</span>
+      <div class="spacing-bar-wrap"><div class="spacing-bar" style="width:96px; height: 20px;"></div></div>
+    </div>
+  </div>
+
+  <!-- SHADOWS -->
+  <h2 class="section-title mt-5">SOMBRAS OFFSET</h2>
+  <div class="shadow-samples">
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 2px 2px 0 #000;">2px</div>
+      <span class="shadow-label">--shadow-xs<br>2px 2px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 3px 3px 0 #000;">3px</div>
+      <span class="shadow-label">--shadow-sm<br>3px 3px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 5px 5px 0 #000;">5px</div>
+      <span class="shadow-label">--shadow-md<br>5px 5px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 8px 8px 0 #000;">8px</div>
+      <span class="shadow-label">--shadow-lg<br>8px 8px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 12px 12px 0 #000;">12px</div>
+      <span class="shadow-label">--shadow-xl<br>12px 12px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 5px 5px 0 #FF2200;">RED</div>
+      <span class="shadow-label">--shadow-accent<br>5px 5px 0 accent-2</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 6px 6px 0 #0033FF;">BLUE</div>
+      <span class="shadow-label">accent-3<br>6px 6px 0</span>
+    </div>
+    <div class="shadow-sample">
+      <div class="shadow-box" style="box-shadow: 6px 6px 0 #FFE500;">YLW</div>
+      <span class="shadow-label">accent-1<br>6px 6px 0</span>
+    </div>
+  </div>
+
+  <!-- BORDERS -->
+  <h2 class="section-title mt-5">BORDES</h2>
+  <div class="border-samples">
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">1px — thin</span>
+      <div class="border-demo" style="border: 1px solid #000;">border: 1px solid --color-ink</div>
+    </div>
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">2px — sm</span>
+      <div class="border-demo" style="border: 2px solid #000;">border: 2px solid --color-ink</div>
+    </div>
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">3px — md</span>
+      <div class="border-demo" style="border: 3px solid #000;">border: 3px solid --color-ink</div>
+    </div>
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">4px — lg</span>
+      <div class="border-demo" style="border: 4px solid #000;">border: 4px solid --color-ink  ← DEFAULT</div>
+    </div>
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">6px — xl</span>
+      <div class="border-demo" style="border: 6px solid #000;">border: 6px solid --color-ink</div>
+    </div>
+    <div class="border-row">
+      <span class="spacing-label" style="width:120px;">4px ACCENT</span>
+      <div class="border-demo" style="border: 4px solid #FF2200;">border: 4px solid --color-accent-2</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: BUTTONS
+     ============================ -->
+<section class="section section-anchor" id="buttons">
+  <p class="section-label">02 — COMPONENTES</p>
+  <h2 class="section-title">BOTONES</h2>
+
+  <p class="section-label" style="margin-bottom: var(--space-3);">VARIANTES PRINCIPALES</p>
+  <div class="btn-group">
+    <button class="btn btn-primary">Primario</button>
+    <button class="btn btn-secondary">Secundario</button>
+    <button class="btn btn-danger">Peligro</button>
+    <button class="btn btn-accent">Acento</button>
+    <button class="btn btn-primary" disabled>Deshabilitado</button>
+  </div>
+
+  <p class="section-label" style="margin-top: var(--space-5); margin-bottom: var(--space-3);">TAMAÑOS</p>
+  <div class="btn-group">
+    <button class="btn btn-primary btn-sm">Small</button>
+    <button class="btn btn-primary">Default</button>
+    <button class="btn btn-primary btn-lg">Large — CTA</button>
+  </div>
+
+  <p class="section-label" style="margin-top: var(--space-5); margin-bottom: var(--space-3);">SOMBRA ACENTO</p>
+  <div class="btn-group">
+    <button class="btn btn-secondary" style="box-shadow: 5px 5px 0 var(--color-accent-1);">Yellow Shadow</button>
+    <button class="btn btn-secondary" style="box-shadow: 5px 5px 0 var(--color-accent-2);">Red Shadow</button>
+    <button class="btn btn-secondary" style="box-shadow: 5px 5px 0 var(--color-accent-3);">Blue Shadow</button>
+    <button class="btn btn-secondary" style="box-shadow: 5px 5px 0 var(--color-accent-5);">Pink Shadow</button>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: FORMS
+     ============================ -->
+<section class="section section-anchor" id="forms">
+  <h2 class="section-title">FORMULARIOS</h2>
+  <div class="grid-2" style="gap: var(--space-6);">
+    <div>
+      <p class="section-label" style="margin-bottom: var(--space-4);">ESTADOS DE INPUT</p>
+      <div class="form-group">
+        <label class="form-label">Default</label>
+        <input type="text" class="form-input" placeholder="Escribe algo aquí...">
+        <span class="form-hint">Campo de texto estándar. Borde sólido, fuente monospace.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Con Foco</label>
+        <input type="text" class="form-input" value="TEXTO ACTIVO" style="box-shadow: var(--shadow-md); border-color: var(--color-accent-3);">
+        <span class="form-hint">Border cambia a accent-3 + sombra offset.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Error</label>
+        <input type="text" class="form-input error" value="entrada inválida">
+        <span class="form-error">Este campo contiene un error crítico.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Deshabilitado</label>
+        <input type="text" class="form-input" placeholder="No editable" disabled style="opacity:0.4; cursor:not-allowed;">
+      </div>
+    </div>
+    <div>
+      <p class="section-label" style="margin-bottom: var(--space-4);">TEXTAREA & SELECT</p>
+      <div class="form-group">
+        <label class="form-label">Área de Texto</label>
+        <textarea class="form-input" placeholder="Escribe un mensaje largo..."></textarea>
+        <span class="form-hint">Resize vertical permitido.</span>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Selector</label>
+        <select class="form-input" style="cursor:pointer; appearance:none; background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22><path fill=%22%23000%22 d=%22M8 10L3 5h10z%22/></svg>'); background-repeat:no-repeat; background-position: right 12px center; background-size: 12px;">
+          <option>OPCIÓN UNO</option>
+          <option>OPCIÓN DOS</option>
+          <option>OPCIÓN TRES</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Búsqueda</label>
+        <div style="position:relative;">
+          <input type="text" class="form-input" placeholder="BUSCAR..." style="padding-left: 48px;">
+          <span style="position:absolute; left:14px; top:50%; transform:translateY(-50%); font-family:var(--font-ui); font-weight:900; font-size:18px; pointer-events:none;">#</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: CARDS + BADGES + ALERTS
+     ============================ -->
+<section class="section section-anchor" id="cards">
+  <h2 class="section-title">CARDS</h2>
+  <div class="grid-3">
+    <div class="card">
+      <div class="card-img">
+        <div class="card-img-pattern"></div>
+        <span style="position:relative; z-index:1;">IMG</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag">EVENT</span>
+        <h3 class="card-title">CARD CON IMAGEN</h3>
+        <p class="card-text">Texto secundario en monospace. Describir, no decorar. Cada palabra cuenta.</p>
+        <button class="btn btn-primary btn-sm">VER MÁS →</button>
+      </div>
+    </div>
+    <div class="card" style="border-color: var(--color-accent-2); box-shadow: 6px 6px 0 var(--color-accent-2);">
+      <div class="card-body" style="padding-top: var(--space-5);">
+        <span class="card-tag" style="background: var(--color-accent-2); color: white;">URGENTE</span>
+        <h3 class="card-title">CARD SOLO TEXTO</h3>
+        <p class="card-text">Sin imagen. La tipografía como único elemento visual. El peso de las palabras es suficiente.</p>
+        <div style="display:flex; gap:var(--space-2); margin-top: var(--space-3);">
+          <span class="badge badge-default">TAG 1</span>
+          <span class="badge badge-accent2">TAG 2</span>
+        </div>
+      </div>
+    </div>
+    <div class="card card-accent">
+      <div class="card-img">
+        <div class="card-img-pattern" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0,0,0,0.15) 8px, rgba(0,0,0,0.15) 9px);"></div>
+        <span style="position:relative; z-index:1;">BLUE</span>
+      </div>
+      <div class="card-body">
+        <span class="card-tag" style="background: var(--color-accent-3); color: white;">INFO</span>
+        <h3 class="card-title">CARD ACENTO</h3>
+        <p class="card-text">Sombra y borde azul eléctrico. Para elementos destacados.</p>
+        <button class="btn btn-secondary btn-sm">ACCIÓN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BADGES -->
+  <h2 class="section-title mt-5">BADGES / TAGS</h2>
+  <div class="badge-group">
+    <span class="badge badge-default">DEFAULT</span>
+    <span class="badge badge-accent1">YELLOW</span>
+    <span class="badge badge-accent2">RED</span>
+    <span class="badge badge-accent3">BLUE</span>
+    <span class="badge badge-accent4">GREEN</span>
+    <span class="badge badge-accent5">PINK</span>
+    <span class="badge badge-outline">OUTLINE</span>
+    <span class="badge badge-default" style="font-size:10px; padding:1px 6px;">MINI</span>
+    <span class="badge badge-accent1" style="font-size: var(--text-sm); padding: 4px 12px;">LARGE</span>
+  </div>
+
+  <!-- ALERTS -->
+  <h2 class="section-title mt-5">ALERTS / BANNERS</h2>
+  <div class="alert alert-info">
+    <span class="alert-icon">ℹ</span>
+    <div class="alert-content">
+      <strong>Información</strong>
+      Este proceso puede tardar hasta 30 segundos. No cierres la ventana.
+    </div>
+  </div>
+  <div class="alert alert-success">
+    <span class="alert-icon">✓</span>
+    <div class="alert-content">
+      <strong>Éxito</strong>
+      Operación completada sin errores. Los cambios se han guardado correctamente.
+    </div>
+  </div>
+  <div class="alert alert-warning">
+    <span class="alert-icon">!</span>
+    <div class="alert-content">
+      <strong>Advertencia</strong>
+      Esta acción no se puede deshacer. Revisa los datos antes de continuar.
+    </div>
+  </div>
+  <div class="alert alert-error">
+    <span class="alert-icon">✕</span>
+    <div class="alert-content">
+      <strong>Error Crítico</strong>
+      Fallo en la conexión. Código: 503. Vuelve a intentarlo o contacta soporte.
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: DATA TABLE
+     ============================ -->
+<section class="section section-anchor" id="data">
+  <h2 class="section-title">TABLA DE DATOS</h2>
+  <div style="overflow-x:auto;">
+    <table class="brutalist-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>COMPONENTE</th>
+          <th>VERSIÓN</th>
+          <th>ESTADO</th>
+          <th>ÚLTIMA ACTUALIZACIÓN</th>
+          <th>ACCIÓN</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>01</td>
+          <td>Button System</td>
+          <td><code>v2.4.1</code></td>
+          <td><span class="status-ok">● ACTIVO</span></td>
+          <td>2026-04-22</td>
+          <td><button class="btn btn-primary btn-sm">EDITAR</button></td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Form Inputs</td>
+          <td><code>v1.9.0</code></td>
+          <td><span class="status-ok">● ACTIVO</span></td>
+          <td>2026-03-15</td>
+          <td><button class="btn btn-primary btn-sm">EDITAR</button></td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Card Component</td>
+          <td><code>v3.1.0</code></td>
+          <td><span class="status-warn">⚠ DEPRECADO</span></td>
+          <td>2025-11-08</td>
+          <td><button class="btn btn-danger btn-sm">ELIMINAR</button></td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Data Table</td>
+          <td><code>v1.0.0</code></td>
+          <td><span class="status-off">○ BORRADOR</span></td>
+          <td>2026-04-01</td>
+          <td><button class="btn btn-secondary btn-sm">VER</button></td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Navigation</td>
+          <td><code>v4.0.2</code></td>
+          <td><span class="status-ok">● ACTIVO</span></td>
+          <td>2026-04-18</td>
+          <td><button class="btn btn-primary btn-sm">EDITAR</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: TYPOGRAPHY SHOWCASE
+     ============================ -->
+<section class="section section-anchor" id="type">
+  <h2 class="section-title">TIPOGRAFÍA</h2>
+  <div class="type-showcase">
+    <div class="type-item">
+      <div class="label">H1 — Anton 120px / Display Hero</div>
+      <h1 class="specimen">HEADLINE</h1>
+    </div>
+    <div class="type-item">
+      <div class="label">H2 — Anton 80px / Section Title</div>
+      <h2 class="specimen">SECCIÓN</h2>
+    </div>
+    <div class="type-item">
+      <div class="label">H3 — Anton 54px / Sub-section</div>
+      <h3 class="specimen">SUB-TÍTULO</h3>
+    </div>
+    <div class="type-item">
+      <div class="label">H4 — Oswald Bold 36px / UI Heading</div>
+      <h4 class="specimen">UI HEADING LEVEL FOUR</h4>
+    </div>
+    <div class="type-item">
+      <div class="label">H5 — Oswald Bold 24px / Card Title</div>
+      <h5 class="specimen">CARD TITLE — COMPONENT LABEL</h5>
+    </div>
+    <div class="type-item">
+      <div class="label">H6 — Oswald 24px / Nav Item</div>
+      <h6 class="specimen">NAVIGATION ITEM — BREADCRUMB</h6>
+    </div>
+    <div class="type-item">
+      <div class="label">BODY — Space Mono 18px / Paragraph</div>
+      <p class="specimen">El brutalismo rechaza la comodidad visual. No existen superficies suaves, colores amables ni tipografías neutrales. Cada decisión de diseño es un acto deliberado de tensión. El sistema expone su estructura, no la oculta.</p>
+    </div>
+    <div class="type-item">
+      <div class="label">CAPTION — Space Mono 12px uppercase</div>
+      <span class="caption-specimen">FIGURA 01 — REFERENCIA DE COMPONENTE — SISTEMA BRUTALISTA v1.0 — © 2026</span>
+    </div>
+    <div class="type-item">
+      <div class="label">MONO CODE — Space Mono / Terminal</div>
+      <div class="mono-specimen">$ npm install brutalist-ui --save-dev<br>→ packages installed: 3<br>→ build time: 142ms<br>✓ done.</div>
+    </div>
+    <div class="type-item">
+      <div class="label">BLOCKQUOTE — Display / Pull Quote</div>
+      <blockquote class="specimen">"LA FEALDAD HONESTA<br>SUPERA A LA<br>BELLEZA FALSA."</blockquote>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: CONTROLS (Toggle, Check, Radio, Tooltip)
+     ============================ -->
+<section class="section section-anchor" id="controls">
+  <h2 class="section-title">CONTROLES</h2>
+  <div class="grid-2" style="gap: var(--space-7);">
+    <div>
+      <p class="section-label" style="margin-bottom: var(--space-4);">CHECKBOXES</p>
+      <div class="control-group">
+        <label class="custom-check">
+          <input type="checkbox" checked>
+          <div class="check-box">✓</div>
+          <span>Opción seleccionada</span>
+        </label>
+        <label class="custom-check">
+          <input type="checkbox">
+          <div class="check-box"></div>
+          <span>Opción no seleccionada</span>
+        </label>
+        <label class="custom-check">
+          <input type="checkbox" checked>
+          <div class="check-box" style="background: var(--color-accent-2); border-color: var(--color-accent-2);">✓</div>
+          <span>Variante de error</span>
+        </label>
+      </div>
+
+      <p class="section-label" style="margin-top: var(--space-5); margin-bottom: var(--space-4);">RADIO BUTTONS</p>
+      <div class="control-group">
+        <label class="custom-radio">
+          <input type="radio" name="demo" checked>
+          <div class="radio-box"><div class="radio-dot"></div></div>
+          <span>Opción A — Seleccionada</span>
+        </label>
+        <label class="custom-radio">
+          <input type="radio" name="demo">
+          <div class="radio-box"><div class="radio-dot"></div></div>
+          <span>Opción B — No seleccionada</span>
+        </label>
+        <label class="custom-radio">
+          <input type="radio" name="demo">
+          <div class="radio-box"><div class="radio-dot"></div></div>
+          <span>Opción C — Alternativa</span>
+        </label>
+      </div>
+    </div>
+
+    <div>
+      <p class="section-label" style="margin-bottom: var(--space-4);">TOGGLE SWITCHES</p>
+      <div class="control-group">
+        <div class="toggle-wrap">
+          <div class="toggle-track on" onclick="this.classList.toggle('on')">
+            <div class="toggle-thumb"></div>
+          </div>
+          <span class="toggle-label" style="color: var(--color-ink);">ON</span>
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-subtle);">Activar modo brutalist</span>
+        </div>
+        <div class="toggle-wrap">
+          <div class="toggle-track" onclick="this.classList.toggle('on')">
+            <div class="toggle-thumb"></div>
+          </div>
+          <span class="toggle-label" style="color: var(--color-ink-subtle);">OFF</span>
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-subtle);">Notificaciones de sistema</span>
+        </div>
+        <div class="toggle-wrap">
+          <div class="toggle-track on" style="border-color: var(--color-accent-3);" onclick="this.classList.toggle('on')">
+            <div class="toggle-thumb" style="border-color: var(--color-accent-3);"></div>
+          </div>
+          <span class="toggle-label" style="color: var(--color-accent-3);">ON</span>
+          <span style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-ink-subtle);">Variante azul eléctrico</span>
+        </div>
+      </div>
+
+      <p class="section-label" style="margin-top: var(--space-5); margin-bottom: var(--space-4);">TOOLTIPS</p>
+      <div class="tooltip-demo-row">
+        <div class="tooltip-wrap">
+          <span class="tooltip-target">Hover aquí para tooltip</span>
+          <div class="tooltip-box">
+            <strong style="font-family: var(--font-ui); text-transform: uppercase; display:block; margin-bottom:4px;">SIN BLUR. SIN SUAVIDAD.</strong>
+            El tooltip brutalista aparece como un bloque sólido con borde duro y fondo negro. Sin sombra difusa, sin transición suave.
+          </div>
+        </div>
+        <div class="tooltip-wrap">
+          <span class="tooltip-target" style="border-color: var(--color-accent-2);">Tooltip de error</span>
+          <div class="tooltip-box" style="border-color: var(--color-accent-2);">
+            <strong style="font-family: var(--font-ui); text-transform: uppercase; display:block; margin-bottom:4px; color: var(--color-accent-2);">ERROR CRÍTICO</strong>
+            Este campo contiene un valor inválido. El sistema no acepta concesiones.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================
+  SECTION: PRINCIPLES
+     ============================ -->
+<section class="section section-anchor" id="principles" style="background: var(--color-ink); color: var(--color-base); margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px;">
+  <p class="section-label" style="color: var(--color-accent-1);">// FILOSOFÍA</p>
+  <h2 class="section-title" style="color: var(--color-base);">PRINCIPIOS<br><span style="color: var(--color-accent-1);">DEL SISTEMA</span></h2>
+
+  <div class="principles-grid">
+    <div class="principle-card" style="background: transparent; border-color: #333; box-shadow: 5px 5px 0 #333;">
+      <div class="principle-num">01</div>
+      <h3 class="principle-title" style="color: var(--color-base);">CRUDEZA INTENCIONAL</h3>
+      <p class="principle-body">No existe "pulido" en este sistema. Los bordes son duros, las sombras son planas, los colores son violentos. Cada elemento comunica exactamente lo que es. Sin capas de ilusión.</p>
+    </div>
+    <div class="principle-card" style="background: var(--color-accent-1); border-color: var(--color-accent-1); box-shadow: 5px 5px 0 #555;">
+      <div class="principle-num" style="color: var(--color-ink); -webkit-text-stroke: 0;">02</div>
+      <h3 class="principle-title" style="color: var(--color-ink);">HONESTIDAD ESTRUCTURAL</h3>
+      <p class="principle-body" style="color: #222;">Lo que ves es lo que hay. El grid es visible. La jerarquía es evidente. Los límites son explícitos. El diseño no miente sobre su propia naturaleza.</p>
+    </div>
+    <div class="principle-card" style="background: transparent; border-color: #333; box-shadow: 5px 5px 0 #333;">
+      <div class="principle-num">03</div>
+      <h3 class="principle-title" style="color: var(--color-base);">TENSIÓN VISUAL</h3>
+      <p class="principle-body">El diseño incomoda. Provoca. Llama la atención. La tensión visual no es un accidente — es el resultado. El usuario nota el diseño porque el diseño exige ser notado.</p>
+    </div>
+    <div class="principle-card" style="background: var(--color-accent-2); border-color: var(--color-accent-2); box-shadow: 5px 5px 0 #555;">
+      <div class="principle-num" style="color: var(--color-base); -webkit-text-stroke: 0;">04</div>
+      <h3 class="principle-title" style="color: var(--color-base);">ANTI-MINIMALISMO</h3>
+      <p class="principle-body" style="color: rgba(255,255,255,0.85);">Más es más — pero con propósito. No se añade decoración sin función. Cada elemento adicional debe justificar su existencia. La densidad es permitida; el relleno no.</p>
+    </div>
+    <div class="principle-card" style="background: transparent; border-color: #333; box-shadow: 5px 5px 0 #333;">
+      <div class="principle-num">05</div>
+      <h3 class="principle-title" style="color: var(--color-base);">TIPOGRAFÍA COMO IMAGEN</h3>
+      <p class="principle-body">El texto no es contenedor — es el diseño. Los titulares son composiciones visuales. La escala tipográfica es drástica. Las MAYÚSCULAS son estructura, no énfasis.</p>
+    </div>
+    <div class="principle-card" style="background: var(--color-accent-3); border-color: var(--color-accent-3); box-shadow: 5px 5px 0 #555;">
+      <div class="principle-num" style="color: var(--color-base); -webkit-text-stroke: 0;">06</div>
+      <h3 class="principle-title" style="color: var(--color-base);">CERO BORDER-RADIUS</h3>
+      <p class="principle-body" style="color: rgba(255,255,255,0.85);">Las esquinas son rectas. Los píxeles son honestos. El border-radius suaviza, esconde, miente. En este sistema: 0px, siempre. La excepción requiere justificación escrita.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: var(--space-7); border-top: 3px solid #333; padding-top: var(--space-5);">
+    <p class="section-label" style="color: var(--color-accent-4);">// REGLAS DE USO RÁPIDO</p>
+    <div class="grid-2" style="margin-top: var(--space-4); gap: var(--space-4);">
+      <div style="font-family: var(--font-mono); font-size: var(--text-xs); line-height: 2; color: #aaa;">
+        <span style="color: var(--color-accent-4);">✓</span> border: 4px solid #000 en todos los componentes<br>
+        <span style="color: var(--color-accent-4);">✓</span> box-shadow: offset duro, sin blur<br>
+        <span style="color: var(--color-accent-4);">✓</span> hover: desplazar sombra + translate(-2px, -2px)<br>
+        <span style="color: var(--color-accent-4);">✓</span> active: comprimir sombra + translate(2px, 2px)<br>
+        <span style="color: var(--color-accent-4);">✓</span> font-family: Anton (display), Oswald (ui), Space Mono (body)<br>
+        <span style="color: var(--color-accent-4);">✓</span> text-transform: uppercase en headings y labels
+      </div>
+      <div style="font-family: var(--font-mono); font-size: var(--text-xs); line-height: 2; color: #aaa;">
+        <span style="color: var(--color-accent-2);">✕</span> border-radius > 2px<br>
+        <span style="color: var(--color-accent-2);">✕</span> box-shadow con blur<br>
+        <span style="color: var(--color-accent-2);">✕</span> gradientes suaves o de múltiples pasos<br>
+        <span style="color: var(--color-accent-2);">✕</span> fuentes: Inter, Roboto, Arial, SF Pro<br>
+        <span style="color: var(--color-accent-2);">✕</span> colores grises neutros como fondo base<br>
+        <span style="color: var(--color-accent-2);">✕</span> animaciones con ease-in-out prolongado
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end .page-wrap -->
+
+<!-- ============================
+  FOOTER
+     ============================ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">BRUT<span>AL</span>IST<br>UI SYSTEM</div>
+      <div style="font-family: var(--font-mono); font-size: var(--text-xs); color: #666; margin-top: var(--space-2);">
+        Tokens · Components · Principles
+      </div>
+    </div>
+    <div class="footer-meta">
+      <div>v1.0.0 — 2026</div>
+      <div style="margin-top: 4px;">Anton · Oswald · Space Mono</div>
+      <div style="margin-top: 4px; color: #555;">Google Fonts / Open Source</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================
+  JAVASCRIPT — INTERACTIONS ONLY
+     ============================ -->
+<script>
+// NAV ACTIVE STATE ON SCROLL
+const sections = document.querySelectorAll('.section-anchor');
+const navLinks = document.querySelectorAll('.nav-links a');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+      });
+    }
+  });
+}, { rootMargin: '-40% 0px -50% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// CHECKBOX INTERACTIONS
+document.querySelectorAll('.custom-check input').forEach(input => {
+  input.addEventListener('change', () => {
+    const box = input.nextElementSibling;
+    box.textContent = input.checked ? '✓' : '';
+  });
+});
+
+// RADIO INTERACTIONS — already handled by native behavior + CSS :checked
+
+// BUTTON ACTIVE STATE FEEDBACK
+document.querySelectorAll('.btn').forEach(btn => {
+  if (!btn.disabled) {
+    btn.addEventListener('mousedown', () => btn.style.transform = 'translate(3px,3px)');
+    btn.addEventListener('mouseup', () => btn.style.transform = '');
+    btn.addEventListener('mouseleave', () => btn.style.transform = '');
+  }
+});
+</script>
+</body>
+</html>
