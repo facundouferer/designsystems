@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SWISS DESIGN SYSTEM — v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────────────────────────
+   TOKENS
+───────────────────────────────────────────────────────────── */
+:root {
+  --color-white:      #FFFFFF;
+  --color-black:      #1A1A1A;
+  --color-gray-100:   #F5F5F5;
+  --color-gray-300:   #CCCCCC;
+  --color-gray-500:   #808080;
+  --color-gray-700:   #404040;
+  --color-accent:     #E63329;
+  --color-accent-alt: #0057A8;
+
+  --font: 'Inter', sans-serif;
+
+  /* Modular scale */
+  --t-11: 11px;
+  --t-14: 14px;
+  --t-18: 18px;
+  --t-23: 23px;
+  --t-30: 30px;
+  --t-48: 48px;
+  --t-76: 76px;
+
+  /* Spacing */
+  --s-8:   8px;
+  --s-16:  16px;
+  --s-24:  24px;
+  --s-32:  32px;
+  --s-48:  48px;
+  --s-64:  64px;
+  --s-96:  96px;
+  --s-128: 128px;
+
+  --max-w: 1200px;
+  --col-gap: 24px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font);
+  background: var(--color-white);
+  color: var(--color-black);
+  font-size: var(--t-14);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+button { font-family: var(--font); cursor: pointer; }
+input, textarea, select { font-family: var(--font); }
+
+/* ─────────────────────────────────────────────────────────────
+   LAYOUT
+───────────────────────────────────────────────────────────── */
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--s-48);
+}
+@media (max-width: 768px) { .container { padding: 0 var(--s-24); } }
+@media (max-width: 480px) { .container { padding: 0 var(--s-16); } }
+
+/* ─────────────────────────────────────────────────────────────
+   NAV
+───────────────────────────────────────────────────────────── */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 64px;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-black);
+  display: flex;
+  align-items: center;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.nav-logo {
+  font-weight: 700;
+  font-size: var(--t-14);
+  letter-spacing: 0.04em;
+}
+.nav-logo span { color: var(--color-accent); }
+.nav-links {
+  display: flex;
+  gap: var(--s-32);
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-gray-700);
+  padding-top: 4px;
+  border-top: 3px solid transparent;
+  transition: color 150ms ease, border-color 150ms ease;
+}
+.nav-links a:hover { color: var(--color-accent); }
+.nav-links a.active { border-color: var(--color-accent); color: var(--color-black); }
+
+/* ─────────────────────────────────────────────────────────────
+   SECTIONS
+───────────────────────────────────────────────────────────── */
+.section {
+  padding: var(--s-96) 0;
+  border-bottom: 1px solid var(--color-black);
+}
+.section-header {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: var(--s-32);
+  align-items: baseline;
+  margin-bottom: var(--s-64);
+}
+.section-num {
+  font-size: 96px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-gray-300);
+  line-height: 0.85;
+}
+.section-title {
+  font-size: var(--t-30);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.section-sub {
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+  margin-top: var(--s-8);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   HERO
+───────────────────────────────────────────────────────────── */
+.hero {
+  border-bottom: 1px solid var(--color-black);
+  overflow: hidden;
+}
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+}
+.hero-left {
+  padding: var(--s-96) var(--s-48) var(--s-96) 0;
+  border-right: 1px solid var(--color-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.hero-eyebrow {
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+  margin-bottom: var(--s-32);
+}
+.hero-h1 {
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.hero-h1 em {
+  font-style: normal;
+  color: var(--color-accent);
+}
+.hero-meta {
+  display: flex;
+  gap: var(--s-32);
+  margin-top: var(--s-48);
+}
+.hero-meta-item {
+  border-top: 1px solid var(--color-gray-300);
+  padding-top: var(--s-16);
+}
+.hero-meta-label {
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+}
+.hero-meta-val {
+  font-size: var(--t-14);
+  font-weight: 400;
+  margin-top: 4px;
+}
+.hero-right {
+  background: var(--color-black);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--s-48);
+  position: relative;
+  overflow: hidden;
+}
+.hero-bg-num {
+  position: absolute;
+  top: -40px;
+  right: -20px;
+  font-size: 320px;
+  font-weight: 900;
+  color: #2a2a2a;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+.hero-quote {
+  position: relative;
+  z-index: 2;
+  font-size: var(--t-30);
+  font-weight: 200;
+  line-height: 1.3;
+  color: var(--color-white);
+  letter-spacing: -0.01em;
+}
+.hero-quote strong {
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.hero-rule {
+  width: 48px;
+  height: 3px;
+  background: var(--color-accent);
+  margin-bottom: var(--s-24);
+  position: relative;
+  z-index: 2;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   01 TYPOGRAPHY
+───────────────────────────────────────────────────────────── */
+.type-scale { display: flex; flex-direction: column; gap: var(--s-32); }
+.type-row {
+  display: grid;
+  grid-template-columns: 120px 1fr 80px;
+  align-items: baseline;
+  gap: var(--s-24);
+  padding-bottom: var(--s-32);
+  border-bottom: 1px solid var(--color-gray-300);
+}
+.type-label { font-size: var(--t-11); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); }
+.type-spec { font-size: var(--t-11); color: var(--color-gray-500); text-align: right; }
+.t-display { font-size: 120px; font-weight: 300; line-height: 1; letter-spacing: -0.04em; color: var(--color-gray-300); }
+.t-h1 { font-size: var(--t-76); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; }
+.t-h2 { font-size: var(--t-48); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.t-h3 { font-size: var(--t-30); font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; }
+.t-h4 { font-size: var(--t-23); font-weight: 600; line-height: 1.2; }
+.t-h5 { font-size: var(--t-18); font-weight: 600; line-height: 1.2; }
+.t-h6 { font-size: var(--t-14); font-weight: 600; line-height: 1.2; }
+.t-body { font-size: var(--t-14); font-weight: 400; line-height: 1.5; }
+.t-body-sm { font-size: 13px; font-weight: 400; line-height: 1.5; }
+.t-caption { font-size: var(--t-11); font-weight: 400; line-height: 1.5; color: var(--color-gray-500); }
+.t-quote { font-size: var(--t-48); font-weight: 200; line-height: 1.2; letter-spacing: -0.02em; }
+.t-label-cat { font-size: var(--t-11); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+.t-number-display { font-size: 96px; font-weight: 300; line-height: 1; letter-spacing: -0.02em; color: var(--color-gray-300); }
+
+/* ─────────────────────────────────────────────────────────────
+   02 COLOR
+───────────────────────────────────────────────────────────── */
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border: 1px solid var(--color-black);
+}
+.swatch {
+  border-right: 1px solid var(--color-black);
+  border-bottom: 1px solid var(--color-black);
+}
+.swatch:nth-child(4n) { border-right: none; }
+.swatch-color { height: 120px; }
+.swatch-info { padding: var(--s-16); border-top: 1px solid var(--color-black); }
+.swatch-token { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.swatch-hex { font-size: var(--t-14); color: var(--color-gray-500); margin-top: 4px; }
+.swatch-use { font-size: var(--t-11); color: var(--color-gray-500); margin-top: 8px; line-height: 1.4; }
+
+.color-combos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-24);
+  margin-top: var(--s-32);
+}
+.combo {
+  border: 1px solid var(--color-gray-300);
+  overflow: hidden;
+}
+.combo-preview {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t-18);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.combo-label { padding: var(--s-16); border-top: 1px solid var(--color-gray-300); }
+.combo-status {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.combo-desc { font-size: var(--t-11); color: var(--color-gray-500); margin-top: 4px; }
+.combo-allowed .combo-status { color: #1A7A4A; }
+.combo-forbidden .combo-status { color: var(--color-accent); }
+
+/* ─────────────────────────────────────────────────────────────
+   03 BUTTONS
+───────────────────────────────────────────────────────────── */
+.btn-grid { display: flex; flex-wrap: wrap; gap: var(--s-16); align-items: flex-start; }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-family: var(--font);
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  line-height: 1;
+}
+.btn-primary { background: var(--color-black); color: var(--color-white); }
+.btn-primary:hover { background: var(--color-accent); }
+.btn-secondary { background: var(--color-white); color: var(--color-black); border: 1px solid var(--color-black); }
+.btn-secondary:hover { background: var(--color-black); color: var(--color-white); }
+.btn-ghost {
+  background: transparent;
+  color: var(--color-black);
+  border: none;
+  padding-left: 0;
+  padding-right: 0;
+  position: relative;
+  border-bottom: 1px solid transparent;
+}
+.btn-ghost:hover { border-bottom-color: var(--color-accent); color: var(--color-accent); }
+.btn-destructive { background: var(--color-white); color: var(--color-accent); border: 1px solid var(--color-accent); }
+.btn-destructive:hover { background: var(--color-accent); color: var(--color-white); }
+.btn-disabled { background: var(--color-gray-100); color: var(--color-gray-300); border: 1px solid var(--color-gray-300); cursor: not-allowed; }
+.btn-disabled:hover { background: var(--color-gray-100); color: var(--color-gray-300); }
+
+.btn-doc {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--s-32);
+  align-items: center;
+  padding: var(--s-24) 0;
+  border-bottom: 1px solid var(--color-gray-300);
+}
+.btn-doc-label { font-size: var(--t-11); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); }
+.btn-doc-spec { font-size: var(--t-11); color: var(--color-gray-500); }
+
+/* ─────────────────────────────────────────────────────────────
+   04 INPUTS
+───────────────────────────────────────────────────────────── */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-48);
+}
+.form-group { display: flex; flex-direction: column; gap: var(--s-24); }
+
+.field { display: flex; flex-direction: column; position: relative; }
+.field-label {
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-700);
+  margin-bottom: var(--s-8);
+  transition: color 150ms ease;
+}
+.field-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  border-radius: 0;
+  padding: var(--s-8) 0;
+  font-size: var(--t-14);
+  color: var(--color-black);
+  outline: none;
+  transition: border-color 150ms ease;
+  width: 100%;
+}
+.field-input:focus { border-bottom-width: 2px; border-bottom-color: var(--color-accent); }
+.field-input::placeholder { color: var(--color-gray-300); }
+.field-textarea {
+  background: transparent;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  padding: var(--s-16);
+  font-size: var(--t-14);
+  color: var(--color-black);
+  outline: none;
+  resize: vertical;
+  min-height: 120px;
+  transition: border-color 150ms ease;
+  width: 100%;
+}
+.field-textarea:focus { border-color: var(--color-accent); }
+
+.field-select-wrap { position: relative; }
+.field-select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-black);
+  border-radius: 0;
+  padding: var(--s-8) var(--s-32) var(--s-8) 0;
+  font-size: var(--t-14);
+  color: var(--color-black);
+  outline: none;
+  appearance: none;
+  width: 100%;
+  cursor: pointer;
+}
+.field-select-arrow {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 10px;
+  color: var(--color-black);
+}
+
+.checkbox-group, .radio-group { display: flex; flex-direction: column; gap: var(--s-16); }
+.check-item, .radio-item { display: flex; align-items: center; gap: var(--s-16); cursor: pointer; }
+.check-box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-black);
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 150ms ease;
+}
+.check-box svg { display: none; }
+.check-item input[type="checkbox"] { display: none; }
+.check-item input[type="checkbox"]:checked ~ .check-box { background: var(--color-black); }
+.check-item input[type="checkbox"]:checked ~ .check-box svg { display: block; }
+
+.radio-circle {
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--color-black);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.radio-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--color-black); display: none; }
+.radio-item input[type="radio"] { display: none; }
+.radio-item input[type="radio"]:checked ~ .radio-circle .radio-dot { display: block; }
+
+.toggle-wrap { display: flex; align-items: center; gap: var(--s-16); cursor: pointer; }
+.toggle {
+  width: 44px;
+  height: 22px;
+  background: var(--color-gray-300);
+  border: 1px solid var(--color-black);
+  position: relative;
+  transition: background 150ms ease;
+  flex-shrink: 0;
+}
+.toggle-knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-black);
+  transition: transform 150ms ease;
+}
+.toggle-wrap input[type="checkbox"] { display: none; }
+.toggle-wrap input[type="checkbox"]:checked ~ .toggle { background: var(--color-black); }
+.toggle-wrap input[type="checkbox"]:checked ~ .toggle .toggle-knob { transform: translateX(22px); }
+
+/* ─────────────────────────────────────────────────────────────
+   05 CARDS
+───────────────────────────────────────────────────────────── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-24);
+}
+.card { border-radius: 0; }
+.card-basic {
+  border-top: 3px solid var(--color-accent);
+  border: 1px solid var(--color-gray-300);
+  border-top: 3px solid var(--color-accent);
+  padding: var(--s-32);
+}
+.card-basic .card-label {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+  margin-bottom: var(--s-16);
+}
+.card-basic h3 { font-size: var(--t-18); font-weight: 700; line-height: 1.2; margin-bottom: var(--s-16); }
+.card-basic p { font-size: var(--t-14); color: var(--color-gray-700); line-height: 1.5; }
+
+.card-data {
+  border: 1px solid var(--color-gray-300);
+  padding: var(--s-32);
+}
+.card-data .num { font-size: var(--t-48); font-weight: 200; line-height: 1; letter-spacing: -0.03em; }
+.card-data .unit { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); margin-top: var(--s-8); }
+.card-data .val { font-size: var(--t-14); color: var(--color-gray-700); margin-top: var(--s-8); }
+
+.card-editorial {
+  border: 1px solid var(--color-gray-300);
+  overflow: hidden;
+}
+.card-editorial .img {
+  height: 180px;
+  background: var(--color-black);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-editorial .img-text {
+  font-size: 80px;
+  font-weight: 900;
+  color: #2a2a2a;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  position: absolute;
+}
+.card-editorial .img-label {
+  position: absolute;
+  bottom: var(--s-16);
+  left: var(--s-16);
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-300);
+}
+.card-editorial .card-body { padding: var(--s-24); }
+.card-editorial h3 { font-size: var(--t-18); font-weight: 700; margin-bottom: var(--s-8); }
+.card-editorial p { font-size: var(--t-14); color: var(--color-gray-700); line-height: 1.5; }
+
+.card-featured {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: var(--s-32);
+  border: 1px solid var(--color-black);
+}
+.card-featured .card-label { color: var(--color-accent); font-size: var(--t-11); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--s-16); }
+.card-featured h3 { font-size: var(--t-23); font-weight: 700; line-height: 1.2; margin-bottom: var(--s-16); }
+.card-featured p { font-size: var(--t-14); color: var(--color-gray-300); line-height: 1.5; }
+
+/* ─────────────────────────────────────────────────────────────
+   07 TABLES
+───────────────────────────────────────────────────────────── */
+.table-wrap { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top: 2px solid var(--color-black);
+}
+thead th {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: var(--s-16) var(--s-16);
+  text-align: left;
+  border-bottom: 1px solid var(--color-black);
+  color: var(--color-black);
+}
+thead th.num-col { text-align: right; }
+tbody td {
+  font-size: var(--t-14);
+  padding: 0 var(--s-16);
+  height: 48px;
+  border-bottom: 1px solid var(--color-gray-300);
+  color: var(--color-black);
+}
+tbody td.num-col { text-align: right; font-variant-numeric: tabular-nums; }
+tbody tr:hover td { background: var(--color-gray-100); }
+tfoot td { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-gray-500); padding: var(--s-16); border-bottom: none; border-top: 1px solid var(--color-black); }
+
+/* ─────────────────────────────────────────────────────────────
+   08 BADGES
+───────────────────────────────────────────────────────────── */
+.badge-row { display: flex; flex-wrap: wrap; gap: var(--s-16); align-items: center; }
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 0;
+  line-height: 1.4;
+}
+.badge-filled-red { background: var(--color-accent); color: var(--color-white); }
+.badge-filled-blue { background: var(--color-accent-alt); color: var(--color-white); }
+.badge-filled-black { background: var(--color-black); color: var(--color-white); }
+.badge-outlined-red { border: 1px solid var(--color-accent); color: var(--color-accent); }
+.badge-outlined-blue { border: 1px solid var(--color-accent-alt); color: var(--color-accent-alt); }
+.badge-outlined-black { border: 1px solid var(--color-black); color: var(--color-black); }
+.badge-neutral { background: var(--color-gray-100); color: var(--color-gray-700); }
+
+/* ─────────────────────────────────────────────────────────────
+   09 ALERTS
+───────────────────────────────────────────────────────────── */
+.alerts-stack { display: flex; flex-direction: column; gap: var(--s-16); }
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-24);
+  padding: 20px 24px;
+  border-left: 4px solid transparent;
+}
+.alert-info { border-left-color: var(--color-accent-alt); }
+.alert-success { border-left-color: #1A7A4A; }
+.alert-warning { border-left-color: #D97706; }
+.alert-error { border-left-color: var(--color-accent); }
+.alert-icon {
+  font-size: var(--t-18);
+  font-weight: 700;
+  line-height: 1.3;
+  flex-shrink: 0;
+  width: 24px;
+  text-align: center;
+}
+.alert-info .alert-icon { color: var(--color-accent-alt); }
+.alert-success .alert-icon { color: #1A7A4A; }
+.alert-warning .alert-icon { color: #D97706; }
+.alert-error .alert-icon { color: var(--color-accent); }
+.alert-title { font-weight: 700; font-size: var(--t-14); margin-bottom: 4px; }
+.alert-desc { font-size: var(--t-14); color: var(--color-gray-700); line-height: 1.5; }
+.alert-sep { border: none; border-top: 1px solid var(--color-gray-300); }
+
+/* ─────────────────────────────────────────────────────────────
+   10 GRID
+───────────────────────────────────────────────────────────── */
+.grid-demo { border: 1px solid var(--color-gray-300); overflow: hidden; }
+.grid-demo-inner { padding: var(--s-24); }
+.cols-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--s-24); margin-bottom: var(--s-8); }
+.col-num { font-size: var(--t-11); font-weight: 600; text-align: center; color: var(--color-gray-500); margin-bottom: var(--s-8); }
+.col-block { background: var(--color-gray-100); height: 40px; border: 1px solid var(--color-gray-300); }
+.col-block-accent { background: rgba(230,51,41,0.1); border-color: rgba(230,51,41,0.3); }
+.layout-examples { display: flex; flex-direction: column; gap: var(--s-24); margin-top: var(--s-32); }
+.layout-label { font-size: var(--t-11); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); margin-bottom: var(--s-8); }
+.layout-row { display: grid; gap: var(--s-24); }
+.layout-6-6 { grid-template-columns: 1fr 1fr; }
+.layout-4-8 { grid-template-columns: 1fr 2fr; }
+.layout-3-9 { grid-template-columns: 1fr 3fr; }
+.layout-4-4-4 { grid-template-columns: 1fr 1fr 1fr; }
+.layout-block {
+  background: var(--color-gray-100);
+  border: 1px solid var(--color-gray-300);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--t-11);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   11 SPACING
+───────────────────────────────────────────────────────────── */
+.spacing-scale { display: flex; align-items: flex-end; gap: var(--s-16); flex-wrap: wrap; }
+.spacing-item { display: flex; flex-direction: column; align-items: center; gap: var(--s-8); }
+.spacing-block { background: var(--color-black); width: 48px; }
+.spacing-val { font-size: var(--t-11); font-weight: 600; text-align: center; }
+.spacing-token { font-size: 10px; color: var(--color-gray-500); text-align: center; }
+
+/* ─────────────────────────────────────────────────────────────
+   12 EDITORIAL
+───────────────────────────────────────────────────────────── */
+.editorial {
+  background: var(--color-white);
+  border: 1px solid var(--color-black);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 640px;
+  overflow: hidden;
+}
+.editorial-top {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  border-bottom: 1px solid var(--color-black);
+}
+.editorial-hero-text {
+  padding: var(--s-48) var(--s-48) var(--s-48) var(--s-48);
+  border-right: 1px solid var(--color-black);
+}
+.editorial-edition {
+  font-size: 120px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--color-gray-300);
+  display: block;
+}
+.editorial-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-24);
+  margin-top: var(--s-16);
+  flex-wrap: wrap;
+}
+.editorial-title-big {
+  font-size: var(--t-76);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+.editorial-title-sm {
+  font-size: var(--t-30);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  color: var(--color-gray-700);
+}
+.editorial-accent-block {
+  background: var(--color-accent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: var(--s-32);
+}
+.editorial-accent-label {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: var(--s-8);
+}
+.editorial-accent-title {
+  font-size: var(--t-30);
+  font-weight: 700;
+  color: var(--color-white);
+  line-height: 1.1;
+}
+.editorial-mid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--color-black);
+}
+.editorial-body-col {
+  padding: var(--s-48);
+  border-right: 1px solid var(--color-black);
+}
+.editorial-body-col p {
+  font-size: var(--t-14);
+  line-height: 1.6;
+  color: var(--color-gray-700);
+}
+.editorial-body-col p + p { margin-top: var(--s-24); }
+.editorial-data-col { padding: var(--s-48); }
+.editorial-data-col .big-num { font-size: 80px; font-weight: 200; letter-spacing: -0.04em; line-height: 1; }
+.editorial-data-col .big-label { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-gray-500); margin-top: var(--s-8); }
+.editorial-data-col hr { border: none; border-top: 1px solid var(--color-gray-300); margin: var(--s-32) 0; }
+.editorial-bottom {
+  padding: var(--s-32) var(--s-48);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-24);
+  flex-wrap: wrap;
+}
+.editorial-bottom-left {
+  font-size: var(--t-11);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-gray-500);
+}
+.editorial-bottom-btns { display: flex; gap: var(--s-16); }
+
+/* ─────────────────────────────────────────────────────────────
+   PRINCIPLES
+───────────────────────────────────────────────────────────── */
+.principles {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: var(--s-128) 0;
+}
+.principles-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--s-48); }
+.principles-title {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gray-500);
+  margin-bottom: var(--s-32);
+  display: flex;
+  align-items: center;
+  gap: var(--s-24);
+}
+.principles-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-gray-700);
+}
+.principle-list { list-style: none; }
+.principle-item {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--s-32);
+  align-items: baseline;
+  padding: var(--s-24) 0;
+  border-bottom: 1px solid var(--color-gray-700);
+}
+.principle-num {
+  font-size: var(--t-30);
+  font-weight: 200;
+  color: var(--color-gray-700);
+  letter-spacing: -0.02em;
+}
+.principle-text {
+  font-size: var(--t-23);
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-white);
+}
+.principle-text strong { font-weight: 700; color: var(--color-accent); }
+.principles-footer {
+  display: flex;
+  align-items: center;
+  gap: var(--s-24);
+  margin-top: var(--s-48);
+}
+.principles-footer::before {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-gray-700);
+}
+.principles-version {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-gray-700);
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TWEAKS PANEL
+───────────────────────────────────────────────────────────── */
+#tweaks-panel {
+  display: none;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: var(--color-white);
+  border: 1px solid var(--color-black);
+  padding: var(--s-24);
+  width: 280px;
+  z-index: 9999;
+}
+#tweaks-panel.active { display: block; }
+.tweaks-header {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  border-bottom: 1px solid var(--color-black);
+  padding-bottom: var(--s-16);
+  margin-bottom: var(--s-16);
+}
+.tweak-row { margin-bottom: var(--s-16); }
+.tweak-label { font-size: var(--t-11); font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-gray-700); margin-bottom: 8px; display: block; }
+.tweak-options { display: flex; gap: 8px; flex-wrap: wrap; }
+.tweak-opt {
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--color-gray-300);
+  background: var(--color-white);
+  cursor: pointer;
+  transition: all 150ms ease;
+  font-family: var(--font);
+}
+.tweak-opt:hover { border-color: var(--color-black); }
+.tweak-opt.selected { background: var(--color-black); color: var(--color-white); border-color: var(--color-black); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <div class="nav-logo">SWISS<span>.</span>DS</div>
+    <ul class="nav-links">
+      <li><a href="#type">Type</a></li>
+      <li><a href="#color">Color</a></li>
+      <li><a href="#buttons">Buttons</a></li>
+      <li><a href="#forms">Forms</a></li>
+      <li><a href="#cards">Cards</a></li>
+      <li><a href="#tables">Tables</a></li>
+      <li><a href="#grid">Grid</a></li>
+      <li><a href="#editorial">Editorial</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div>
+          <p class="hero-eyebrow">International Typographic Style — v1.0</p>
+          <h1 class="hero-h1">Swiss<br>Design<br><em>System</em></h1>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Founded</div>
+            <div class="hero-meta-val">Zürich, 1950</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Typeface</div>
+            <div class="hero-meta-val">Inter / Helvetica Neue</div>
+          </div>
+          <div class="hero-meta-item">
+            <div class="hero-meta-label">Components</div>
+            <div class="hero-meta-val">12 Systems</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-bg-num">S</div>
+        <div class="hero-rule"></div>
+        <p class="hero-quote">
+          La grilla no es una sugerencia.<br>
+          <strong>Es la ley.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 01 TYPOGRAPHY -->
+<section class="section" id="type">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">01</div>
+      <div>
+        <h2 class="section-title">Tipografía</h2>
+        <p class="section-sub">Escala modular · Proporción áurea · Inter</p>
+      </div>
+    </div>
+
+    <div class="type-scale">
+      <div class="type-row">
+        <span class="type-label">Display</span>
+        <span class="t-display">01</span>
+        <span class="type-spec">120px / 300</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H1</span>
+        <span class="t-h1">Typographie</span>
+        <span class="type-spec">76px / 900</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H2</span>
+        <span class="t-h2">Internationale</span>
+        <span class="type-spec">48px / 700</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H3</span>
+        <span class="t-h3">Grafische Gestaltung</span>
+        <span class="type-spec">30px / 700</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H4</span>
+        <span class="t-h4">International Typographic Style</span>
+        <span class="type-spec">23px / 600</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H5</span>
+        <span class="t-h5">Neue Grafik — Basel School of Design</span>
+        <span class="type-spec">18px / 600</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">H6</span>
+        <span class="t-h6">Helvetica Neue — Josef Müller-Brockmann, 1960</span>
+        <span class="type-spec">14px / 600</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Body 14</span>
+        <span class="t-body">La grilla es el principio organizador supremo del Swiss Style. El contenido se organiza en módulos rectangulares que ocupan exactamente N columnas × M filas.</span>
+        <span class="type-spec">14px / 400</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Caption</span>
+        <span class="t-caption">Fig. 01 — Ejemplo de composición editorial basada en grilla de 12 columnas. Gutter: 24px. Unidad modular: 8px.</span>
+        <span class="type-spec">11px / 400</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Cita</span>
+        <span class="t-quote">El espacio negativo trabaja tan duro como el contenido.</span>
+        <span class="type-spec">48px / 200</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Etiqueta</span>
+        <span class="t-label-cat">Categoría — Sistema — Referencia</span>
+        <span class="type-spec">11px / 600 / UC</span>
+      </div>
+      <div class="type-row">
+        <span class="type-label">Números</span>
+        <div style="display:flex; gap: 32px; align-items: baseline;">
+          <span class="t-number-display">01</span>
+          <span class="t-number-display">02</span>
+          <span class="t-number-display">03</span>
+        </div>
+        <span class="type-spec">96px / 300</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 COLOR -->
+<section class="section" id="color">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">02</div>
+      <div>
+        <h2 class="section-title">Color</h2>
+        <p class="section-sub">8 tokens · 90% negro y blanco · Acento puntual</p>
+      </div>
+    </div>
+
+    <div class="color-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF; border-bottom:1px solid #CCCCCC;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-white</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-use">Fondo principal y espacio negativo dominante</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1A1A1A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-black</div>
+          <div class="swatch-hex">#1A1A1A</div>
+          <div class="swatch-use">Tipografía, bordes estructurales</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F5F5F5; border-bottom:1px solid #CCCCCC;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-gray-100</div>
+          <div class="swatch-hex">#F5F5F5</div>
+          <div class="swatch-use">Fondos de paneles secundarios</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#CCCCCC;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-gray-300</div>
+          <div class="swatch-hex">#CCCCCC</div>
+          <div class="swatch-use">Líneas de grilla, separadores</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#808080;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-gray-500</div>
+          <div class="swatch-hex">#808080</div>
+          <div class="swatch-use">Texto secundario, captions</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#404040;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-gray-700</div>
+          <div class="swatch-hex">#404040</div>
+          <div class="swatch-use">Texto de apoyo, subtítulos</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#E63329;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-accent</div>
+          <div class="swatch-hex">#E63329</div>
+          <div class="swatch-use">Rojo suizo — solo énfasis puntual</div>
+        </div>
+      </div>
+      <div class="swatch" style="border-right:none;">
+        <div class="swatch-color" style="background:#0057A8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-token">--color-accent-alt</div>
+          <div class="swatch-hex">#0057A8</div>
+          <div class="swatch-use">Azul estructural — variante fría</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-combos">
+      <div class="combo combo-allowed">
+        <div class="combo-preview" style="background:var(--color-black); color:var(--color-white);">Negro sobre blanco</div>
+        <div class="combo-label">
+          <div class="combo-status">✓ Permitido</div>
+          <div class="combo-desc">Combinación base. Máximo contraste y legibilidad.</div>
+        </div>
+      </div>
+      <div class="combo combo-allowed">
+        <div class="combo-preview" style="background:var(--color-accent); color:var(--color-white);">Rojo de acento</div>
+        <div class="combo-label">
+          <div class="combo-status">✓ Permitido</div>
+          <div class="combo-desc">Acento rojo solo en un elemento por composición.</div>
+        </div>
+      </div>
+      <div class="combo combo-forbidden">
+        <div class="combo-preview" style="background:var(--color-accent); color:var(--color-accent-alt);">Rojo + Azul</div>
+        <div class="combo-label">
+          <div class="combo-status">✗ Prohibido</div>
+          <div class="combo-desc">Nunca mezclar ambos acentos en la misma composición.</div>
+        </div>
+      </div>
+      <div class="combo combo-forbidden">
+        <div class="combo-preview" style="background: linear-gradient(135deg,#E63329,#0057A8); color:white;">Gradiente</div>
+        <div class="combo-label">
+          <div class="combo-status">✗ Prohibido</div>
+          <div class="combo-desc">Sin gradientes. Sin sombras decorativas. Sin texturas.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 BUTTONS -->
+<section class="section" id="buttons">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">03</div>
+      <div>
+        <h2 class="section-title">Botones</h2>
+        <p class="section-sub">5 variantes · Padding 12×24 · 150ms ease</p>
+      </div>
+    </div>
+    <div class="btn-grid" style="margin-bottom: var(--s-48);">
+      <button class="btn btn-primary">Primario</button>
+      <button class="btn btn-secondary">Secundario</button>
+      <button class="btn btn-ghost">Ghost</button>
+      <button class="btn btn-destructive">Destructivo</button>
+      <button class="btn btn-disabled" disabled>Deshabilitado</button>
+    </div>
+    <div>
+      <div class="btn-doc">
+        <div>
+          <div class="btn-doc-label">Primario</div>
+          <div class="btn-doc-spec">bg: --color-black · hover: --color-accent</div>
+        </div>
+        <button class="btn btn-primary">Acción Principal</button>
+      </div>
+      <div class="btn-doc">
+        <div>
+          <div class="btn-doc-label">Secundario</div>
+          <div class="btn-doc-spec">border: 1px --color-black · hover: invertido</div>
+        </div>
+        <button class="btn btn-secondary">Acción Secundaria</button>
+      </div>
+      <div class="btn-doc">
+        <div>
+          <div class="btn-doc-label">Ghost</div>
+          <div class="btn-doc-spec">sin borde · hover: línea inferior en acento</div>
+        </div>
+        <button class="btn btn-ghost">Leer más</button>
+      </div>
+      <div class="btn-doc">
+        <div>
+          <div class="btn-doc-label">Destructivo</div>
+          <div class="btn-doc-spec">border: --color-accent · hover: fondo acento</div>
+        </div>
+        <button class="btn btn-destructive">Eliminar</button>
+      </div>
+      <div class="btn-doc">
+        <div>
+          <div class="btn-doc-label">Deshabilitado</div>
+          <div class="btn-doc-spec">todo en --color-gray-300 · cursor: not-allowed</div>
+        </div>
+        <button class="btn btn-disabled" disabled>No Disponible</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 FORMS -->
+<section class="section" id="forms">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">04</div>
+      <div>
+        <h2 class="section-title">Inputs y Formularios</h2>
+        <p class="section-sub">Borde inferior único · Focus en acento · Labels en mayúsculas</p>
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <div class="field">
+          <label class="field-label">Nombre completo</label>
+          <input class="field-input" type="text" placeholder="Josef Müller-Brockmann">
+        </div>
+        <div class="field">
+          <label class="field-label">Correo electrónico</label>
+          <input class="field-input" type="email" placeholder="design@helvetica.ch">
+        </div>
+        <div class="field">
+          <label class="field-label">Especialidad</label>
+          <div class="field-select-wrap">
+            <select class="field-select">
+              <option>Diseño Gráfico</option>
+              <option>Tipografía</option>
+              <option>Señalética</option>
+              <option>Diseño Editorial</option>
+            </select>
+            <span class="field-select-arrow">▼</span>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">Mensaje</label>
+          <textarea class="field-textarea" placeholder="La grilla es el principio organizador supremo..."></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <div>
+          <label class="field-label" style="display:block;margin-bottom:16px;">Preferencias</label>
+          <div class="checkbox-group">
+            <label class="check-item">
+              <input type="checkbox" checked>
+              <div class="check-box">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span style="font-size:14px;">Tipografía sin serifa</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox">
+              <div class="check-box">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span style="font-size:14px;">Grilla de 12 columnas</span>
+            </label>
+            <label class="check-item">
+              <input type="checkbox" checked>
+              <div class="check-box">
+                <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                  <path d="M1 4L4 7L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span style="font-size:14px;">Espaciado en múltiplos de 8px</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="field-label" style="display:block;margin-bottom:16px;">Alineación tipográfica</label>
+          <div class="radio-group">
+            <label class="radio-item">
+              <input type="radio" name="align" checked>
+              <div class="radio-circle"><div class="radio-dot"></div></div>
+              <span style="font-size:14px;">Alineado a la izquierda</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="align">
+              <div class="radio-circle"><div class="radio-dot"></div></div>
+              <span style="font-size:14px;">Justificado (solo datos)</span>
+            </label>
+            <label class="radio-item">
+              <input type="radio" name="align">
+              <div class="radio-circle"><div class="radio-dot"></div></div>
+              <span style="font-size:14px;">Centrado (prohibido)</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="field-label" style="display:block;margin-bottom:16px;">Modo de color</label>
+          <label class="toggle-wrap">
+            <input type="checkbox" checked>
+            <div class="toggle"><div class="toggle-knob"></div></div>
+            <span style="font-size:14px;">Rojo de acento activo</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 CARDS -->
+<section class="section" id="cards">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">05</div>
+      <div>
+        <h2 class="section-title">Cards y Paneles</h2>
+        <p class="section-sub">4 variantes · Sin sombra · Sin border-radius</p>
+      </div>
+    </div>
+    <div class="cards-grid">
+      <div class="card card-basic">
+        <div class="card-label">Card básica</div>
+        <h3>Principio de reducción radical</h3>
+        <p>Si un elemento no comunica algo, no existe. El diseño no tiene opinión estética propia — sirve al contenido.</p>
+      </div>
+      <div class="card card-data">
+        <div class="num">1968</div>
+        <div class="unit">Año de referencia</div>
+        <div class="val">Neue Grafik — Revista fundacional del estilo internacional</div>
+      </div>
+      <div class="card card-featured">
+        <div class="card-label">Destacada</div>
+        <h3>Tipografía como arquitectura del pensamiento</h3>
+        <p>El texto no acompaña al diseño. El texto ES el diseño en su expresión más pura.</p>
+      </div>
+      <div class="card card-editorial">
+        <div class="img">
+          <span class="img-text">M</span>
+          <span class="img-label">Fig. 01 — Composición tipográfica</span>
+        </div>
+        <div class="card-body">
+          <h3>Müller-Brockmann</h3>
+          <p>Maestro de la grilla modular y el cartel de concierto. Basilea, 1914–1996.</p>
+        </div>
+      </div>
+      <div class="card card-data" style="background:var(--color-gray-100);">
+        <div class="num" style="color:var(--color-accent);">12</div>
+        <div class="unit">Columnas de grilla</div>
+        <div class="val">Gutter de 24px · Unidad modular 8px</div>
+      </div>
+      <div class="card card-basic" style="border-top-color: var(--color-accent-alt);">
+        <div class="card-label" style="color:var(--color-accent-alt);">Variante azul</div>
+        <h3>Señalética de Nueva York</h3>
+        <p>Massimo Vignelli, 1970. Sistema de señalización del metro de Nueva York, basado en Helvetica y grilla estricta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 NAV (documented) -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">06</div>
+      <div>
+        <h2 class="section-title">Navegación</h2>
+        <p class="section-sub">64px altura · Borde inferior 1px · Links en mayúsculas</p>
+      </div>
+    </div>
+    <div style="border:1px solid var(--color-black); overflow:hidden;">
+      <!-- Simulated nav example -->
+      <nav style="height:64px;background:var(--color-white);border-bottom:1px solid var(--color-black);display:flex;align-items:center;padding:0 32px;justify-content:space-between;">
+        <div style="font-weight:700;font-size:14px;letter-spacing:0.04em;">SWISS<span style="color:var(--color-accent);">.</span>DS</div>
+        <div style="display:flex;gap:32px;">
+          <a href="#" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-black);padding-top:4px;border-top:3px solid var(--color-accent);">Sistema</a>
+          <a href="#" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gray-700);padding-top:4px;border-top:3px solid transparent;">Tipografía</a>
+          <a href="#" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gray-700);padding-top:4px;border-top:3px solid transparent;">Componentes</a>
+          <a href="#" style="font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gray-700);padding-top:4px;border-top:3px solid transparent;">Grilla</a>
+        </div>
+      </nav>
+      <div style="padding:32px;background:var(--color-gray-100);">
+        <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-gray-500);">Activo: línea superior 3px --color-accent · Hover: color cambia a acento</p>
+      </div>
+    </div>
+    <!-- Badge row below nav -->
+    <div style="margin-top:var(--s-32);">
+      <p style="font-size:var(--t-11);font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--color-gray-500);margin-bottom:var(--s-24);">08 — Badges y etiquetas</p>
+      <div class="badge-row">
+        <span class="badge badge-filled-red">Nuevo</span>
+        <span class="badge badge-filled-blue">Sistema</span>
+        <span class="badge badge-filled-black">Versión 1.0</span>
+        <span class="badge badge-outlined-red">Acento</span>
+        <span class="badge badge-outlined-blue">Azul</span>
+        <span class="badge badge-outlined-black">Estructura</span>
+        <span class="badge badge-neutral">Neutral</span>
+        <span class="badge badge-neutral">Tipografía</span>
+        <span class="badge badge-neutral">Grilla</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07 TABLES -->
+<section class="section" id="tables">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">07</div>
+      <div>
+        <h2 class="section-title">Tablas</h2>
+        <p class="section-sub">Borde superior 2px · Header 11px / mayúsculas · Altura fila 48px</p>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Propiedad</th>
+            <th>Categoría</th>
+            <th class="num-col">Valor</th>
+            <th>Uso</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>--t-11</td>
+            <td>font-size</td>
+            <td><span class="badge badge-neutral">Tipografía</span></td>
+            <td class="num-col">11px</td>
+            <td>Captions, labels, badges</td>
+          </tr>
+          <tr>
+            <td>--t-14</td>
+            <td>font-size</td>
+            <td><span class="badge badge-neutral">Tipografía</span></td>
+            <td class="num-col">14px</td>
+            <td>Cuerpo de texto base</td>
+          </tr>
+          <tr>
+            <td>--t-30</td>
+            <td>font-size</td>
+            <td><span class="badge badge-neutral">Tipografía</span></td>
+            <td class="num-col">30px</td>
+            <td>H3, subtítulos de sección</td>
+          </tr>
+          <tr>
+            <td>--color-accent</td>
+            <td>color</td>
+            <td><span class="badge badge-filled-red">Color</span></td>
+            <td class="num-col">#E63329</td>
+            <td>Rojo suizo — énfasis puntual</td>
+          </tr>
+          <tr>
+            <td>--s-8</td>
+            <td>spacing</td>
+            <td><span class="badge badge-outlined-black">Grilla</span></td>
+            <td class="num-col">8px</td>
+            <td>Unidad modular base</td>
+          </tr>
+          <tr>
+            <td>--s-24</td>
+            <td>spacing</td>
+            <td><span class="badge badge-outlined-black">Grilla</span></td>
+            <td class="num-col">24px</td>
+            <td>Gutter de columnas</td>
+          </tr>
+          <tr>
+            <td>--col-gap</td>
+            <td>gap</td>
+            <td><span class="badge badge-outlined-black">Grilla</span></td>
+            <td class="num-col">24px</td>
+            <td>Separación entre columnas</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="3">Total de tokens documentados</td>
+            <td class="num-col" colspan="2">24 variables</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ALERTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">09</div>
+      <div>
+        <h2 class="section-title">Alerts y mensajes de estado</h2>
+        <p class="section-sub">Borde izquierdo 4px · Ícono tipográfico · Sin color de fondo</p>
+      </div>
+    </div>
+    <div class="alerts-stack">
+      <div class="alert alert-info">
+        <div class="alert-icon">—</div>
+        <div>
+          <div class="alert-title">Información del sistema</div>
+          <div class="alert-desc">El borde lateral comunica el estado. No se usa color de fondo — solo el borde izquierdo de 4px.</div>
+        </div>
+      </div>
+      <hr class="alert-sep">
+      <div class="alert alert-success">
+        <div class="alert-icon">+</div>
+        <div>
+          <div class="alert-title">Operación exitosa</div>
+          <div class="alert-desc">Los tokens han sido aplicados correctamente al sistema de diseño. La grilla está en su lugar.</div>
+        </div>
+      </div>
+      <hr class="alert-sep">
+      <div class="alert alert-warning">
+        <div class="alert-icon">!</div>
+        <div>
+          <div class="alert-title">Advertencia de uso</div>
+          <div class="alert-desc">Se detectó un valor de espaciado no múltiplo de 8px. Revisar la regla de espaciado modular.</div>
+        </div>
+      </div>
+      <hr class="alert-sep">
+      <div class="alert alert-error">
+        <div class="alert-icon">×</div>
+        <div>
+          <div class="alert-title">Error de composición</div>
+          <div class="alert-desc">Dos acentos de color detectados en la misma composición. Solo se permite uno por sección.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 GRID -->
+<section class="section" id="grid">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <div>
+        <h2 class="section-title">Sistema de grilla</h2>
+        <p class="section-sub">12 columnas · Gutter 24px · Unidad base 8px</p>
+      </div>
+    </div>
+    <div class="grid-demo">
+      <div class="grid-demo-inner">
+        <div class="cols-12">
+          <div class="col-num">1</div>
+          <div class="col-num">2</div>
+          <div class="col-num">3</div>
+          <div class="col-num">4</div>
+          <div class="col-num">5</div>
+          <div class="col-num">6</div>
+          <div class="col-num">7</div>
+          <div class="col-num">8</div>
+          <div class="col-num">9</div>
+          <div class="col-num">10</div>
+          <div class="col-num">11</div>
+          <div class="col-num">12</div>
+        </div>
+        <div class="cols-12">
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+          <div class="col-block col-block-accent"></div>
+          <div class="col-block col-block-accent"></div>
+          <div class="col-block col-block-accent"></div>
+          <div class="col-block col-block-accent"></div>
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+          <div class="col-block"></div>
+        </div>
+      </div>
+      <div style="border-top:1px solid var(--color-gray-300); padding:var(--s-24);">
+        <div class="layout-examples">
+          <div>
+            <div class="layout-label">6 + 6 — Dos columnas iguales</div>
+            <div class="layout-row layout-6-6">
+              <div class="layout-block">6 cols</div>
+              <div class="layout-block">6 cols</div>
+            </div>
+          </div>
+          <div>
+            <div class="layout-label">4 + 8 — Sidebar + contenido</div>
+            <div class="layout-row layout-4-8">
+              <div class="layout-block">4 cols</div>
+              <div class="layout-block">8 cols</div>
+            </div>
+          </div>
+          <div>
+            <div class="layout-label">3 + 9 — Índice + cuerpo editorial</div>
+            <div class="layout-row layout-3-9">
+              <div class="layout-block">3 cols</div>
+              <div class="layout-block">9 cols</div>
+            </div>
+          </div>
+          <div>
+            <div class="layout-label">4 + 4 + 4 — Tres columnas iguales</div>
+            <div class="layout-row layout-4-4-4">
+              <div class="layout-block">4 cols</div>
+              <div class="layout-block">4 cols</div>
+              <div class="layout-block">4 cols</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 SPACING -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <div>
+        <h2 class="section-title">Espaciado</h2>
+        <p class="section-sub">Solo múltiplos de 8px · 8 valores · El espacio tiene peso propio</p>
+      </div>
+    </div>
+    <div class="spacing-scale">
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:8px;"></div>
+        <div class="spacing-val">8px</div>
+        <div class="spacing-token">--s-8</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:16px;"></div>
+        <div class="spacing-val">16px</div>
+        <div class="spacing-token">--s-16</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:24px;"></div>
+        <div class="spacing-val">24px</div>
+        <div class="spacing-token">--s-24</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:32px;"></div>
+        <div class="spacing-val">32px</div>
+        <div class="spacing-token">--s-32</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:48px;"></div>
+        <div class="spacing-val">48px</div>
+        <div class="spacing-token">--s-48</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:64px;"></div>
+        <div class="spacing-val">64px</div>
+        <div class="spacing-token">--s-64</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:96px;"></div>
+        <div class="spacing-val">96px</div>
+        <div class="spacing-token">--s-96</div>
+      </div>
+      <div class="spacing-item">
+        <div class="spacing-block" style="height:128px;"></div>
+        <div class="spacing-val">128px</div>
+        <div class="spacing-token">--s-128</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 EDITORIAL -->
+<section class="section" id="editorial">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <div>
+        <h2 class="section-title">Composición editorial</h2>
+        <p class="section-sub">Portada de revista · Todos los elementos en sistema</p>
+      </div>
+    </div>
+    <div class="editorial">
+      <div class="editorial-top">
+        <div class="editorial-hero-text">
+          <span class="editorial-edition">04</span>
+          <div class="editorial-title-row">
+            <span class="editorial-title-big">FORM</span>
+            <span class="editorial-title-sm">follows function — always</span>
+          </div>
+        </div>
+        <div class="editorial-accent-block">
+          <div class="editorial-accent-label">Número especial</div>
+          <div class="editorial-accent-title">Grilla &amp; Espacio</div>
+        </div>
+      </div>
+      <div class="editorial-mid">
+        <div class="editorial-body-col">
+          <p style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--color-gray-500);margin-bottom:16px;">Ensayo editorial</p>
+          <p>El diseñador suizo no busca belleza. La belleza emerge de la coherencia absoluta del sistema. Cuando cada elemento ocupa su lugar matemático en la grilla, cuando el espacio negativo respira con la misma autoridad que el contenido, cuando una sola familia tipográfica expresa toda la jerarquía posible — entonces y solo entonces aparece lo que el diseñador no planeó: la elegancia.</p>
+          <p>Josef Müller-Brockmann comprendió que el cartel de concierto no necesita ilustración. Necesita ritmo tipográfico, proporción exacta, y el peso silencioso del espacio en blanco. Su serie de carteles para la Tonhalle de Zúrich entre 1950 y 1972 son la prueba más elocuente de este principio.</p>
+        </div>
+        <div class="editorial-data-col">
+          <div class="big-num">1950</div>
+          <div class="big-label">Año de nacimiento del estilo</div>
+          <hr>
+          <div class="big-num" style="font-size:48px;color:var(--color-accent);">12</div>
+          <div class="big-label">Columnas · Módulo 8px</div>
+          <hr>
+          <p style="font-size:11px;color:var(--color-gray-500);line-height:1.6;">Referentes: Müller-Brockmann · Armin Hofmann · Massimo Vignelli · Otl Aicher</p>
+        </div>
+      </div>
+      <div class="editorial-bottom">
+        <div class="editorial-bottom-left">Swiss Design System — Vol. I, No. 04 — Zürich, 2026</div>
+        <div class="editorial-bottom-btns">
+          <button class="btn btn-secondary">Descargar PDF</button>
+          <button class="btn btn-primary">Suscribirse</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRINCIPLES -->
+<section class="principles">
+  <div class="principles-inner">
+    <div class="principles-title">Principios del sistema</div>
+    <ul class="principle-list">
+      <li class="principle-item">
+        <span class="principle-num">01</span>
+        <span class="principle-text">La grilla no es una sugerencia. <strong>Es la arquitectura.</strong></span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">02</span>
+        <span class="principle-text">El espacio negativo trabaja tan duro como el contenido.</span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">03</span>
+        <span class="principle-text">Una sola familia tipográfica. <strong>Toda la jerarquía posible.</strong></span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">04</span>
+        <span class="principle-text">El color de acento aparece <strong>una vez</strong> por composición.</span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">05</span>
+        <span class="principle-text">Si no comunica, no existe.</span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">06</span>
+        <span class="principle-text">La alineación es <strong>absoluta</strong>, no aproximada.</span>
+      </li>
+      <li class="principle-item">
+        <span class="principle-num">07</span>
+        <span class="principle-text">La claridad es la forma más alta de elegancia.</span>
+      </li>
+    </ul>
+    <div class="principles-footer">
+      <span class="principles-version">Versión 1.0 — Swiss Design System — Zürich, 2026</span>
+    </div>
+  </div>
+</section>
+
+<!-- TWEAKS PANEL -->
+<div id="tweaks-panel">
+  <div class="tweaks-header">Tweaks</div>
+  <div class="tweak-row">
+    <span class="tweak-label">Color de acento</span>
+    <div class="tweak-options">
+      <button class="tweak-opt selected" data-accent="#E63329" data-accent-name="Rojo">Rojo</button>
+      <button class="tweak-opt" data-accent="#0057A8" data-accent-name="Azul">Azul</button>
+      <button class="tweak-opt" data-accent="#1A1A1A" data-accent-name="Negro">Negro</button>
+    </div>
+  </div>
+  <div class="tweak-row">
+    <span class="tweak-label">Fondo de página</span>
+    <div class="tweak-options">
+      <button class="tweak-opt selected" data-bg="#FFFFFF" data-body="#1A1A1A">Blanco</button>
+      <button class="tweak-opt" data-bg="#F5F5F5" data-body="#1A1A1A">Gris claro</button>
+      <button class="tweak-opt" data-bg="#1A1A1A" data-body="#FFFFFF">Negro</button>
+    </div>
+  </div>
+  <div class="tweak-row">
+    <span class="tweak-label">Peso de secciones</span>
+    <div class="tweak-options">
+      <button class="tweak-opt selected" data-num-weight="200">Ultralight</button>
+      <button class="tweak-opt" data-num-weight="400">Regular</button>
+      <button class="tweak-opt" data-num-weight="700">Bold</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── NAV ACTIVE STATE ───────────────────────────────────────
+const sections = document.querySelectorAll('section[id], header');
+const navLinks = document.querySelectorAll('.nav-links a');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => l.classList.remove('active'));
+      const id = entry.target.id;
+      const active = document.querySelector(`.nav-links a[href="#${id}"]`);
+      if (active) active.classList.add('active');
+    }
+  });
+}, { threshold: 0.3 });
+sections.forEach(s => observer.observe(s));
+
+// ─── TWEAKS ─────────────────────────────────────────────────
+const panel = document.getElementById('tweaks-panel');
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode') panel.classList.add('active');
+  if (e.data?.type === '__deactivate_edit_mode') panel.classList.remove('active');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+// Accent color tweak
+document.querySelectorAll('[data-accent]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const val = btn.dataset.accent;
+    document.documentElement.style.setProperty('--color-accent', val);
+    btn.closest('.tweak-options').querySelectorAll('.tweak-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accent: val } }, '*');
+  });
+});
+
+// BG color tweak
+document.querySelectorAll('[data-bg]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.body.style.background = btn.dataset.bg;
+    document.body.style.color = btn.dataset.body;
+    btn.closest('.tweak-options').querySelectorAll('.tweak-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+
+// Section num weight tweak
+document.querySelectorAll('[data-num-weight]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const w = btn.dataset.numWeight;
+    document.querySelectorAll('.section-num').forEach(n => n.style.fontWeight = w);
+    btn.closest('.tweak-options').querySelectorAll('.tweak-opt').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+  });
+});
+
+// ─── CHECKBOX / RADIO / TOGGLE ──────────────────────────────
+document.querySelectorAll('.check-item input[type="checkbox"]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const box = cb.nextElementSibling;
+    box.style.background = cb.checked ? 'var(--color-black)' : '';
+    box.querySelector('svg').style.display = cb.checked ? 'block' : 'none';
+  });
+});
+document.querySelectorAll('.radio-item input[type="radio"]').forEach(r => {
+  r.addEventListener('change', () => {
+    document.querySelectorAll(`input[name="${r.name}"]`).forEach(other => {
+      other.nextElementSibling.querySelector('.radio-dot').style.display = 'none';
+    });
+    r.nextElementSibling.querySelector('.radio-dot').style.display = 'block';
+  });
+});
+</script>
+</body>
+</html>
