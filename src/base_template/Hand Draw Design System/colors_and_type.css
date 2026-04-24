@@ -1,0 +1,238 @@
+/* ============================================================
+   Hand Draw Design System — v1.0
+   CSS Custom Properties (Design Tokens)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Patrick+Hand&display=swap');
+
+/* ── Root tokens ─────────────────────────────────────────── */
+:root {
+
+  /* ── Paper surfaces ───────────────────────────────────── */
+  --color-paper:        #F7F3E9;
+  --color-paper-aged:   #EDE8D5;
+  --color-paper-dark:   #E2DBCA;
+  --color-paper-white:  #FDFAF3;
+
+  /* ── Ink / text ───────────────────────────────────────── */
+  --color-ink:          #1C1917;
+  --color-ink-soft:     #44403C;
+  --color-ink-faded:    #78716C;
+  --color-ink-ghost:    #A8A29E;
+  --color-pencil:       #D6D3D1;
+
+  /* ── Marker colors ────────────────────────────────────── */
+  --color-marker-red:    #C8534A;
+  --color-marker-yellow: #E8C547;
+  --color-marker-green:  #5A9E6F;
+  --color-marker-blue:   #4A7FA5;
+  --color-marker-purple: #8B6BAE;
+  --color-marker-orange: #D4845A;
+
+  /* ── Watercolor washes ────────────────────────────────── */
+  --color-wash-red:    #F9ECEA;
+  --color-wash-yellow: #FDF8E3;
+  --color-wash-green:  #EAF4EE;
+  --color-wash-blue:   #E8F2F8;
+  --color-wash-purple: #F3EFF8;
+  --color-wash-orange: #FDF0E8;
+
+  /* ── Typography families ──────────────────────────────── */
+  --font-display: 'Caveat', cursive;
+  --font-body:    'Lora', Georgia, serif;
+  --font-ui:      'Patrick Hand', cursive;
+
+  /* ── Type scale ───────────────────────────────────────── */
+  --type-xs:   11px;
+  --type-sm:   13px;
+  --type-base: 16px;
+  --type-md:   19px;
+  --type-lg:   24px;
+  --type-xl:   32px;
+  --type-2xl:  42px;
+  --type-3xl:  56px;
+  --type-4xl:  72px;
+
+  /* ── Spacing scale ────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-flat:     none;
+  --shadow-paper:    1px 2px 4px rgba(28,25,23,0.08);
+  --shadow-lifted:   2px 4px 12px rgba(28,25,23,0.12);
+  --shadow-floating: 4px 8px 20px rgba(28,25,23,0.16);
+  --shadow-stacked:  3px 3px 0 var(--color-paper-dark), 6px 6px 0 var(--color-pencil);
+
+  /* ── SVG distortion levels ────────────────────────────── */
+  --distort-subtle:     0.8;
+  --distort-base:       1.5;
+  --distort-expressive: 2.5;
+  --distort-sketchy:    4.0;
+
+  /* ── Motion ───────────────────────────────────────────── */
+  --duration-snap:   100ms;
+  --duration-quick:  180ms;
+  --duration-base:   280ms;
+  --duration-draw:   400ms;
+  --duration-page:   500ms;
+
+  --easing-bounce-soft: cubic-bezier(0.34, 1.4,  0.64, 1);
+  --easing-organic:     cubic-bezier(0.45, 0.05, 0.55, 1);
+  --easing-spring:      cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+/* ── Global base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background-color: var(--color-paper);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--type-base);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+}
+
+/* ── Paper surface variants ──────────────────────────────── */
+.surface-plain {}
+
+.surface-lined {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(transparent, transparent 27px, rgba(0,0,0,0.06) 28px);
+}
+
+.surface-grid {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"),
+    repeating-linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+    repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: auto, 20px 20px, 20px 20px;
+}
+
+.surface-dotted {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Ccircle cx='10' cy='10' r='1' fill='%23A8A29E' opacity='0.4'/%3E%3C/svg%3E");
+  background-size: 20px 20px;
+}
+
+.surface-craft {
+  background-color: var(--color-paper-aged);
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+/* ── Semantic type roles ──────────────────────────────────── */
+h1, .h1 {
+  font-family: var(--font-display);
+  font-size: var(--type-3xl);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+}
+h2, .h2 {
+  font-family: var(--font-display);
+  font-size: var(--type-2xl);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+}
+h3, .h3 {
+  font-family: var(--font-display);
+  font-size: var(--type-xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-ink);
+}
+h4, .h4 {
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+h5, .h5 {
+  font-family: var(--font-display);
+  font-size: var(--type-base);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+
+p {
+  font-family: var(--font-body);
+  font-size: var(--type-base);
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-soft);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: var(--type-md);
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--color-ink-soft);
+}
+
+.label {
+  font-family: var(--font-ui);
+  font-size: var(--type-sm);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  transform: rotate(-1deg);
+  display: inline-block;
+}
+
+.caption {
+  font-family: var(--font-ui);
+  font-size: var(--type-xs);
+  line-height: 1.5;
+  color: var(--color-ink-faded);
+}
+
+/* ── Keyframe animations ─────────────────────────────────── */
+@keyframes draw-on {
+  from { stroke-dashoffset: var(--path-length, 1000); }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-1.5deg); }
+  50%       { transform: rotate(1.5deg);  }
+}
+
+@keyframes paper-lift {
+  to { transform: translateY(-3px); box-shadow: var(--shadow-lifted); }
+}
+
+@keyframes ink-appear {
+  from { opacity: 0; filter: blur(2px); }
+  to   { opacity: 1; filter: blur(0);   }
+}
+
+@keyframes scribble-in {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1);   }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 0.7; }
+}
+
+@keyframes spin-draw {
+  from { stroke-dashoffset: 200; }
+  to   { stroke-dashoffset: -200; }
+}

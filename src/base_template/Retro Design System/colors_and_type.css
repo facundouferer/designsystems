@@ -1,0 +1,284 @@
+/* ============================================================
+   RETRO DESIGN SYSTEM — Facundo Uferer
+   colors_and_type.css — Design Tokens v1.0
+   Primary Era: ERA D — Neon 80s / Synthwave
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@400;500;700&family=Share+Tech+Mono&family=Audiowide&family=Press+Start+2P&family=Barlow+Condensed:wght@700;900&family=Playfair+Display:wght@700&display=swap');
+
+/* ============================================================
+   ROOT — CSS CUSTOM PROPERTIES
+   ============================================================ */
+
+:root {
+
+  /* ----------------------------------------------------------
+     ERA D — NEON 80s — MAIN PALETTE
+     ---------------------------------------------------------- */
+
+  --color-bg:             #0A0A1A; /* Negro azulado — fondo monitor nocturno */
+  --color-bg-surface:     #0F0F2E; /* Superficie elevada — azul noche profundo */
+  --color-bg-panel:       #13133A; /* Panel — azul índigo oscuro */
+
+  --color-neon-pink:      #FF2D78; /* Rosa neón — protagonista caliente */
+  --color-neon-cyan:      #00F0FF; /* Cyan eléctrico — protagonista frío */
+  --color-neon-purple:    #BF00FF; /* Violeta neón — acento profundo */
+  --color-neon-yellow:    #FFE600; /* Amarillo neón — énfasis y alertas */
+  --color-neon-green:     #00FF41; /* Verde fósforo — terminal / phosphor */
+
+  --color-sunset-orange:  #FF6B1A; /* Naranja sunset — gradiente inferior */
+  --color-sunset-pink:    #FF2A6D; /* Rosa sunset — gradiente medio */
+  --color-sunset-purple:  #8B00FF; /* Violeta sunset — gradiente superior */
+
+  --color-grid:           #1A1A5C; /* Azul de la grilla de perspectiva */
+  --color-chrome:         #C0C0D8; /* Plateado cromado — superficies metálicas */
+
+  --color-text-primary:   #E8E8FF; /* Blanco azulado — texto principal */
+  --color-text-secondary: #9898CC; /* Violeta pálido — texto secundario */
+  --color-text-dim:       #5858AA; /* Azul dim — texto terciario */
+
+  /* ----------------------------------------------------------
+     ERA A — AMERICANA 50s/60s — VARIANT PALETTE
+     ---------------------------------------------------------- */
+
+  --era-a-red:      #C8342A;
+  --era-a-cream:    #F5F0DC;
+  --era-a-teal:     #2AB8C4;
+  --era-a-black:    #1A1A1A;
+  --era-a-white:    #FFFFFF;
+
+  /* ----------------------------------------------------------
+     ERA C — GROOVY 70s — VARIANT PALETTE
+     ---------------------------------------------------------- */
+
+  --era-c-orange:   #D4621A; /* Orange Brûlé — PANTONE 158 C */
+  --era-c-avocado:  #7A8C2A; /* Vert Avocat Vif — PANTONE 378 */
+  --era-c-brown:    #5C3A1E; /* Marron Chocolat — PANTONE 7596 C */
+  --era-c-mustard:  #C8A820; /* Moutarde/Curry — PANTONE 124 CC */
+  --era-c-cream:    #F0E8D0;
+  --era-c-terracotta: #A0522D; /* PANTONE 7588 C */
+  --era-c-olive:    #6B6B2A; /* PANTONE 468 / Vert Olive */
+  --era-c-teal:     #1A7A7A; /* PANTONE 7462 C Bleu Pétrole */
+
+  /* ----------------------------------------------------------
+     ERA E — PIXEL 90s — VARIANT PALETTE
+     ---------------------------------------------------------- */
+
+  --era-e-silver:   #C0C0C0;
+  --era-e-navy:     #000080;
+  --era-e-maroon:   #800000;
+  --era-e-teal:     #008080;
+  --era-e-white:    #FFFFFF;
+  --era-e-black:    #000000;
+  --era-e-gray:     #808080;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — FONT FAMILIES
+     ---------------------------------------------------------- */
+
+  --font-display:   'Orbitron', sans-serif;     /* ERA D hero/headlines */
+  --font-ui:        'Exo 2', sans-serif;         /* ERA D UI/subtitles */
+  --font-mono:      'Share Tech Mono', monospace; /* ERA D data/terminal */
+  --font-accent:    'Audiowide', sans-serif;     /* ERA D selective accent */
+
+  --font-era-a:     'Barlow Condensed', sans-serif; /* ERA A 50s/60s */
+  --font-era-c:     'Playfair Display', serif;       /* ERA C 70s */
+  --font-era-e:     'Press Start 2P', monospace;     /* ERA E 90s pixel */
+
+  /* ----------------------------------------------------------
+     TYPE SCALE — ERA D
+     ---------------------------------------------------------- */
+
+  --type-xs:    10px;
+  --type-sm:    12px;
+  --type-base:  15px;
+  --type-md:    18px;
+  --type-lg:    24px;
+  --type-xl:    32px;
+  --type-2xl:   48px;
+  --type-3xl:   64px;
+  --type-4xl:   96px;
+
+  /* ----------------------------------------------------------
+     SPACING SCALE
+     ---------------------------------------------------------- */
+
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  16px;
+  --space-4:  24px;
+  --space-5:  32px;
+  --space-6:  48px;
+  --space-7:  64px;
+  --space-8:  96px;
+  --space-9:  128px;
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS
+     ---------------------------------------------------------- */
+
+  --radius-none:   0px;
+  --radius-sm:     2px;
+  --radius-base:   4px;
+  --radius-md:     8px;
+  --radius-lg:     16px;
+  --radius-pill:   999px;
+
+  /* ----------------------------------------------------------
+     ANIMATION TIMING
+     ---------------------------------------------------------- */
+
+  --duration-blink:   500ms;
+  --duration-snap:    80ms;
+  --duration-fast:    150ms;
+  --duration-base:    300ms;
+  --duration-slow:    600ms;
+  --duration-crawl:   1500ms;
+
+  --easing-arcade:        steps(4, end);
+  --easing-phosphor:      cubic-bezier(0.23, 1, 0.32, 1);
+  --easing-retro-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ----------------------------------------------------------
+     GLOW SHADOWS — UTILITIES
+     ---------------------------------------------------------- */
+
+  --glow-pink:    0 0 4px #FF2D78, 0 0 12px #FF2D7866, 0 0 24px #FF2D7833;
+  --glow-cyan:    0 0 4px #00F0FF, 0 0 12px #00F0FF66, 0 0 24px #00F0FF33;
+  --glow-purple:  0 0 4px #BF00FF, 0 0 12px #BF00FF66, 0 0 24px #BF00FF33;
+  --glow-yellow:  0 0 4px #FFE600, 0 0 12px #FFE60066, 0 0 24px #FFE60033;
+  --glow-green:   0 0 4px #00FF41, 0 0 12px #00FF4166, 0 0 24px #00FF4133;
+}
+
+/* ============================================================
+   TEXT GLOW UTILITIES
+   ============================================================ */
+
+.text-glow-pink   { text-shadow: 0 0 4px #FF2D78, 0 0 12px #FF2D78, 0 0 24px #FF2D7866, 0 0 48px #FF2D7833; }
+.text-glow-cyan   { text-shadow: 0 0 4px #00F0FF, 0 0 12px #00F0FF, 0 0 24px #00F0FF66, 0 0 48px #00F0FF33; }
+.text-glow-purple { text-shadow: 0 0 4px #BF00FF, 0 0 12px #BF00FF, 0 0 24px #BF00FF66, 0 0 48px #BF00FF33; }
+.text-glow-yellow { text-shadow: 0 0 4px #FFE600, 0 0 12px #FFE600, 0 0 24px #FFE60066, 0 0 48px #FFE60033; }
+.text-glow-green  { text-shadow: 0 0 4px #00FF41, 0 0 12px #00FF41, 0 0 24px #00FF4166, 0 0 48px #00FF4133; }
+
+/* ============================================================
+   BORDER GLOW UTILITIES
+   ============================================================ */
+
+.border-glow-pink   { box-shadow: 0 0 4px #FF2D78, 0 0 12px #FF2D7866, inset 0 0 4px #FF2D7833; }
+.border-glow-cyan   { box-shadow: 0 0 4px #00F0FF, 0 0 12px #00F0FF66, inset 0 0 4px #00F0FF33; }
+.border-glow-purple { box-shadow: 0 0 4px #BF00FF, 0 0 12px #BF00FF66, inset 0 0 4px #BF00FF33; }
+.border-glow-yellow { box-shadow: 0 0 4px #FFE600, 0 0 12px #FFE60066, inset 0 0 4px #FFE60033; }
+
+/* ============================================================
+   CRT SCANLINES OVERLAY
+   ============================================================ */
+
+.crt-overlay::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 2px,
+    rgba(0, 0, 0, 0.08) 4px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ============================================================
+   CHROME TEXT EFFECT
+   ============================================================ */
+
+.chrome-text {
+  background: linear-gradient(
+    180deg,
+    #FFFFFF 0%,
+    #C0C0D8 25%,
+    #404060 50%,
+    #C0C0D8 75%,
+    #808098 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   BEVEL UTILITIES — ERA E
+   ============================================================ */
+
+.bevel-raised {
+  border: 2px solid;
+  border-color: #FFFFFF #808080 #808080 #FFFFFF;
+  box-shadow: inset 1px 1px 0 #C0C0C0;
+}
+
+.bevel-sunken {
+  border: 2px solid;
+  border-color: #808080 #FFFFFF #FFFFFF #808080;
+  box-shadow: inset -1px -1px 0 #C0C0C0;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+@keyframes phosphor-on {
+  0%   { filter: blur(8px) brightness(3); opacity: 0; color: #ffffff; }
+  30%  { filter: blur(2px) brightness(1.5); opacity: 0.7; }
+  100% { filter: blur(0) brightness(1); opacity: 1; }
+}
+
+@keyframes arcade-blink {
+  0%, 49%  { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes outrun-scroll {
+  from { background-position: 0 0; }
+  to   { background-position: 0 120px; }
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.4; }
+}
+
+@keyframes vhs-glitch {
+  0%, 94%, 100% { clip-path: inset(0 0 100% 0); transform: translateX(0); filter: none; }
+  95% { clip-path: inset(20% 0 30% 0); transform: translateX(-4px); filter: hue-rotate(90deg); }
+  97% { clip-path: inset(60% 0 10% 0); transform: translateX(4px); filter: hue-rotate(-90deg); }
+  98% { clip-path: inset(40% 0 20% 0); transform: translateX(-2px); filter: none; }
+}
+
+@keyframes rotate-sun {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes blink-cursor {
+  50% { opacity: 0; }
+}
+
+@keyframes bevel-press {
+  0%   { border-color: #FFFFFF #808080 #808080 #FFFFFF; }
+  100% { border-color: #808080 #FFFFFF #FFFFFF #808080; }
+}
+
+@keyframes progress-stripes {
+  from { background-position: 0 0; }
+  to   { background-position: 40px 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

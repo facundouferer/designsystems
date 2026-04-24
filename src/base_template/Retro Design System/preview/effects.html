@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@900&family=Share+Tech+Mono&family=Exo+2:wght@400&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .effect { background: #0F0F2E; border: 1px solid #1A1A5C; border-radius: 2px; padding: 14px; }
+  .effect-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+
+  .glow-pink { font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:#FF2D78;text-shadow:0 0 4px #FF2D78,0 0 12px #FF2D78,0 0 24px #FF2D7866;letter-spacing:0.05em; }
+  .glow-cyan { font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:#00F0FF;text-shadow:0 0 4px #00F0FF,0 0 12px #00F0FF,0 0 24px #00F0FF66;letter-spacing:0.05em; }
+  .glow-purple { font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;color:#BF00FF;text-shadow:0 0 4px #BF00FF,0 0 12px #BF00FF,0 0 24px #BF00FF66;letter-spacing:0.05em; }
+  .chrome { font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;letter-spacing:0.05em;background:linear-gradient(180deg,#FFFFFF 0%,#C0C0D8 25%,#404060 50%,#C0C0D8 75%,#808098 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+  .border-demo { height: 36px; border-radius: 2px; display:flex;align-items:center;justify-content:center; font-family:'Exo 2',sans-serif;font-size:12px; }
+  .phosphor { font-family:'Share Tech Mono',monospace;font-size:13px;color:#00FF41;text-shadow:0 0 6px #00FF41; }
+  .scanlines-demo { height: 50px; background: #13133A; position:relative;overflow:hidden;border-radius:2px;display:flex;align-items:center;justify-content:center; }
+  .scanlines-demo::after { content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px);pointer-events:none; }
+  .scanlines-demo span { font-family:'Orbitron',sans-serif;font-size:14px;color:#E8E8FF;z-index:1;letter-spacing:0.1em; }
+</style>
+</head>
+<body>
+  <div class="effect">
+    <div class="effect-label">Text Glow — Pink</div>
+    <div class="glow-pink">NEON SIGN</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Text Glow — Cyan</div>
+    <div class="glow-cyan">ELECTRIC</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Text Glow — Purple</div>
+    <div class="glow-purple">ULTRAVIOLET</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Chrome Metallic Text</div>
+    <div class="chrome">CHROME</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Border Glow — Cyan</div>
+    <div class="border-demo" style="border:1px solid #00F0FF;box-shadow:0 0 4px #00F0FF,0 0 12px #00F0FF66,inset 0 0 4px #00F0FF33;color:#00F0FF;font-family:'Share Tech Mono',monospace;font-size:11px;">INTERFACE PANEL</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Border Glow — Pink</div>
+    <div class="border-demo" style="border:1px solid #FF2D78;box-shadow:0 0 4px #FF2D78,0 0 12px #FF2D7866,inset 0 0 4px #FF2D7833;color:#FF2D78;font-family:'Share Tech Mono',monospace;font-size:11px;">ALERT ZONE</div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">Phosphor Terminal</div>
+    <div class="phosphor">> SYS READY_<span style="animation:blink 1s step-end infinite;display:inline-block;">█</span></div>
+  </div>
+  <div class="effect">
+    <div class="effect-label">CRT Scanlines Overlay</div>
+    <div class="scanlines-demo"><span>SCANLINE CRT</span></div>
+  </div>
+  <style>@keyframes blink{50%{opacity:0;}}</style>
+</body>
+</html>

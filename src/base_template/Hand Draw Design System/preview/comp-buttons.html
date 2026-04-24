@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hd-base"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" seed="2"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+    <filter id="hd-subtle"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="4" result="noise" seed="5"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="0.8" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px;font-family:'Patrick Hand',cursive;display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}
+.glabel{font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:#1C1917;width:100%;margin-top:8px}
+.btn{position:relative;padding:10px 22px;font-family:'Patrick Hand',cursive;font-size:14px;cursor:pointer;background:none;border:none;transform:rotate(-0.5deg);transition:transform 0.18s,filter 0.18s;display:inline-flex;align-items:center;justify-content:center;min-width:100px}
+.btn:hover{transform:rotate(0deg) translateY(-2px)}
+.btn svg.frame{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+/* primary */
+.btn-primary{color:#FDFAF3}
+.btn-primary svg.frame rect{fill:#1C1917;stroke:#1C1917;stroke-width:2.5;filter:url(#hd-base)}
+.btn-primary:hover svg.frame rect{fill:#4A7FA5;stroke:#4A7FA5}
+/* secondary */
+.btn-secondary{color:#1C1917}
+.btn-secondary svg.frame rect{fill:transparent;stroke:#1C1917;stroke-width:2;filter:url(#hd-base)}
+.btn-secondary:hover svg.frame rect{fill:#E2DBCA}
+/* ghost */
+.btn-ghost{color:#44403C;text-decoration:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='6'%3E%3Cpath d='M0 3 Q50 1 100 4 Q150 6 200 3' stroke='%2344403C' stroke-width='1.2' fill='none'/%3E%3C/svg%3E");background-repeat:repeat-x;background-position:0 100%;background-size:200px 6px;padding-bottom:3px}
+.btn-ghost:hover{color:#4A7FA5;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='6'%3E%3Cpath d='M0 3 Q50 1 100 4 Q150 6 200 3' stroke='%234A7FA5' stroke-width='1.2' fill='none'/%3E%3C/svg%3E")}
+/* danger */
+.btn-danger{color:#C8534A}
+.btn-danger svg.frame rect{fill:transparent;stroke:#C8534A;stroke-width:2;filter:url(#hd-base)}
+.btn-danger:hover svg.frame rect{fill:#F9ECEA}
+/* pill */
+.btn-pill{color:#1C1917}
+.btn-pill svg.frame ellipse{fill:transparent;stroke:#1C1917;stroke-width:2;filter:url(#hd-base)}
+.btn-pill:hover svg.frame ellipse{fill:#E2DBCA}
+/* disabled */
+.btn-disabled{opacity:0.4;cursor:not-allowed;color:#1C1917}
+.btn-disabled svg.frame rect{fill:transparent;stroke:#1C1917;stroke-width:2}
+</style></head><body>
+<div class="glabel">Buttons</div>
+<button class="btn btn-primary">
+  <svg class="frame" viewBox="0 0 100 38" preserveAspectRatio="none"><rect x="2" y="2" width="96" height="34" rx="0"/></svg>
+  <span>Primary</span>
+</button>
+<button class="btn btn-secondary">
+  <svg class="frame" viewBox="0 0 110 38" preserveAspectRatio="none"><rect x="2" y="2" width="106" height="34" rx="0"/></svg>
+  <span>Secondary</span>
+</button>
+<button class="btn btn-ghost" style="position:relative;padding:10px 22px">Ghost action</button>
+<button class="btn btn-danger">
+  <svg class="frame" viewBox="0 0 90 38" preserveAspectRatio="none"><rect x="2" y="2" width="86" height="34" rx="0"/></svg>
+  <span>Danger</span>
+</button>
+<button class="btn btn-pill" style="border-radius:999px">
+  <svg class="frame" viewBox="0 0 120 38" preserveAspectRatio="none"><ellipse cx="60" cy="19" rx="58" ry="17"/></svg>
+  <span>Pill button</span>
+</button>
+<button class="btn btn-disabled" disabled>
+  <svg class="frame" viewBox="0 0 110 38" preserveAspectRatio="none"><rect x="2" y="2" width="106" height="34" rx="0"/></svg>
+  <span>Disabled</span>
+</button>
+</body></html>

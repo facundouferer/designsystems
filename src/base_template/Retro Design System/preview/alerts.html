@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 16px; display: flex; flex-direction: column; gap: 10px; }
+
+  .alert { padding: 12px 16px; border-radius: 2px; display: flex; gap: 12px; align-items: flex-start; }
+  .alert-icon { font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 15px; flex-shrink: 0; line-height: 1; margin-top: 1px; }
+  .alert-text { }
+  .alert-title { font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .alert-body { font-family: 'Share Tech Mono', monospace; font-size: 11px; margin-top: 3px; }
+
+  .alert-info { background: #0A1A3A; border-left: 4px solid #00F0FF; }
+  .alert-info .alert-icon, .alert-info .alert-title { color: #00F0FF; text-shadow: 0 0 6px #00F0FF; }
+  .alert-info .alert-body { color: #9898CC; }
+
+  .alert-success { background: #0A2A1A; border-left: 4px solid #00FF41; }
+  .alert-success .alert-icon, .alert-success .alert-title { color: #00FF41; text-shadow: 0 0 6px #00FF41; }
+  .alert-success .alert-body { color: #9898CC; }
+
+  .alert-warning { background: #1A1A0A; border-left: 4px solid #FFE600; }
+  .alert-warning .alert-icon, .alert-warning .alert-title { color: #FFE600; text-shadow: 0 0 6px #FFE600; }
+  .alert-warning .alert-body { color: #9898CC; }
+
+  .alert-error { background: #2A0A1A; border-left: 4px solid #FF2D78; }
+  .alert-error .alert-icon, .alert-error .alert-title { color: #FF2D78; text-shadow: 0 0 6px #FF2D78; }
+  .alert-error .alert-body { color: #9898CC; }
+</style>
+</head>
+<body>
+  <div class="alert alert-info">
+    <div class="alert-icon">i</div>
+    <div class="alert-text"><div class="alert-title">System Info</div><div class="alert-body">ERA D signal acquired. All systems nominal.</div></div>
+  </div>
+  <div class="alert alert-success">
+    <div class="alert-icon">✓</div>
+    <div class="alert-text"><div class="alert-title">Upload Complete</div><div class="alert-body">Data stream synchronized. 100% integrity.</div></div>
+  </div>
+  <div class="alert alert-warning">
+    <div class="alert-icon">!</div>
+    <div class="alert-text"><div class="alert-title">Low Signal</div><div class="alert-body">Phosphor decay detected. Recalibrate CRT.</div></div>
+  </div>
+  <div class="alert alert-error">
+    <div class="alert-icon">×</div>
+    <div class="alert-text"><div class="alert-title">System Error</div><div class="alert-body">VHS signal corrupted. Glitch imminent.</div></div>
+  </div>
+</body>
+</html>

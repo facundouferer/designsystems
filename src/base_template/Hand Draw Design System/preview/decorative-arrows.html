@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px;font-family:'Patrick Hand',cursive;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.glabel{font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:#1C1917;width:100%;margin-bottom:4px}
+.arrow-item{display:flex;flex-direction:column;align-items:center;gap:6px}
+.arrow-label{font-size:10px;color:#78716C}
+svg .arrow-path{stroke:#44403C;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.arrow-item:hover svg .arrow-path{stroke:#4A7FA5}
+@keyframes draw-arrow{from{stroke-dashoffset:80}to{stroke-dashoffset:0}}
+.arrow-item:hover svg .arrow-path{stroke-dasharray:80;stroke-dashoffset:0;animation:draw-arrow 0.4s cubic-bezier(0.45,0.05,0.55,1)}
+</style></head><body>
+<div class="glabel">Drawn arrows</div>
+
+<div class="arrow-item">
+  <svg width="48" height="48" viewBox="0 0 48 48">
+    <path class="arrow-path" d="M8 24 Q20 22 36 24 M28 16 L38 24 L28 32"/>
+  </svg>
+  <div class="arrow-label">.arrow-right</div>
+</div>
+<div class="arrow-item">
+  <svg width="48" height="48" viewBox="0 0 48 48">
+    <path class="arrow-path" d="M40 24 Q28 22 12 24 M20 16 L10 24 L20 32"/>
+  </svg>
+  <div class="arrow-label">.arrow-left</div>
+</div>
+<div class="arrow-item">
+  <svg width="48" height="48" viewBox="0 0 48 48">
+    <path class="arrow-path" d="M24 40 Q22 28 24 12 M16 20 L24 10 L32 20"/>
+  </svg>
+  <div class="arrow-label">.arrow-up</div>
+</div>
+<div class="arrow-item">
+  <svg width="48" height="48" viewBox="0 0 48 48">
+    <path class="arrow-path" d="M24 8 Q22 20 24 36 M16 28 L24 38 L32 28"/>
+  </svg>
+  <div class="arrow-label">.arrow-down</div>
+</div>
+<div class="arrow-item">
+  <svg width="64" height="48" viewBox="0 0 64 48">
+    <path class="arrow-path" d="M8 8 Q8 40 48 40 M38 32 L50 40 L42 50"/>
+  </svg>
+  <div class="arrow-label">.arrow-curved-right</div>
+</div>
+<div class="arrow-item">
+  <svg width="64" height="64" viewBox="0 0 64 64">
+    <path class="arrow-path" d="M12 8 Q54 8 54 52 M44 42 L54 54 L64 44"/>
+  </svg>
+  <div class="arrow-label">.arrow-curved-down</div>
+</div>
+
+<div class="glabel" style="margin-top:8px">Margin annotations</div>
+<div style="position:relative;background:#FDFAF3;padding:16px 80px 16px 16px;box-shadow:1px 2px 4px rgba(28,25,23,0.08);max-width:380px">
+  <span style="font-family:'Lora',serif;font-size:15px;color:#44403C">The pen traces where the eye follows. Every stroke is intentional.</span>
+  <div style="position:absolute;right:4px;top:10px;display:flex;align-items:center;gap:2px">
+    <svg width="36" height="24" viewBox="0 0 36 24"><path d="M32 12 Q20 10 4 14" stroke="#4A7FA5" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M10 10 L4 14 L9 18" stroke="#4A7FA5" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span style="font-family:'Caveat',cursive;font-size:13px;color:#4A7FA5;transform:rotate(-2deg);display:inline-block;max-width:60px;line-height:1.2">note here!</span>
+  </div>
+</div>
+
+</body></html>

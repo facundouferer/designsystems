@@ -1138,6 +1138,25 @@ blockquote.specimen {
   text-align: right;
 }
 
+.footer-links {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: var(--space-3);
+}
+
+.footer-links a {
+  color: var(--color-accent-1);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.footer-links a:hover {
+  color: var(--color-base);
+}
+
 /* ============================================
    SECTION ANCHORS — NAV
    ============================================ */
@@ -1961,6 +1980,11 @@ code {
       <div>v1.0.0 — 2026</div>
       <div style="margin-top: 4px;">Anton · Oswald · Space Mono</div>
       <div style="margin-top: 4px; color: #555;">Google Fonts / Open Source</div>
+      <div class="footer-links">
+        <a href="https://facundouferer.ar/" target="_blank" rel="noreferrer">Facundo Uferer</a>
+        <a href="https://github.com/facundouferer" target="_blank" rel="noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/facundouferer/" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
     </div>
   </div>
 </footer>

@@ -1,0 +1,55 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600;700&family=Lora:wght@400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:20px;font-family:'Patrick Hand',cursive}
+.table-wrap{transform:rotate(-0.2deg);max-width:560px}
+table{width:100%;border-collapse:collapse}
+thead th{background:#E2DBCA;font-family:'Caveat',cursive;font-size:16px;font-weight:700;color:#1C1917;padding:12px 14px;text-align:left;position:relative}
+thead th::after{content:'';position:absolute;bottom:0;left:0;right:0;height:8px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='8'%3E%3Cpath d='M0 4 Q50 2 100 5 Q150 7 200 4' stroke='%231C1917' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") repeat-x center/200px 8px}
+tbody tr{height:48px;transition:background 0.18s}
+tbody tr:hover{background:#EDE8D5}
+tbody td{font-family:'Lora',serif;font-size:14px;color:#44403C;padding:10px 14px;position:relative}
+tbody tr::after{content:'';display:block;position:absolute;left:14px;right:14px;bottom:0;height:6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='6'%3E%3Cpath d='M0 3 Q100 1 200 4 Q300 6 400 3' stroke='%23D6D3D1' stroke-width='1' fill='none'/%3E%3C/svg%3E") repeat-x center/400px 6px}
+tbody tr{position:relative}
+.tag{font-family:'Patrick Hand',cursive;font-size:11px;padding:2px 8px;border-radius:0}
+</style></head><body>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Status</th>
+      <th>Joined</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mara Breen</td>
+      <td>Designer</td>
+      <td><span class="tag" style="color:#5A9E6F;background:#EAF4EE;border:1px solid #5A9E6F">Active</span></td>
+      <td>Mar 2024</td>
+    </tr>
+    <tr>
+      <td>Oliver Kast</td>
+      <td>Engineer</td>
+      <td><span class="tag" style="color:#4A7FA5;background:#E8F2F8;border:1px solid #4A7FA5">Remote</span></td>
+      <td>Jan 2024</td>
+    </tr>
+    <tr>
+      <td>Sena Idris</td>
+      <td>Writer</td>
+      <td><span class="tag" style="color:#E8C547;background:#FDF8E3;border:1px solid #E8C547">Draft</span></td>
+      <td>Apr 2024</td>
+    </tr>
+    <tr>
+      <td>Priya Voss</td>
+      <td>PM</td>
+      <td><span class="tag" style="color:#C8534A;background:#F9ECEA;border:1px solid #C8534A">Away</span></td>
+      <td>Feb 2024</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</body></html>

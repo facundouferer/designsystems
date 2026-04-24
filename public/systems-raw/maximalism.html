@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MAXIMALISM DESIGN SYSTEM — v1.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   TOKENS — NEON BAROQUE
+   ============================================================ */
+:root {
+  /* Colors */
+  --color-bg:             #0D0D0D;
+  --color-surface:        #1A1A2E;
+  --color-neon-pink:      #FF006E;
+  --color-neon-cyan:      #00F5FF;
+  --color-neon-yellow:    #FFE500;
+  --color-neon-purple:    #BF00FF;
+  --color-neon-green:     #39FF14;
+  --color-gold:           #FFD700;
+  --color-text-primary:   #F0F0F0;
+  --color-text-secondary: #A0A0C0;
+  --color-black:          #0D0D0D;
+  --color-white:          #F0F0F0;
+
+  /* Typography */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-serif:   'Playfair Display', serif;
+  --font-sans:    'Space Grotesk', sans-serif;
+
+  --type-xs:   11px;
+  --type-sm:   14px;
+  --type-base: 17px;
+  --type-md:   22px;
+  --type-lg:   32px;
+  --type-xl:   48px;
+  --type-2xl:  64px;
+  --type-3xl:  96px;
+  --type-4xl:  128px;
+  --type-5xl:  180px;
+
+  /* Spacing */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  16px;
+  --space-4:  24px;
+  --space-5:  32px;
+  --space-6:  48px;
+  --space-7:  64px;
+  --space-8:  96px;
+  --space-9:  128px;
+  --space-10: 192px;
+
+  /* Borders */
+  --border-thin:   1px solid currentColor;
+  --border-base:   2px solid currentColor;
+  --border-thick:  4px solid currentColor;
+  --border-heavy:  6px solid currentColor;
+  --border-dashed: 3px dashed currentColor;
+  --border-double: 6px double currentColor;
+
+  /* Shadows */
+  --shadow-offset:     4px 4px 0px var(--color-black);
+  --shadow-offset-lg:  8px 8px 0px var(--color-black);
+  --shadow-colored:    6px 6px 0px var(--color-neon-pink);
+  --shadow-layered:    4px 4px 0 #FF006E, 8px 8px 0 #00F5FF;
+  --shadow-glow-pink:  0 0 20px rgba(255,0,110,0.6);
+  --shadow-glow-cyan:  0 0 20px rgba(0,245,255,0.6);
+  --shadow-glow-gold:  0 0 30px rgba(255,215,0,0.5);
+  --shadow-deep:       0 20px 60px rgba(0,0,0,0.4);
+
+  /* Active palette selection for Tweaks */
+  --accent-a: var(--color-neon-pink);
+  --accent-b: var(--color-neon-cyan);
+  --accent-c: var(--color-neon-yellow);
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+@keyframes glow-pulse {
+  0%, 100% { text-shadow: 0 0 10px var(--color-neon-pink), 0 0 30px var(--color-neon-pink), 0 0 60px var(--color-neon-pink); }
+  50%       { text-shadow: 0 0 20px var(--color-neon-cyan), 0 0 50px var(--color-neon-cyan), 0 0 100px var(--color-neon-cyan); }
+}
+@keyframes blob-morph {
+  0%,100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  25%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+  50%      { border-radius: 50% 60% 30% 60% / 30% 40% 70% 50%; }
+  75%      { border-radius: 40% 60% 60% 40% / 60% 30% 40% 70%; }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes glitch-1 {
+  0%,100% { clip-path: inset(0 0 95% 0); transform: translateX(-4px); }
+  20%      { clip-path: inset(30% 0 50% 0); transform: translateX(4px); }
+  40%      { clip-path: inset(60% 0 20% 0); transform: translateX(-2px); }
+  60%      { clip-path: inset(80% 0 5% 0);  transform: translateX(6px); }
+  80%      { clip-path: inset(10% 0 70% 0); transform: translateX(-6px); }
+}
+@keyframes glitch-2 {
+  0%,100% { clip-path: inset(50% 0 30% 0); transform: translateX(4px); }
+  20%      { clip-path: inset(10% 0 80% 0); transform: translateX(-4px); }
+  40%      { clip-path: inset(70% 0 5% 0);  transform: translateX(2px); }
+  60%      { clip-path: inset(20% 0 60% 0); transform: translateX(-3px); }
+  80%      { clip-path: inset(85% 0 10% 0); transform: translateX(5px); }
+}
+@keyframes float-badge {
+  0%,100% { transform: rotate(-12deg) translateY(0); }
+  50%      { transform: rotate(-12deg) translateY(-6px); }
+}
+@keyframes scan-h {
+  0%   { transform: scaleX(0); transform-origin: left; }
+  50%  { transform: scaleX(1); transform-origin: left; }
+  51%  { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes neon-flicker {
+  0%,19%,21%,23%,25%,54%,56%,100% { opacity: 1; }
+  20%,22%,24%,55% { opacity: 0.4; }
+}
+
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-base);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* ============================================================
+   BACKGROUND PATTERN UTILITIES
+   ============================================================ */
+.bg-dots {
+  background-image: radial-gradient(circle, rgba(255,0,110,0.35) 1.5px, transparent 1.5px);
+  background-size: 20px 20px;
+}
+.bg-cross {
+  background-image:
+    linear-gradient(rgba(0,245,255,0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,245,255,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.bg-stripe {
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    rgba(255,229,0,0.12) 8px,
+    rgba(255,229,0,0.12) 16px
+  );
+}
+.bg-polka {
+  background-image: radial-gradient(circle, rgba(191,0,255,0.3) 20px, transparent 20px);
+  background-size: 60px 60px;
+}
+.bg-noise {
+  position: relative;
+}
+.bg-noise::after {
+  content:'';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+.bg-checker {
+  background-image:
+    linear-gradient(45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,0.04) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.04) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.04) 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+}
+.bg-memphis {
+  background-color: #1A1A2E;
+  background-image:
+    radial-gradient(circle at 15% 25%, rgba(255,0,110,0.18) 8px, transparent 8px),
+    radial-gradient(circle at 65% 75%, rgba(0,245,255,0.15) 5px, transparent 5px),
+    radial-gradient(circle at 85% 15%, rgba(255,229,0,0.15) 12px, transparent 12px),
+    linear-gradient(45deg, rgba(191,0,255,0.06) 2px, transparent 2px),
+    linear-gradient(-45deg, rgba(57,255,20,0.06) 2px, transparent 2px);
+  background-size: 80px 80px, 60px 60px, 100px 100px, 30px 30px, 30px 30px;
+}
+.bg-halftone {
+  background-image: radial-gradient(circle, rgba(255,0,110,0.4) 2px, transparent 2px),
+                    radial-gradient(circle, rgba(0,245,255,0.3) 1px, transparent 1px);
+  background-size: 16px 16px, 8px 8px;
+  background-position: 0 0, 4px 4px;
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+.section {
+  padding: var(--space-8) 0;
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+}
+.section-label {
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-neon-cyan);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.section-label::before { content: ''; display: block; width: 32px; height: 2px; background: var(--color-neon-cyan); }
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--type-2xl);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: var(--space-6);
+}
+
+/* ============================================================
+   EFFECT UTILITIES
+   ============================================================ */
+.effect-gradient-text {
+  background: linear-gradient(127deg, var(--color-neon-pink), var(--color-neon-cyan), var(--color-neon-yellow), var(--color-neon-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 300%;
+  animation: shimmer 4s linear infinite;
+}
+.effect-outline-text {
+  -webkit-text-stroke: 2px var(--color-neon-pink);
+  color: transparent;
+}
+.effect-neon-glow {
+  text-shadow: 0 0 10px var(--color-neon-pink), 0 0 30px var(--color-neon-pink), 0 0 60px var(--color-neon-pink);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+.effect-shimmer {
+  background: linear-gradient(90deg, var(--color-gold) 0%, #fff 40%, var(--color-gold) 60%, #fff8 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+.effect-3d-push {
+  box-shadow: var(--shadow-layered);
+  transition: box-shadow 0.1s ease, transform 0.1s ease;
+}
+.effect-3d-push:hover {
+  box-shadow: 2px 2px 0 #FF006E, 4px 4px 0 #00F5FF;
+  transform: translate(2px,2px);
+}
+.effect-3d-push:active {
+  box-shadow: none;
+  transform: translate(4px,4px);
+}
+.effect-glitch {
+  position: relative;
+}
+.effect-glitch::before,
+.effect-glitch::after {
+  content: attr(data-text);
+  position: absolute; inset: 0;
+  font: inherit;
+}
+.effect-glitch::before {
+  color: var(--color-neon-cyan);
+  animation: glitch-1 2.5s infinite linear;
+}
+.effect-glitch::after {
+  color: var(--color-neon-pink);
+  animation: glitch-2 2.5s infinite linear;
+}
+.effect-grain::before {
+  content:'';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 10;
+  border-radius: inherit;
+}
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+}
+.marquee-track {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+.marquee-track-reverse {
+  display: inline-block;
+  animation: marquee-reverse 40s linear infinite;
+}
+.marquee-item {
+  display: inline-block;
+  padding: 0 var(--space-4);
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  letter-spacing: 0.06em;
+}
+.marquee-sep { color: var(--color-neon-pink); padding: 0 8px; }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+.navbar {
+  position: sticky; top: 0; z-index: 200;
+  background: linear-gradient(90deg, #0D0D0D 0%, #1A1A2E 50%, #0D0D0D 100%);
+  border-bottom: 3px solid var(--color-neon-pink);
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  overflow: hidden;
+}
+.navbar::before {
+  content:'';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(0,245,255,0.04) 60px, rgba(0,245,255,0.04) 61px);
+  pointer-events: none;
+}
+.navbar-logo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 0.1em;
+  color: var(--color-neon-yellow);
+  text-shadow: 0 0 12px rgba(255,229,0,0.5);
+  position: relative;
+}
+.navbar-links {
+  display: flex; align-items: center; gap: var(--space-5);
+  list-style: none;
+}
+.navbar-links a {
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.navbar-links a::after {
+  content:'';
+  position: absolute; bottom: -2px; left: 0; right: 0;
+  height: 2px;
+  background: var(--color-neon-cyan);
+  transform: scaleX(0);
+  transition: transform 0.2s;
+  transform-origin: left;
+}
+.navbar-links a:hover { color: var(--color-neon-cyan); }
+.navbar-links a:hover::after { transform: scaleX(1); }
+.navbar-links a.active {
+  color: var(--color-neon-yellow);
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  padding: 14px 28px;
+}
+.btn-primary {
+  background: var(--color-neon-pink);
+  color: #fff;
+  box-shadow: 4px 4px 0 var(--color-neon-cyan);
+}
+.btn-primary:hover {
+  box-shadow: 6px 6px 0 var(--color-neon-cyan);
+  transform: translate(-2px,-2px);
+  background: #ff2d82;
+}
+.btn-secondary {
+  background: transparent;
+  color: var(--color-neon-cyan);
+  border: 3px solid var(--color-neon-cyan);
+}
+.btn-secondary:hover {
+  background: var(--color-neon-cyan);
+  color: #000;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--color-neon-green);
+  border: none;
+  text-shadow: 0 0 8px var(--color-neon-green);
+  padding: 14px 28px;
+  letter-spacing: 0.15em;
+}
+.btn-ghost:hover {
+  text-shadow: 0 0 16px var(--color-neon-green), 0 0 32px var(--color-neon-green);
+}
+.btn-pill {
+  background: linear-gradient(127deg, var(--color-neon-pink), var(--color-neon-purple), var(--color-neon-cyan));
+  color: #fff;
+  border-radius: 9999px;
+  padding: 14px 36px;
+  background-size: 200%;
+  transition: background-position 0.4s, box-shadow 0.2s;
+  box-shadow: 0 0 16px rgba(191,0,255,0.4);
+}
+.btn-pill:hover {
+  background-position: right;
+  box-shadow: 0 0 32px rgba(191,0,255,0.7);
+}
+.btn-sticker {
+  background: var(--color-neon-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: var(--type-sm);
+  letter-spacing: 0.05em;
+  clip-path: polygon(5% 0%, 95% 2%, 100% 90%, 88% 100%, 0% 98%, 2% 10%);
+  transform: rotate(-4deg);
+  padding: 16px 24px;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-sticker:hover {
+  transform: rotate(3deg) scale(1.05);
+  box-shadow: 5px 5px 0 rgba(0,0,0,0.4);
+}
+.btn-3d {
+  background: var(--color-neon-cyan);
+  color: #000;
+  box-shadow: 4px 4px 0 #FF006E, 8px 8px 0 #FFE500;
+  font-weight: 800;
+}
+.btn-3d:hover {
+  box-shadow: 6px 6px 0 #FF006E, 12px 12px 0 #FFE500;
+  transform: translate(-2px,-2px);
+}
+.btn-3d:active {
+  box-shadow: none;
+  transform: translate(8px,8px);
+}
+
+/* ============================================================
+   INPUTS
+   ============================================================ */
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); }
+.form-label {
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-neon-cyan);
+}
+.input-base {
+  background: rgba(26,26,46,0.8);
+  border: none;
+  border-bottom: 3px solid var(--color-neon-pink);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  padding: 12px 16px 12px 0;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+.input-base:focus { border-bottom-color: var(--color-neon-cyan); background: rgba(26,26,46,1); }
+.input-framed {
+  background: rgba(26,26,46,0.6);
+  border: 2px double var(--color-gold);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  padding: 12px 16px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.input-framed:focus { border-color: var(--color-neon-cyan); box-shadow: 0 0 0 1px var(--color-neon-cyan); }
+.input-big-label { position: relative; margin-top: var(--space-5); }
+.input-big-label input {
+  background: transparent;
+  border: none;
+  border-bottom: 4px solid var(--color-neon-yellow);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-base);
+  padding: 16px 0 8px;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.input-big-label input:focus { border-bottom-color: var(--color-neon-pink); }
+.input-big-label label {
+  position: absolute; top: -20px; left: 0;
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  color: var(--color-neon-yellow);
+  letter-spacing: 0.04em;
+  pointer-events: none;
+}
+.textarea-max {
+  background: rgba(26,26,46,0.7);
+  border: 3px dashed var(--color-neon-purple);
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
+  font-size: var(--type-sm);
+  padding: 16px;
+  outline: none;
+  width: 100%; resize: vertical;
+  min-height: 120px;
+  transition: border-color 0.2s;
+}
+.textarea-max:focus { border-color: var(--color-neon-pink); }
+
+/* Custom checkbox */
+.checkbox-wrap { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.checkbox-wrap input { display: none; }
+.checkbox-star {
+  width: 28px; height: 28px;
+  border: 3px solid var(--color-neon-yellow);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+  color: transparent;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+.checkbox-wrap input:checked + .checkbox-star {
+  background: var(--color-neon-yellow);
+  color: #000;
+  box-shadow: 3px 3px 0 var(--color-neon-pink);
+}
+.checkbox-text {
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  color: var(--color-text-primary);
+}
+
+/* Toggle */
+.toggle-wrap { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.toggle-wrap input { display: none; }
+.toggle-track {
+  width: 52px; height: 28px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.1);
+  border: 2px solid rgba(255,255,255,0.2);
+  position: relative;
+  transition: all 0.3s;
+}
+.toggle-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--color-text-secondary);
+  position: absolute; top: 2px; left: 2px;
+  transition: all 0.3s;
+}
+.toggle-wrap input:checked ~ .toggle-track {
+  background: linear-gradient(90deg, var(--color-neon-pink), var(--color-neon-purple));
+  border-color: var(--color-neon-pink);
+  box-shadow: 0 0 12px rgba(255,0,110,0.5);
+}
+.toggle-wrap input:checked ~ .toggle-track .toggle-thumb {
+  left: 26px; background: #fff;
+}
+
+/* ============================================================
+   CARDS
+   ============================================================ */
+.card-base {
+  background: var(--color-surface);
+  border: 3px solid var(--color-neon-pink);
+  box-shadow: 6px 6px 0 var(--color-neon-cyan);
+  padding: var(--space-5);
+  position: relative;
+}
+.card-base::before {
+  content:'';
+  position: absolute; inset: 4px;
+  border: 1px solid rgba(255,0,110,0.15);
+  pointer-events: none;
+}
+.card-sticker-badge {
+  position: absolute; top: -16px; right: -16px;
+  background: var(--color-neon-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  padding: 8px 12px;
+  transform: rotate(12deg);
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.5);
+  animation: float-badge 3s ease-in-out infinite;
+  z-index: 10;
+  white-space: nowrap;
+}
+.card-editorial {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+  display: flex; align-items: flex-end;
+}
+.card-editorial-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(127deg, #1A1A2E 0%, #2D0A4E 50%, #0A1A2E 100%);
+}
+.card-editorial-bg::before {
+  content:'';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(255,0,110,0.3) 0%, transparent 70%);
+}
+.card-editorial-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+}
+.card-editorial-content {
+  position: relative; z-index: 2;
+  padding: var(--space-5);
+}
+.card-editorial-title {
+  font-family: var(--font-display);
+  font-size: var(--type-xl);
+  line-height: 0.95;
+  color: var(--color-neon-yellow);
+  display: block;
+  margin-bottom: var(--space-2);
+}
+.card-neon {
+  background: #050510;
+  border: 2px solid var(--color-neon-cyan);
+  box-shadow: 0 0 20px rgba(0,245,255,0.25), inset 0 0 30px rgba(0,245,255,0.05);
+  padding: var(--space-5);
+  position: relative;
+}
+.card-cut {
+  background: linear-gradient(213deg, var(--color-neon-purple), #1A1A2E);
+  clip-path: polygon(0 0, 100% 8%, 100% 100%, 0 92%);
+  padding: var(--space-7) var(--space-5);
+  position: relative;
+}
+.card-collage {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+  background: #0D0D1A;
+  border: 3px solid var(--color-neon-pink);
+}
+
+/* ============================================================
+   TABLE
+   ============================================================ */
+.table-max {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 3px solid var(--color-neon-pink);
+}
+.table-max thead th {
+  background: var(--color-neon-pink);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 16px 20px;
+  text-align: left;
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+.table-max thead th:last-child { border-right: none; }
+.table-max tbody tr { transition: background 0.15s; }
+.table-max tbody tr:nth-child(even) { background: rgba(26,26,46,0.7); }
+.table-max tbody tr:hover { background: rgba(0,245,255,0.08); }
+.table-max tbody td {
+  padding: 14px 20px;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: var(--type-sm);
+}
+.table-max tbody td:last-child { border-right: none; }
+.table-max .td-mono { font-family: monospace; color: var(--color-neon-cyan); font-size: 13px; }
+.table-max .td-num { color: var(--color-neon-yellow); font-weight: 700; }
+
+/* ============================================================
+   BADGES
+   ============================================================ */
+.badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+.badge-solid-pink  { background: var(--color-neon-pink);   color: #fff; }
+.badge-solid-cyan  { background: var(--color-neon-cyan);   color: #000; }
+.badge-solid-yellow{ background: var(--color-neon-yellow); color: #000; }
+.badge-pill        { border-radius: 9999px; background: var(--color-neon-purple); color: #fff; padding: 4px 16px; }
+.badge-outline     { border: 2px solid var(--color-neon-pink); color: var(--color-neon-pink); background: transparent; }
+.badge-double      { border: 4px double var(--color-gold); color: var(--color-gold); background: transparent; }
+.badge-sticker {
+  background: var(--color-neon-yellow); color: #000;
+  transform: rotate(-8deg) scale(1);
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+  display: inline-block;
+  padding: 6px 14px;
+}
+.badge-pattern {
+  background: repeating-linear-gradient(45deg, #FF006E, #FF006E 4px, #CC0055 4px, #CC0055 8px);
+  color: #fff;
+  padding: 4px 12px;
+}
+
+/* ============================================================
+   ALERTS
+   ============================================================ */
+.alert {
+  display: flex; align-items: flex-start; gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  border: 3px solid;
+  position: relative;
+}
+.alert-icon {
+  font-size: 32px; line-height: 1; flex-shrink: 0; margin-top: 2px;
+}
+.alert-title {
+  font-family: var(--font-sans);
+  font-size: var(--type-md);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.alert-body { font-size: var(--type-sm); opacity: 0.85; }
+.alert-success { border-color: var(--color-neon-green); box-shadow: 4px 4px 0 var(--color-neon-green); color: var(--color-neon-green); }
+.alert-warning { border-color: var(--color-neon-yellow); box-shadow: 4px 4px 0 var(--color-neon-yellow); color: var(--color-neon-yellow); }
+.alert-danger  { border-color: var(--color-neon-pink);  box-shadow: 4px 4px 0 var(--color-neon-pink);  color: var(--color-neon-pink);  }
+.alert-info    { border-color: var(--color-neon-cyan);  box-shadow: 4px 4px 0 var(--color-neon-cyan);  color: var(--color-neon-cyan);  }
+.alert-banner {
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.alert-banner-pink { background: var(--color-neon-pink); color: #fff; }
+.alert-banner-cyan { background: var(--color-neon-cyan); color: #000; }
+
+/* ============================================================
+   SEPARATORS
+   ============================================================ */
+.sep-line { height: 3px; background: linear-gradient(90deg, var(--color-neon-pink), var(--color-neon-cyan)); width: 100%; }
+.sep-symbols {
+  text-align: center;
+  font-size: var(--type-md);
+  letter-spacing: 0.5em;
+  color: var(--color-neon-yellow);
+  padding: var(--space-4) 0;
+}
+.sep-diagonal {
+  width: 100%; height: 48px;
+  background: linear-gradient(127deg, var(--color-neon-pink) 0%, var(--color-neon-purple) 100%);
+  clip-path: polygon(0 0, 100% 40%, 100% 100%, 0 60%);
+}
+.sep-fade {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-neon-cyan) 50%, transparent);
+}
+.sep-zigzag {
+  height: 24px; width: 100%;
+  background: none;
+  overflow: hidden;
+  position: relative;
+}
+.sep-zigzag::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: 
+    linear-gradient(135deg, transparent 33.33%, var(--color-neon-pink) 33.33%, var(--color-neon-pink) 66.66%, transparent 66.66%),
+    linear-gradient(225deg, transparent 33.33%, var(--color-neon-pink) 33.33%, var(--color-neon-pink) 66.66%, transparent 66.66%);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 0;
+}
+
+/* ============================================================
+   GRADIENT BLOB
+   ============================================================ */
+.blob {
+  width: 500px; height: 500px;
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  animation: blob-morph 8s ease-in-out infinite;
+  filter: blur(60px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+.blob-pink    { background: radial-gradient(ellipse, var(--color-neon-pink), transparent); }
+.blob-cyan    { background: radial-gradient(ellipse, var(--color-neon-cyan), transparent); }
+.blob-purple  { background: radial-gradient(ellipse, var(--color-neon-purple), transparent); }
+
+/* ============================================================
+   STICKER / FLOATING BADGE
+   ============================================================ */
+.sticker {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: var(--color-neon-yellow);
+  color: #000;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-align: center;
+  line-height: 1.1;
+  transform: rotate(-15deg);
+  box-shadow: 4px 4px 0 rgba(0,0,0,0.4);
+  animation: float-badge 3s ease-in-out infinite;
+}
+.sticker-star {
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  width: 90px; height: 90px; border-radius: 0;
+  background: var(--color-neon-pink);
+  color: #fff;
+}
+
+/* ============================================================
+   TWEAKS PANEL
+   ============================================================ */
+.tweaks-panel {
+  display: none;
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  background: #0D0D0D;
+  border: 3px solid var(--color-neon-yellow);
+  box-shadow: 6px 6px 0 var(--color-neon-pink);
+  padding: var(--space-4);
+  width: 260px;
+  font-family: var(--font-sans);
+}
+.tweaks-panel.active { display: block; }
+.tweaks-title {
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  color: var(--color-neon-yellow);
+  margin-bottom: var(--space-3);
+  letter-spacing: 0.05em;
+}
+.tweak-row { margin-bottom: var(--space-3); }
+.tweak-label { font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-text-secondary); margin-bottom: 8px; display: block; }
+.tweak-swatches { display: flex; gap: 8px; flex-wrap: wrap; }
+.tweak-swatch {
+  width: 32px; height: 32px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.tweak-swatch.active { border-color: #fff; transform: scale(1.15); }
+.tweak-select {
+  background: var(--color-surface);
+  border: 2px solid var(--color-neon-cyan);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--type-sm);
+  padding: 8px 12px;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+}
+.tweak-range { width: 100%; cursor: pointer; accent-color: var(--color-neon-pink); }
+
+/* ============================================================
+   PAGE SECTIONS SPECIFIC STYLES
+   ============================================================ */
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 20% 50%, #1A0A2E 0%, #0D0D0D 60%);
+}
+.hero-bg-num {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 40vw;
+  color: rgba(255,0,110,0.04);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+}
+.hero-content { position: relative; z-index: 10; padding: var(--space-9) 48px; }
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-neon-cyan);
+  border: 1px solid var(--color-neon-cyan);
+  padding: 6px 16px;
+  margin-bottom: var(--space-5);
+}
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: clamp(80px, 12vw, 160px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-5);
+}
+.hero-h1 em {
+  font-style: normal;
+  -webkit-text-stroke: 2px var(--color-neon-pink);
+  color: transparent;
+}
+.hero-sub {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--type-xl);
+  color: var(--color-neon-yellow);
+  margin-bottom: var(--space-6);
+  max-width: 600px;
+}
+.hero-actions { display: flex; gap: var(--space-4); flex-wrap: wrap; }
+.hero-sticker {
+  position: absolute; top: 15%; right: 8%;
+  z-index: 20;
+}
+
+/* STATS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border: 3px solid var(--color-neon-pink);
+}
+.stat-cell {
+  padding: var(--space-7) var(--space-5);
+  text-align: center;
+  border-right: 3px solid var(--color-neon-pink);
+  position: relative;
+  overflow: hidden;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: var(--type-4xl);
+  line-height: 0.9;
+  display: block;
+}
+.stat-label {
+  font-family: var(--font-sans);
+  font-size: var(--type-xs);
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-3);
+  display: block;
+}
+
+/* COLOR SWATCHES */
+.swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px,1fr)); gap: var(--space-3); }
+.swatch {
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.swatch-color { height: 80px; }
+.swatch-info { padding: 8px 10px; background: var(--color-surface); }
+.swatch-name { font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-primary); display: block; }
+.swatch-hex  { font-size: 11px; font-family: monospace; color: var(--color-text-secondary); }
+
+/* GRADIENT SHOWCASE */
+.gradient-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: var(--space-3); }
+.grad-swatch { height: 120px; display: flex; align-items: flex-end; padding: 12px; }
+.grad-label { font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.6); padding: 4px 8px; }
+
+/* PATTERN GRID */
+.pattern-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: var(--space-3); }
+.pattern-swatch { height: 120px; border: 2px solid rgba(255,255,255,0.1); display: flex; align-items: flex-end; padding: 12px; position: relative; }
+.pattern-label { font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(0,0,0,0.75); padding: 4px 8px; color: var(--color-text-primary); position: relative; z-index: 2; }
+
+/* PRINCIPLES */
+.principles-section {
+  background: #050505;
+  padding: var(--space-10) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.principles-section::before {
+  content: 'MAX';
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: 40vw;
+  color: rgba(255,0,110,0.03);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  pointer-events: none;
+  user-select: none;
+}
+.principle-sep { color: var(--color-neon-yellow); letter-spacing: 0.3em; font-size: var(--type-md); margin: var(--space-6) 0; }
+.principle-title {
+  font-family: var(--font-display);
+  font-size: var(--type-2xl);
+  letter-spacing: 0.1em;
+  color: var(--color-neon-cyan);
+  margin-bottom: var(--space-7);
+}
+.principle {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 64px);
+  letter-spacing: 0.04em;
+  margin-bottom: var(--space-5);
+  line-height: 1;
+  position: relative;
+  z-index: 2;
+}
+.principle .num {
+  color: var(--color-neon-pink);
+  margin-right: 16px;
+  font-size: 0.6em;
+}
+.principle:nth-child(odd) { color: var(--color-text-primary); }
+.principle:nth-child(even) { color: var(--color-neon-yellow); }
+.system-version {
+  font-family: var(--font-display);
+  font-size: var(--type-lg);
+  letter-spacing: 0.2em;
+  color: var(--color-text-secondary);
+  margin-top: var(--space-7);
+}
+
+/* TYPOGRAPHY SHOWCASE */
+.type-scale-row {
+  display: flex; align-items: baseline; gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.type-meta { min-width: 120px; font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.15em; color: var(--color-text-secondary); flex-shrink: 0; font-family: monospace; }
+
+/* FOOTER */
+footer {
+  background: #050505;
+  border-top: 4px solid var(--color-neon-pink);
+  padding: var(--space-8) 48px;
+  position: relative;
+  overflow: hidden;
+}
+footer .footer-logo {
+  position: absolute; bottom: -20px; right: 40px;
+  font-family: var(--font-display);
+  font-size: 20vw;
+  color: rgba(255,255,255,0.025);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+footer .footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-6);
+  position: relative; z-index: 2;
+}
+footer .footer-brand { font-family: var(--font-display); font-size: var(--type-xl); color: var(--color-neon-yellow); letter-spacing: 0.04em; line-height: 1; }
+footer .footer-tagline { font-family: var(--font-serif); font-style: italic; color: var(--color-text-secondary); margin-top: var(--space-3); }
+footer h4 { font-size: var(--type-xs); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-neon-cyan); margin-bottom: var(--space-3); }
+footer ul { list-style: none; }
+footer ul li { margin-bottom: var(--space-2); }
+footer ul li a { font-size: var(--type-sm); letter-spacing: 0.05em; text-transform: uppercase; color: var(--color-text-secondary); transition: color 0.15s; }
+footer ul li a:hover { color: var(--color-neon-pink); }
+footer .footer-socials { display: flex; gap: var(--space-3); flex-wrap: wrap; }
+footer .footer-socials a { font-size: var(--type-xs); letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-neon-yellow); }
+footer .footer-socials a:hover { color: var(--color-neon-cyan); }
+footer .footer-bottom { margin-top: var(--space-6); padding-top: var(--space-4); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; }
+footer .footer-copy { font-size: var(--type-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-secondary); }
+
+/* Cards layout */
+.cards-asymmetric { display: grid; grid-template-columns: 5fr 3fr 4fr; gap: var(--space-4); }
+@media (max-width: 900px) { .cards-asymmetric { grid-template-columns: 1fr; } }
+
+/* Full-width section overflow helpers */
+.full-bleed { margin-left: -48px; margin-right: -48px; }
+
+/* Two-col form */
+.form-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+@media(max-width:700px){ .form-two-col { grid-template-columns: 1fr; } }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-bg); }
+::-webkit-scrollbar-thumb { background: var(--color-neon-pink); }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+     ============================================================ -->
+<nav class="navbar">
+  <div class="navbar-logo">MXM</div>
+  <ul class="navbar-links">
+    <li><a href="#typography">Tipo</a></li>
+    <li><a href="#color">Color</a></li>
+    <li><a href="#buttons">Buttons</a></li>
+    <li><a href="#forms">Forms</a></li>
+    <li><a href="#cards">Cards</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#composition" class="active">Full Page</a></li>
+  </ul>
+</nav>
+
+<!-- ============================================================
+     01 — HERO / INTRO
+     ============================================================ -->
+<section class="hero" id="hero">
+  <div class="blob blob-pink" style="top:-100px;left:-100px;animation-delay:0s"></div>
+  <div class="blob blob-cyan"  style="top:40%;right:-150px;animation-delay:-3s"></div>
+  <div class="blob blob-purple" style="bottom:-100px;left:30%;animation-delay:-6s"></div>
+  <span class="hero-bg-num">01</span>
+
+  <div class="hero-content">
+    <div class="hero-tag">Sistema de Diseño — Neon Baroque</div>
+    <h1 class="hero-h1">
+      MAXI<br><em>MALISM</em><br>DESIGN
+    </h1>
+    <p class="hero-sub">Abundancia con intención. Ornamento con función.</p>
+    <div class="hero-actions">
+      <a href="#typography" class="btn btn-primary">Explorar ↓</a>
+      <a href="#composition" class="btn btn-secondary">Ver composición</a>
+      <a href="#color" class="btn btn-ghost">Paleta →</a>
+    </div>
+  </div>
+
+  <div class="hero-sticker">
+    <div class="sticker" style="width:100px;height:100px;font-size:14px;">MORE<br>IS<br>MORE</div>
+  </div>
+
+  <div style="position:absolute;bottom:0;left:0;right:0;">
+    <div class="marquee-wrap" style="background:var(--color-neon-pink);padding:10px 0;">
+      <div class="marquee-track" style="color:#fff;">
+        <span class="marquee-item">MAXIMALISM DESIGN SYSTEM</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">MORE IS MORE</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">NEON BAROQUE</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">HORROR VACUI</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">MAXIMALISM DESIGN SYSTEM</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">MORE IS MORE</span><span class="marquee-sep">◆</span>
+        <span class="marquee-item">NEON BAROQUE</span><span class="marquee-sep">★</span>
+        <span class="marquee-item">HORROR VACUI</span><span class="marquee-sep">◆</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     01 — TIPOGRAFÍA
+     ============================================================ -->
+<section class="section" id="typography">
+  <div class="container">
+    <div class="section-label">01 — Typography</div>
+    <h2 class="section-title">TIPOGRAFÍA</h2>
+
+    <!-- Familia display -->
+    <div style="margin-bottom:var(--space-7);">
+      <p class="tweak-label" style="margin-bottom:var(--space-3);">Display — Bebas Neue</p>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-5xl · 180px</span>
+        <span style="font-family:var(--font-display);font-size:var(--type-5xl);line-height:1;color:var(--color-neon-pink);letter-spacing:-0.02em;">MXM</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-4xl · 128px</span>
+        <span style="font-family:var(--font-display);font-size:var(--type-4xl);line-height:1;letter-spacing:-0.01em;">MÁXIMO</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-3xl · 96px</span>
+        <span style="font-family:var(--font-display);font-size:var(--type-3xl);letter-spacing:0.02em;" class="effect-gradient-text">HEADLINE</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-2xl · 64px</span>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);">SECCIÓN HERO</span>
+      </div>
+    </div>
+
+    <!-- Familia serif -->
+    <div style="margin-bottom:var(--space-7);">
+      <p class="tweak-label" style="margin-bottom:var(--space-3);">Serif Expresiva — Playfair Display</p>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-xl · 48px · italic</span>
+        <span style="font-family:var(--font-serif);font-size:var(--type-xl);font-style:italic;font-weight:900;color:var(--color-neon-yellow);">Título de página</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-lg · 32px · bold</span>
+        <span style="font-family:var(--font-serif);font-size:var(--type-lg);font-weight:700;">Subtítulo editorial expresivo</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-md · 22px</span>
+        <span style="font-family:var(--font-serif);font-size:var(--type-md);font-style:italic;">Lead introductorio de sección. El texto como imagen.</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-base · 17px</span>
+        <span style="font-family:var(--font-serif);font-size:var(--type-base);">El Maximalismo no es desorden: es abundancia con intención. Cada elemento en la composición tiene algo que decir y lo dice a máximo volumen.</span>
+      </div>
+    </div>
+
+    <!-- Familia sans -->
+    <div style="margin-bottom:var(--space-7);">
+      <p class="tweak-label" style="margin-bottom:var(--space-3);">Sans Funcional — Space Grotesk</p>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-lg · 32px · 700</span>
+        <span style="font-family:var(--font-sans);font-size:var(--type-lg);font-weight:700;letter-spacing:-0.02em;">DATOS Y UI — 32px Bold</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-sm · 14px · 400</span>
+        <span style="font-family:var(--font-sans);font-size:var(--type-sm);">Body UI, labels, formularios, datos, navegación. Neutral pero con carácter propio.</span>
+      </div>
+      <div class="type-scale-row">
+        <span class="type-meta">--type-xs · 11px · 700</span>
+        <span style="font-family:var(--font-sans);font-size:var(--type-xs);font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--color-neon-cyan);">MICRO — METADATA — ETIQUETAS — 0.3EM TRACKING</span>
+      </div>
+    </div>
+
+    <!-- Efectos de texto -->
+    <p class="tweak-label" style="margin-bottom:var(--space-4);">Efectos tipográficos</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:var(--space-5);margin-bottom:var(--space-6);">
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Gradient Text</p>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-gradient-text">VIVID</span>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Outline Text</p>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-outline-text">GHOST</span>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Neon Glow</p>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-neon-glow">GLOW</span>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Shimmer Gold</p>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-shimmer">GOLDEN</span>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Glitch</p>
+        <span style="font-family:var(--font-display);font-size:var(--type-2xl);position:relative;" class="effect-glitch" data-text="ERROR">ERROR</span>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label">Tracking extremo + Mayúsculas</p>
+        <span style="font-family:var(--font-sans);font-size:var(--type-sm);font-weight:700;letter-spacing:0.4em;text-transform:uppercase;color:var(--color-neon-cyan);">S P A C E D</span>
+      </div>
+    </div>
+
+    <!-- Texto como decoración -->
+    <div style="position:relative;background:var(--color-surface);overflow:hidden;padding:var(--space-5) var(--space-5) var(--space-5) 200px;border:2px solid rgba(255,255,255,0.08);">
+      <span style="position:absolute;left:-20px;top:50%;transform:translateY(-50%) rotate(-90deg);font-family:var(--font-display);font-size:180px;color:rgba(255,0,110,0.06);line-height:1;pointer-events:none;user-select:none;white-space:nowrap;">TEXTO</span>
+      <p class="tweak-label">Texto decorativo — letras gigantes, opacity 0.06</p>
+      <p style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-md);">La tipografía como elemento gráfico. Las letras ocupan el espacio, lo definen, lo habitan. No son solo contenedores de significado: son el significado visual mismo.</p>
+    </div>
+
+    <!-- Separadores tipográficos -->
+    <div style="margin-top:var(--space-6);text-align:center;">
+      <div class="sep-symbols">★ ◆ ✦ ● ▲ ◉ ★ ◆ ✦ ● ▲ ◉ ★ ◆ ✦ ● ▲ ◉</div>
+      <div style="font-family:var(--font-display);font-size:var(--type-lg);letter-spacing:0.5em;color:var(--color-neon-pink);margin:var(--space-3) 0;">— — — — — — — — — — — — —</div>
+      <div style="font-family:var(--font-sans);font-size:var(--type-xs);font-weight:700;letter-spacing:0.4em;text-transform:uppercase;color:var(--color-text-secondary);">· · · · · · · · · · · · · · · · · · · · · · ·</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02 — PALETA Y PATRONES
+     ============================================================ -->
+<section class="section" id="color">
+  <div class="container">
+    <div class="section-label">02 — Color & Patterns</div>
+    <h2 class="section-title">PALETA NEON BAROQUE</h2>
+
+    <div class="swatch-grid" style="margin-bottom:var(--space-7);">
+      <div class="swatch"><div class="swatch-color" style="background:#0D0D0D;border:1px solid rgba(255,255,255,0.15)"></div><div class="swatch-info"><span class="swatch-name">BG</span><span class="swatch-hex">#0D0D0D</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#1A1A2E"></div><div class="swatch-info"><span class="swatch-name">Surface</span><span class="swatch-hex">#1A1A2E</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FF006E"></div><div class="swatch-info"><span class="swatch-name">Neon Pink</span><span class="swatch-hex">#FF006E</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#00F5FF"></div><div class="swatch-info"><span class="swatch-name">Neon Cyan</span><span class="swatch-hex">#00F5FF</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFE500"></div><div class="swatch-info"><span class="swatch-name">Neon Yellow</span><span class="swatch-hex">#FFE500</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#BF00FF"></div><div class="swatch-info"><span class="swatch-name">Neon Purple</span><span class="swatch-hex">#BF00FF</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#39FF14"></div><div class="swatch-info"><span class="swatch-name">Neon Green</span><span class="swatch-hex">#39FF14</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#FFD700"></div><div class="swatch-info"><span class="swatch-name">Gold</span><span class="swatch-hex">#FFD700</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#F0F0F0"></div><div class="swatch-info"><span class="swatch-name">Text Primary</span><span class="swatch-hex">#F0F0F0</span></div></div>
+      <div class="swatch"><div class="swatch-color" style="background:#A0A0C0"></div><div class="swatch-info"><span class="swatch-name">Text Secondary</span><span class="swatch-hex">#A0A0C0</span></div></div>
+    </div>
+
+    <!-- Gradients -->
+    <p class="tweak-label" style="margin-bottom:var(--space-3);">Gradientes con personalidad</p>
+    <div class="gradient-grid" style="margin-bottom:var(--space-7);">
+      <div class="grad-swatch" style="background:linear-gradient(37deg,#FF006E,#BF00FF,#00F5FF)"><span class="grad-label">37° Lineal</span></div>
+      <div class="grad-swatch" style="background:linear-gradient(127deg,#FFE500,#FF006E,#BF00FF)"><span class="grad-label">127° Lineal</span></div>
+      <div class="grad-swatch" style="background:linear-gradient(213deg,#39FF14,#00F5FF,#BF00FF)"><span class="grad-label">213° Lineal</span></div>
+      <div class="grad-swatch" style="background:radial-gradient(circle at 30% 40%,#FF006E,transparent 60%),radial-gradient(circle at 80% 60%,#00F5FF,transparent 60%),#0D0D0D"><span class="grad-label">Radial mesh</span></div>
+      <div class="grad-swatch" style="background:conic-gradient(from 0deg,#FF006E,#FFE500,#39FF14,#00F5FF,#BF00FF,#FF006E)"><span class="grad-label">Cónico</span></div>
+      <div class="grad-swatch" style="background:radial-gradient(ellipse at 20% 20%,#BF00FF 0%,transparent 50%),radial-gradient(ellipse at 80% 80%,#FF006E 0%,transparent 50%),radial-gradient(ellipse at 50% 100%,#FFE500 0%,transparent 60%),#0D0D0D"><span class="grad-label">Mesh 4 colores</span></div>
+    </div>
+
+    <!-- Patterns -->
+    <p class="tweak-label" style="margin-bottom:var(--space-3);">Patrones de fondo</p>
+    <div class="pattern-grid">
+      <div class="pattern-swatch bg-dots"><span class="pattern-label">.bg-dots</span></div>
+      <div class="pattern-swatch bg-cross" style="background-color:#1A1A2E"><span class="pattern-label">.bg-cross</span></div>
+      <div class="pattern-swatch bg-stripe" style="background-color:#1A1A2E"><span class="pattern-label">.bg-stripe</span></div>
+      <div class="pattern-swatch bg-polka" style="background-color:#0D0D0D"><span class="pattern-label">.bg-polka</span></div>
+      <div class="pattern-swatch bg-checker"><span class="pattern-label">.bg-checker</span></div>
+      <div class="pattern-swatch bg-memphis"><span class="pattern-label">.bg-memphis</span></div>
+      <div class="pattern-swatch bg-halftone" style="background-color:#1A1A2E"><span class="pattern-label">.bg-halftone</span></div>
+      <div class="pattern-swatch bg-noise" style="background:linear-gradient(127deg,#1A1A2E,#0D0D0D)"><span class="pattern-label" style="position:relative;z-index:2;">.bg-noise</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03 — BOTONES
+     ============================================================ -->
+<section class="section" id="buttons">
+  <div class="container">
+    <div class="section-label">03 — Buttons</div>
+    <h2 class="section-title">BOTONES</h2>
+
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center;margin-bottom:var(--space-6);">
+      <button class="btn btn-primary">Primario ★</button>
+      <button class="btn btn-secondary">Secundario ◆</button>
+      <button class="btn btn-ghost">Ghost Neón →</button>
+      <button class="btn btn-pill">Pill Gradiente</button>
+      <button class="btn btn-sticker">¡NUEVO!</button>
+      <button class="btn btn-3d effect-3d-push">3D Push</button>
+    </div>
+
+    <!-- States grid -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-4);">
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">Primario — sombra offset + hover shift</p>
+        <button class="btn btn-primary">Acción Principal</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">Hover: translate(-2px,-2px) + sombra</p>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">Secundario — borde→fill en hover</p>
+        <button class="btn btn-secondary">Acción Secundaria</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">Hover: fondo cyan, texto negro</p>
+      </div>
+      <div style="padding:var(--space-4);background:#050510;border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">Ghost — solo glow animado</p>
+        <button class="btn btn-ghost">Neón Ghost ✦</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">animation: glow-pulse 2s infinite</p>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">Pill — gradiente animado</p>
+        <button class="btn btn-pill">Pill Gradiente ◉</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">background-position transition</p>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">Sticker — clip-path + rotación</p>
+        <button class="btn btn-sticker">¡OFERTA!</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">clip-path irregular, rotate ±4°</p>
+      </div>
+      <div style="padding:var(--space-4);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);">
+        <p class="tweak-label" style="margin-bottom:12px;">3D Push — activo simula clic</p>
+        <button class="btn btn-3d">3D PUSH ▲</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">shadow-layered, :active translate(4px)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04 — INPUTS Y FORMULARIOS
+     ============================================================ -->
+<section class="section" id="forms">
+  <div class="container">
+    <div class="section-label">04 — Forms</div>
+    <h2 class="section-title">INPUTS & FORMS</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:var(--space-6);">
+
+      <div class="form-group">
+        <label class="form-label">Input base — borde inferior</label>
+        <input class="input-base" type="text" placeholder="Escribe aquí…">
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);">border-bottom: 3px solid neon-pink</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Input enmarcado — doble borde dorado</label>
+        <input class="input-framed" type="text" placeholder="Enmarcado…">
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);">border: 2px double gold</p>
+      </div>
+
+      <div>
+        <div class="input-big-label">
+          <label>NOMBRE</label>
+          <input type="text" placeholder="Tu nombre completo">
+        </div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">Label en Bebas Neue 32px flotante</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Textarea — borde dashed púrpura</label>
+        <textarea class="textarea-max" placeholder="Escribe un mensaje extenso…"></textarea>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        <label class="form-label">Checkboxes — estrella al marcar</label>
+        <label class="checkbox-wrap">
+          <input type="checkbox" onchange="this.nextElementSibling.textContent=this.checked?'★':''">
+          <span class="checkbox-star"></span>
+          <span class="checkbox-text">Maximalismo aplicado</span>
+        </label>
+        <label class="checkbox-wrap">
+          <input type="checkbox" checked onchange="this.nextElementSibling.textContent=this.checked?'★':''">
+          <span class="checkbox-star">★</span>
+          <span class="checkbox-text">Horror vacui activado</span>
+        </label>
+        <label class="checkbox-wrap">
+          <input type="checkbox" onchange="this.nextElementSibling.textContent=this.checked?'★':''">
+          <span class="checkbox-star"></span>
+          <span class="checkbox-text">Ornamento como función</span>
+        </label>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:var(--space-3);">
+        <label class="form-label">Toggles — glow al activar</label>
+        <label class="toggle-wrap">
+          <input type="checkbox" checked onchange="this.nextElementSibling.nextElementSibling&&0">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span class="checkbox-text">Efectos neón</span>
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" onchange="">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span class="checkbox-text">Modo maximalista extremo</span>
+        </label>
+        <label class="toggle-wrap">
+          <input type="checkbox" checked onchange="">
+          <div class="toggle-track"><div class="toggle-thumb"></div></div>
+          <span class="checkbox-text">Ornamentación completa</span>
+        </label>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05 — CARDS
+     ============================================================ -->
+<section class="section" id="cards">
+  <div class="container">
+    <div class="section-label">05 — Cards</div>
+    <h2 class="section-title">CARDS</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--space-5);">
+
+      <!-- Card base -->
+      <div class="card-base">
+        <p class="tweak-label" style="margin-bottom:var(--space-3);">Card base</p>
+        <p style="font-family:var(--font-serif);font-size:var(--type-base);">Borde grueso rosa neón + sombra offset cyan. Doble marco interior con CSS ::before.</p>
+        <div style="margin-top:var(--space-4);">
+          <button class="btn btn-primary" style="font-size:11px;padding:8px 16px;">Acción</button>
+        </div>
+      </div>
+
+      <!-- Card con sticker -->
+      <div class="card-base" style="position:relative;">
+        <div class="card-sticker-badge">★ NEW</div>
+        <p class="tweak-label" style="margin-bottom:var(--space-3);">Card + sticker badge</p>
+        <p style="font-family:var(--font-serif);font-size:var(--type-base);">Badge flotante rotado con animación float. Color neon-yellow, sombra offset.</p>
+        <div style="margin-top:var(--space-4);">
+          <span class="badge badge-outline">Featured</span>
+        </div>
+      </div>
+
+      <!-- Card neón -->
+      <div class="card-neon">
+        <p class="tweak-label" style="margin-bottom:var(--space-3);color:var(--color-neon-cyan);">Card neón</p>
+        <p style="font-family:var(--font-serif);font-size:var(--type-base);color:var(--color-neon-cyan);">Fondo negro profundo. Borde con box-shadow glow. Texto en color neón. Todo en cian eléctrico.</p>
+        <div style="margin-top:var(--space-4);">
+          <span style="font-family:var(--font-display);font-size:var(--type-3xl);" class="effect-neon-glow">99</span>
+        </div>
+      </div>
+
+      <!-- Card editorial -->
+      <div class="card-editorial">
+        <div class="card-editorial-bg"></div>
+        <div class="card-editorial-overlay"></div>
+        <div class="card-editorial-content">
+          <span class="card-editorial-title">EDITORIAL</span>
+          <p style="font-family:var(--font-sans);font-size:var(--type-sm);color:rgba(255,255,255,0.7);">Imagen a sangre con overlay gradiente. Texto superpuesto en Bebas.</p>
+        </div>
+      </div>
+
+      <!-- Card recorte -->
+      <div class="card-cut">
+        <p class="tweak-label" style="margin-bottom:var(--space-3);color:rgba(255,255,255,0.6);">Card recorte</p>
+        <p style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-md);color:var(--color-neon-yellow);">"Clip-path diagonal — sin bordes convencionales"</p>
+      </div>
+
+      <!-- Card collage -->
+      <div class="card-collage">
+        <div style="position:absolute;top:20px;left:20px;font-family:var(--font-display);font-size:80px;color:var(--color-neon-pink);opacity:0.8;z-index:3;line-height:1;">COL</div>
+        <div style="position:absolute;bottom:10px;right:10px;font-family:var(--font-display);font-size:60px;color:var(--color-neon-cyan);z-index:2;line-height:1;">LAGE</div>
+        <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:120px;height:120px;background:rgba(255,229,0,0.15);border:3px solid var(--color-neon-yellow);z-index:1;"></div>
+        <div style="position:absolute;bottom:30px;left:20px;font-family:var(--font-sans);font-size:var(--type-xs);font-weight:700;letter-spacing:0.2em;color:rgba(255,255,255,0.5);z-index:4;">CARD — COLLAGE — LAYERS</div>
+        <div class="bg-dots" style="position:absolute;inset:0;opacity:0.3;z-index:0;"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06 — NAVEGACIÓN (muestra separada del navbar)
+     ============================================================ -->
+<section class="section" id="components">
+  <div class="container">
+    <div class="section-label">06 — Navigation</div>
+    <h2 class="section-title">NAVEGACIÓN</h2>
+
+    <!-- Navbar demo -->
+    <div style="border:3px solid var(--color-neon-pink);overflow:hidden;margin-bottom:var(--space-6);">
+      <div style="background:linear-gradient(90deg,#0D0D0D,#1A1A2E,#0D0D0D);border-bottom:3px solid var(--color-neon-pink);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:relative;overflow:hidden;">
+        <div style="position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(0,245,255,0.04) 60px,rgba(0,245,255,0.04) 61px);pointer-events:none;"></div>
+        <span style="font-family:var(--font-display);font-size:24px;letter-spacing:0.1em;color:var(--color-neon-yellow);text-shadow:0 0 12px rgba(255,229,0,0.5);">MAXIMUS</span>
+        <div style="display:flex;gap:32px;list-style:none;">
+          <a style="font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-neon-yellow);position:relative;padding-bottom:2px;" href="#">INICIO</a>
+          <a style="font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-secondary);" href="#">SISTEMA</a>
+          <a style="font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-secondary);" href="#">TIPOGRAFÍA</a>
+          <a style="font-family:var(--font-sans);font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-text-secondary);" href="#">CONTACTO</a>
+        </div>
+      </div>
+      <div style="padding:var(--space-3) var(--space-4);background:rgba(0,0,0,0.3);">
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);">Hover → underline neon-cyan · Activo → neon-yellow · Fondo: gradiente horizontal con líneas sutiles</p>
+      </div>
+    </div>
+
+    <!-- 07 TABLE -->
+    <div class="section-label" style="margin-top:var(--space-7);">07 — Tables</div>
+    <h3 style="font-family:var(--font-display);font-size:var(--type-xl);margin-bottom:var(--space-5);">TABLAS</h3>
+    <div style="overflow-x:auto;margin-bottom:var(--space-7);">
+      <table class="table-max">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Valor</th>
+            <th>Familia</th>
+            <th>Uso</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="td-mono">--type-xs</td><td class="td-num">11px</td><td>Space Grotesk</td><td>Micro-etiquetas</td><td><span class="badge badge-solid-cyan">ACTIVO</span></td></tr>
+          <tr><td class="td-mono">--type-sm</td><td class="td-num">14px</td><td>Space Grotesk</td><td>Body UI</td><td><span class="badge badge-solid-cyan">ACTIVO</span></td></tr>
+          <tr><td class="td-mono">--type-base</td><td class="td-num">17px</td><td>Playfair Display</td><td>Cuerpo editorial</td><td><span class="badge badge-solid-cyan">ACTIVO</span></td></tr>
+          <tr><td class="td-mono">--type-xl</td><td class="td-num">48px</td><td>Playfair Italic</td><td>Títulos de página</td><td><span class="badge badge-solid-yellow" style="color:#000;">DISPLAY</span></td></tr>
+          <tr><td class="td-mono">--type-3xl</td><td class="td-num">96px</td><td>Bebas Neue</td><td>Headlines hero</td><td><span class="badge badge-solid-pink">IMPACT</span></td></tr>
+          <tr><td class="td-mono">--color-neon-pink</td><td class="td-num">#FF006E</td><td>—</td><td>Protagonista caliente</td><td><span class="badge badge-pattern">CORE</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 08 BADGES -->
+    <div class="section-label" style="margin-top:var(--space-7);">08 — Badges & Tags</div>
+    <h3 style="font-family:var(--font-display);font-size:var(--type-xl);margin-bottom:var(--space-5);">BADGES & TAGS</h3>
+    <div style="display:flex;flex-wrap:wrap;gap:var(--space-3);align-items:center;margin-bottom:var(--space-7);">
+      <span class="badge badge-solid-pink">PINK</span>
+      <span class="badge badge-solid-cyan">CYAN</span>
+      <span class="badge badge-solid-yellow" style="color:#000;">YELLOW</span>
+      <span class="badge badge-pill">PILL PURPLE</span>
+      <span class="badge badge-outline">OUTLINE</span>
+      <span class="badge badge-double">DOUBLE GOLD</span>
+      <span class="badge badge-sticker">★ NUEVO</span>
+      <span class="badge badge-pattern">DIAGONAL</span>
+    </div>
+
+    <!-- 09 ALERTS -->
+    <div class="section-label" style="margin-top:var(--space-7);">09 — Alerts</div>
+    <h3 style="font-family:var(--font-display);font-size:var(--type-xl);margin-bottom:var(--space-5);">ALERTS</h3>
+    <div style="display:flex;flex-direction:column;gap:var(--space-4);margin-bottom:var(--space-4);">
+      <div class="alert alert-success">
+        <div class="alert-icon">✦</div>
+        <div><div class="alert-title">OPERACIÓN EXITOSA</div><div class="alert-body">El sistema ha procesado la solicitud con máxima expresividad.</div></div>
+      </div>
+      <div class="alert alert-warning">
+        <div class="alert-icon">▲</div>
+        <div><div class="alert-title">ATENCIÓN REQUERIDA</div><div class="alert-body">Algunos elementos decorativos pueden saturar el viewport en resoluciones bajas.</div></div>
+      </div>
+      <div class="alert alert-danger">
+        <div class="alert-icon">◉</div>
+        <div><div class="alert-title">ERROR MAXIMALISTA</div><div class="alert-body">Exceso de minimalismo detectado. Agregar ornamentación inmediatamente.</div></div>
+      </div>
+      <div class="alert alert-info">
+        <div class="alert-icon">◆</div>
+        <div><div class="alert-title">INFORMACIÓN DEL SISTEMA</div><div class="alert-body">Versión 1.0 — Neon Baroque direction activa. Todos los tokens cargados.</div></div>
+      </div>
+    </div>
+    <div class="alert-banner alert-banner-pink full-bleed" style="margin-bottom:var(--space-2);">★ BANNER DE ALERTA A SANGRE — MÁXIMO IMPACTO — TEXTO CENTRADO CON ÍCONOS ★</div>
+    <div class="alert-banner alert-banner-cyan full-bleed">◆ BANNER SECUNDARIO — COLOR SÓLIDO INTENSO — SIN BORDES NI MÁRGENES ◆</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     10 — SEPARADORES
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">10 — Separators</div>
+    <h2 class="section-title">SEPARADORES EXPRESIVOS</h2>
+
+    <div style="display:flex;flex-direction:column;gap:var(--space-5);">
+      <div><p class="tweak-label" style="margin-bottom:8px;">Línea con gradiente</p><div class="sep-line"></div></div>
+      <div><p class="tweak-label" style="margin-bottom:8px;">Zigzag SVG</p><div class="sep-zigzag"></div></div>
+      <div><p class="tweak-label" style="margin-bottom:8px;">Símbolos repetidos</p><div class="sep-symbols">★ ◆ ✦ ● ▲ ◉ ★ ◆ ✦ ● ▲ ◉ ★ ◆ ✦ ● ▲ ◉ ★</div></div>
+      <div><p class="tweak-label" style="margin-bottom:8px;">Fade to transparent</p><div class="sep-fade"></div></div>
+      <div><p class="tweak-label" style="margin-bottom:8px;">Franja diagonal a sangre</p>
+        <div class="full-bleed"><div class="sep-diagonal"></div></div>
+      </div>
+      <div><p class="tweak-label" style="margin-bottom:8px;">Marquee como separador</p>
+        <div class="marquee-wrap" style="background:var(--color-surface);border-top:2px solid var(--color-neon-yellow);border-bottom:2px solid var(--color-neon-yellow);padding:8px 0;">
+          <div class="marquee-track" style="color:var(--color-neon-yellow);">
+            <span class="marquee-item" style="font-size:var(--type-sm);">MAXIMALISMO</span><span class="marquee-sep">★</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">MORE IS MORE</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">NEON BAROQUE</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">HORROR VACUI</span><span class="marquee-sep">★</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">MAXIMALISMO</span><span class="marquee-sep">★</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">MORE IS MORE</span><span class="marquee-sep">◆</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">NEON BAROQUE</span><span class="marquee-sep">✦</span>
+            <span class="marquee-item" style="font-size:var(--type-sm);">HORROR VACUI</span><span class="marquee-sep">★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     11 — MARQUEE
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">11 — Marquee / Ticker</div>
+    <h2 class="section-title">MARQUEE</h2>
+  </div>
+
+  <!-- Ticker primario -->
+  <div class="marquee-wrap" style="background:var(--color-neon-pink);padding:14px 0;margin-bottom:var(--space-4);">
+    <div class="marquee-track" style="color:#fff;">
+      <span class="marquee-item">MAXIMALISM DESIGN SYSTEM</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">★</span>
+      <span class="marquee-item">NEON BAROQUE v1.0</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">◆</span>
+      <span class="marquee-item">MORE IS MORE</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">★</span>
+      <span class="marquee-item">HORROR VACUI</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">◆</span>
+      <span class="marquee-item">MAXIMALISM DESIGN SYSTEM</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">★</span>
+      <span class="marquee-item">NEON BAROQUE v1.0</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">◆</span>
+      <span class="marquee-item">MORE IS MORE</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">★</span>
+      <span class="marquee-item">HORROR VACUI</span><span class="marquee-sep" style="color:rgba(255,255,255,0.5);">◆</span>
+    </div>
+  </div>
+
+  <!-- Ticker invertido, texto gigante decorativo -->
+  <div style="position:relative;overflow:hidden;height:120px;background:#050510;display:flex;align-items:center;">
+    <div class="marquee-track-reverse" style="white-space:nowrap;">
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">MÁXIMO</span>
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">ORNAMENTO</span>
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">IMPACTO</span>
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">MÁXIMO</span>
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">ORNAMENTO</span>
+      <span style="font-family:var(--font-display);font-size:120px;color:rgba(0,245,255,0.06);letter-spacing:0.08em;padding:0 40px;">IMPACTO</span>
+    </div>
+    <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+      <span style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-xl);color:var(--color-neon-yellow);">texto gigante invertido — elemento decorativo</span>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:var(--space-5);">
+    <p style="font-size:var(--type-xs);color:var(--color-text-secondary);letter-spacing:0.1em;">animation-duration: 30s normal / 40s reverse · separator: ★ ◆ · variante: opacity 0.06 como decoración de fondo</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     12 — EFECTOS & UTILIDADES
+     ============================================================ -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">12 — Effects & Utilities</div>
+    <h2 class="section-title">EFECTOS VISUALES</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--space-5);">
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label">.effect-glitch</p>
+        <div style="font-family:var(--font-display);font-size:var(--type-2xl);position:relative;" class="effect-glitch" data-text="GLITCH">GLITCH</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">clip-path alterno en ::before/::after</p>
+      </div>
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label">.effect-gradient-text</p>
+        <div style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-gradient-text">VIVID</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">background-clip: text + shimmer</p>
+      </div>
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label">.effect-outline-text</p>
+        <div style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-outline-text">GHOST</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">-webkit-text-stroke, fill transparent</p>
+      </div>
+      <div style="padding:var(--space-5);background:#050510;border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label" style="color:var(--color-neon-pink);">.effect-neon-glow</p>
+        <div style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-neon-glow">GLOW</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">text-shadow multicapa + glow-pulse</p>
+      </div>
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label">.effect-shimmer</p>
+        <div style="font-family:var(--font-display);font-size:var(--type-2xl);" class="effect-shimmer">GOLD</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">shimmer dorado, background-size 200%</p>
+      </div>
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;">
+        <p class="tweak-label">.effect-3d-push</p>
+        <button class="btn btn-primary effect-3d-push" style="font-size:var(--type-md);padding:16px 28px;">3D ▲</button>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">shadow-layered + translate en hover/active</p>
+      </div>
+      <div style="padding:var(--space-5);background:var(--color-surface);border:2px solid rgba(255,255,255,0.08);text-align:center;position:relative;" class="effect-grain">
+        <p class="tweak-label">.effect-grain</p>
+        <div style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-md);">Textura analógica</div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">SVG feTurbulence overlay, opacity 0.12</p>
+      </div>
+      <div style="padding:var(--space-5);background:#050510;border:2px solid rgba(255,255,255,0.08);text-align:center;position:relative;">
+        <p class="tweak-label">Blob animado</p>
+        <div style="position:relative;height:100px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+          <div style="width:160px;height:160px;position:absolute;background:radial-gradient(ellipse,rgba(255,0,110,0.5),transparent);border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:blob-morph 4s ease-in-out infinite;filter:blur(20px);"></div>
+          <span style="position:relative;z-index:2;font-family:var(--font-display);font-size:var(--type-lg);color:#fff;">BLOB</span>
+        </div>
+        <p style="font-size:var(--type-xs);color:var(--color-text-secondary);margin-top:8px;">border-radius morphing + blur filter</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     13 — COMPOSICIÓN COMPLETA
+     ============================================================ -->
+<section style="padding:var(--space-9) 0;background:radial-gradient(ellipse at 0% 0%,#2D0A2E,#0D0D0D 50%);position:relative;overflow:hidden;" id="composition">
+  <div class="blob blob-pink" style="top:-50px;right:-100px;animation-delay:-2s;opacity:0.25;"></div>
+  <div class="blob blob-cyan"  style="bottom:0;left:-100px;animation-delay:-5s;opacity:0.2;"></div>
+
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="section-label">13 — Full Composition</div>
+
+    <!-- Hero interno -->
+    <div style="position:relative;padding:var(--space-8) 0;overflow:hidden;">
+      <span style="position:absolute;font-family:var(--font-display);font-size:35vw;color:rgba(255,0,110,0.04);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;user-select:none;white-space:nowrap;z-index:0;">MXM</span>
+      <div style="position:absolute;top:20px;right:0;z-index:10;">
+        <div class="sticker-star sticker" style="width:100px;height:100px;font-size:13px;display:flex;align-items:center;justify-content:center;">BAROQUE<br>★</div>
+      </div>
+      <div style="position:relative;z-index:2;">
+        <div class="hero-tag" style="margin-bottom:var(--space-4);">Composición maximalista completa</div>
+        <h2 style="font-family:var(--font-display);font-size:clamp(60px,10vw,140px);line-height:0.9;margin-bottom:var(--space-4);">
+          <span style="-webkit-text-stroke:2px var(--color-neon-cyan);color:transparent;">EL ORNAMENTO</span><br>
+          <span class="effect-gradient-text">ES LA FUNCIÓN</span>
+        </h2>
+        <p style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-xl);color:var(--color-neon-yellow);max-width:700px;margin-bottom:var(--space-5);">Abundancia, capas, contradicción. La respuesta visceral al minimalismo.</p>
+        <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+          <button class="btn btn-3d">Sistema ▲</button>
+          <button class="btn btn-secondary">Explorar →</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="sep-symbols" style="margin:var(--space-6) 0;">★ ◆ ✦ ● ▲</div>
+
+    <!-- Stats -->
+    <div class="stats-grid" style="margin-bottom:var(--space-7);">
+      <div class="stat-cell" style="background:var(--color-neon-pink);">
+        <span class="stat-num" style="color:#fff;">13</span>
+        <span class="stat-label" style="color:rgba(255,255,255,0.7);">Secciones del sistema</span>
+      </div>
+      <div class="stat-cell" style="background:var(--color-surface);" class="bg-cross">
+        <span class="stat-num effect-gradient-text">10+</span>
+        <span class="stat-label">Familias de color</span>
+      </div>
+      <div class="stat-cell" style="background:var(--color-neon-yellow);">
+        <span class="stat-num" style="color:#000;">∞</span>
+        <span class="stat-label" style="color:rgba(0,0,0,0.6);">Posibilidades</span>
+      </div>
+    </div>
+
+    <!-- Cards asimétricos -->
+    <div class="cards-asymmetric" style="margin-bottom:var(--space-7);">
+      <div class="card-editorial" style="min-height:360px;">
+        <div class="card-editorial-bg"></div>
+        <div class="card-editorial-overlay"></div>
+        <div class="card-editorial-content">
+          <span style="font-family:var(--font-sans);font-size:var(--type-xs);font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--color-neon-cyan);display:block;margin-bottom:8px;">Editorial</span>
+          <span class="card-editorial-title">MAXIMAL<br>ISM</span>
+          <p style="font-family:var(--font-sans);font-size:var(--type-sm);color:rgba(255,255,255,0.7);max-width:300px;">No es desorden. Es abundancia con intención.</p>
+        </div>
+      </div>
+      <div class="card-neon" style="display:flex;flex-direction:column;justify-content:space-between;">
+        <div>
+          <p class="tweak-label" style="color:var(--color-neon-cyan);margin-bottom:var(--space-3);">Card neón</p>
+          <p style="font-family:var(--font-serif);font-style:italic;font-size:var(--type-md);color:var(--color-neon-cyan);">"Capas sobre capas"</p>
+        </div>
+        <span style="font-family:var(--font-display);font-size:var(--type-4xl);color:var(--color-neon-cyan);line-height:1;opacity:0.4;align-self:flex-end;">◆</span>
+      </div>
+      <div class="card-base" style="position:relative;">
+        <div class="card-sticker-badge">★ NEW</div>
+        <p class="tweak-label" style="margin-bottom:var(--space-3);">Con sticker</p>
+        <p style="font-family:var(--font-serif);font-size:var(--type-base);margin-bottom:var(--space-4);">El Maximalismo digital hereda del barroco, del Art Nouveau y del Memphis Group.</p>
+        <button class="btn btn-primary" style="font-size:11px;padding:8px 16px;">Leer más →</button>
+      </div>
+    </div>
+
+    <!-- Formulario maximalista -->
+    <div style="background:var(--color-surface);border:3px solid var(--color-neon-yellow);box-shadow:8px 8px 0 var(--color-neon-pink);padding:var(--space-6);position:relative;overflow:hidden;margin-bottom:var(--space-7);" class="bg-dots">
+      <span style="position:absolute;font-family:var(--font-display);font-size:200px;color:rgba(255,229,0,0.03);bottom:-30px;right:-10px;pointer-events:none;user-select:none;line-height:1;">FORM</span>
+      <h3 style="font-family:var(--font-display);font-size:var(--type-xl);margin-bottom:var(--space-5);position:relative;z-index:2;color:var(--color-neon-yellow);">CONTACTO</h3>
+      <div class="form-two-col" style="position:relative;z-index:2;">
+        <div class="form-group">
+          <label class="form-label">Nombre</label>
+          <input class="input-base" type="text" placeholder="Tu nombre completo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="input-base" type="email" placeholder="email@ejemplo.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Asunto</label>
+          <input class="input-framed" type="text" placeholder="Asunto del mensaje">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Mensaje</label>
+          <textarea class="textarea-max" style="min-height:80px;" placeholder="Escribe aquí…"></textarea>
+        </div>
+      </div>
+      <div style="margin-top:var(--space-5);display:flex;gap:var(--space-4);flex-wrap:wrap;position:relative;z-index:2;">
+        <button class="btn btn-primary">Enviar ★</button>
+        <label class="checkbox-wrap">
+          <input type="checkbox" onchange="this.nextElementSibling.textContent=this.checked?'★':''">
+          <span class="checkbox-star"></span>
+          <span class="checkbox-text">Acepto el horror vacui</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     PRINCIPIOS
+     ============================================================ -->
+<section class="principles-section">
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="principle-sep">★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★</div>
+    <div class="principle-title">PRINCIPIOS DEL SISTEMA</div>
+
+    <div class="principle"><span class="num">01</span>MÁS ES MÁS.</div>
+    <div class="principle"><span class="num">02</span>El espacio vacío es una oportunidad que todavía no aprovechaste.</div>
+    <div class="principle"><span class="num">03</span>Tres familias tipográficas. Seis pesos. Cero disculpas.</div>
+    <div class="principle"><span class="num">04</span>El color no organiza. El color <em style="font-style:normal;" class="effect-gradient-text">GRITA.</em></div>
+    <div class="principle"><span class="num">05</span>El ornamento no es crimen. El ornamento ES el diseño.</div>
+    <div class="principle"><span class="num">06</span>Cada sección debe poder existir como un cartel autónomo.</div>
+    <div class="principle"><span class="num">07</span>Si no genera una reacción visceral, volvé a empezar.</div>
+
+    <div class="principle-sep" style="margin-top:var(--space-7);">★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★ ◆ ★</div>
+    <div class="system-version">MAXIMALISM DESIGN SYSTEM — v1.0</div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <span class="footer-logo">MXM</span>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">MAXIMALISM<br>DESIGN SYSTEM</div>
+      <p class="footer-tagline">Abundancia con intención.<br>Ornamento como función.<br>Neon Baroque — v1.0</p>
+    </div>
+    <div>
+      <h4>Sistema</h4>
+      <ul>
+        <li><a href="#typography">Tipografía</a></li>
+        <li><a href="#color">Color</a></li>
+        <li><a href="#buttons">Botones</a></li>
+        <li><a href="#forms">Formularios</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Componentes</h4>
+      <ul>
+        <li><a href="#cards">Cards</a></li>
+        <li><a href="#components">Tablas</a></li>
+        <li><a href="#components">Badges</a></li>
+        <li><a href="#components">Alertas</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Referentes</h4>
+      <ul>
+        <li><a href="#">Memphis Group</a></li>
+        <li><a href="#">Y2K Aesthetic</a></li>
+        <li><a href="#">Art Nouveau</a></li>
+        <li><a href="#">Indie Web</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 — MAXIMALISM DESIGN SYSTEM — NEON BAROQUE</span>
+    <div class="footer-socials">
+      <a href="https://facundouferer.ar/" target="_blank" rel="noreferrer">Facundo Uferer</a>
+      <a href="https://github.com/facundouferer" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/facundouferer/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     TWEAKS PANEL
+     ============================================================ -->
+<div class="tweaks-panel" id="tweaksPanel">
+  <div class="tweaks-title">Tweaks</div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Color de acento primario</span>
+    <div class="tweak-swatches">
+      <div class="tweak-swatch active" style="background:#FF006E;" data-var="--color-neon-pink" data-val="#FF006E" title="Neon Pink"></div>
+      <div class="tweak-swatch" style="background:#00F5FF;" data-var="--color-neon-pink" data-val="#00F5FF" title="Neon Cyan"></div>
+      <div class="tweak-swatch" style="background:#FFE500;" data-var="--color-neon-pink" data-val="#FFE500" title="Neon Yellow"></div>
+      <div class="tweak-swatch" style="background:#BF00FF;" data-var="--color-neon-pink" data-val="#BF00FF" title="Neon Purple"></div>
+      <div class="tweak-swatch" style="background:#39FF14;" data-var="--color-neon-pink" data-val="#39FF14" title="Neon Green"></div>
+    </div>
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Familia display</span>
+    <select class="tweak-select" id="tweakFont">
+      <option value="'Bebas Neue', sans-serif">Bebas Neue</option>
+      <option value="'Playfair Display', serif">Playfair Display</option>
+      <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+    </select>
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Intensidad glow</span>
+    <input type="range" class="tweak-range" id="tweakGlow" min="5" max="60" value="20">
+  </div>
+
+  <div class="tweak-row">
+    <span class="tweak-label">Patrón de fondo hero</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="setHeroPattern('')"          style="font-size:10px;padding:4px 8px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--color-text-secondary);cursor:pointer;">Ninguno</button>
+      <button onclick="setHeroPattern('bg-dots')"   style="font-size:10px;padding:4px 8px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--color-text-secondary);cursor:pointer;">Dots</button>
+      <button onclick="setHeroPattern('bg-cross')"  style="font-size:10px;padding:4px 8px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--color-text-secondary);cursor:pointer;">Cross</button>
+      <button onclick="setHeroPattern('bg-stripe')" style="font-size:10px;padding:4px 8px;background:transparent;border:1px solid rgba(255,255,255,0.2);color:var(--color-text-secondary);cursor:pointer;">Stripe</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     JAVASCRIPT
+     ============================================================ -->
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accentColor": "#FF006E",
+  "displayFont": "'Bebas Neue', sans-serif",
+  "glowIntensity": 20
+}/*EDITMODE-END*/;
+
+// Tweaks comms
+window.addEventListener('message', e => {
+  if (e.data?.type === '__activate_edit_mode')   document.getElementById('tweaksPanel').classList.add('active');
+  if (e.data?.type === '__deactivate_edit_mode') document.getElementById('tweaksPanel').classList.remove('active');
+});
+window.parent.postMessage({ type: '__edit_mode_available' }, '*');
+
+// Apply defaults
+applyDefaults(TWEAK_DEFAULTS);
+function applyDefaults(d) {
+  if (d.accentColor) document.documentElement.style.setProperty('--color-neon-pink', d.accentColor);
+  if (d.displayFont) document.documentElement.style.setProperty('--font-display', d.displayFont);
+  if (d.glowIntensity) updateGlow(d.glowIntensity);
+}
+
+// Swatch click
+document.querySelectorAll('.tweak-swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    document.querySelectorAll('.tweak-swatch').forEach(s => s.classList.remove('active'));
+    sw.classList.add('active');
+    const val = sw.dataset.val;
+    document.documentElement.style.setProperty('--color-neon-pink', val);
+    window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { accentColor: val } }, '*');
+  });
+});
+
+// Font select
+document.getElementById('tweakFont').addEventListener('change', function() {
+  document.documentElement.style.setProperty('--font-display', this.value);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { displayFont: this.value } }, '*');
+});
+
+// Glow range
+document.getElementById('tweakGlow').addEventListener('input', function() {
+  updateGlow(this.value);
+  window.parent.postMessage({ type: '__edit_mode_set_keys', edits: { glowIntensity: +this.value } }, '*');
+});
+
+function updateGlow(v) {
+  const px = v + 'px';
+  document.querySelectorAll('.effect-neon-glow').forEach(el => {
+    el.style.textShadow = `0 0 ${v}px var(--color-neon-pink), 0 0 ${v*2}px var(--color-neon-pink)`;
+  });
+}
+
+// Hero pattern
+const hero = document.getElementById('hero');
+function setHeroPattern(cls) {
+  hero.classList.remove('bg-dots','bg-cross','bg-stripe','bg-checker','bg-memphis');
+  if (cls) hero.classList.add(cls);
+}
+
+// Toggle checkbox labels properly
+document.querySelectorAll('.checkbox-wrap input').forEach(inp => {
+  const star = inp.nextElementSibling;
+  star.textContent = inp.checked ? '★' : '';
+  inp.addEventListener('change', () => {
+    star.textContent = inp.checked ? '★' : '';
+  });
+});
+
+// Toggle track state sync
+document.querySelectorAll('.toggle-wrap input').forEach(inp => {
+  const track = inp.nextElementSibling;
+  if (!track) return;
+  // initial state handled by CSS :checked
+});
+
+// Active nav links on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.navbar-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+}, { passive: true });
+</script>
+
+<!-- thumbnail for bundler -->
+<template id="__bundler_thumbnail">
+<svg viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="300" height="200" fill="#0D0D0D"/>
+  <text x="30" y="120" font-family="sans-serif" font-size="80" font-weight="900" fill="#FF006E" opacity="0.9">MXM</text>
+  <text x="30" y="155" font-family="sans-serif" font-size="14" fill="#00F5FF" letter-spacing="4">MAXIMALISM</text>
+  <circle cx="250" cy="40" r="30" fill="#FFE500" opacity="0.6"/>
+  <rect x="0" y="0" width="300" height="4" fill="#FF006E"/>
+</svg>
+</template>
+</body>
+</html>

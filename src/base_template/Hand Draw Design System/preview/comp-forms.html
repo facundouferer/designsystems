@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hd"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" seed="3"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:20px;font-family:'Patrick Hand',cursive;display:flex;flex-direction:column;gap:18px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field-label{font-family:'Caveat',cursive;font-size:15px;color:#44403C;transform:rotate(-1deg);display:inline-block}
+.field-label.err{color:#C8534A}
+/* underline input */
+.input-line{background:none;border:none;border-bottom:0;outline:none;font-family:'Patrick Hand',cursive;font-size:15px;color:#1C1917;padding:6px 0;width:100%;position:relative}
+.input-line::placeholder{color:#A8A29E}
+.input-line-wrap{position:relative;width:260px}
+.input-line-wrap svg.underline{position:absolute;bottom:0;left:0;width:100%;height:8px;overflow:visible}
+.input-line-wrap svg.underline path{stroke:#D6D3D1;stroke-width:1.5;fill:none;transition:stroke 0.3s}
+.input-line-wrap:focus-within svg.underline path{stroke:#1C1917;stroke-dasharray:280;animation:draw-on 0.3s ease forwards}
+@keyframes draw-on{from{stroke-dashoffset:280}to{stroke-dashoffset:0}}
+/* framed input */
+.input-framed-wrap{position:relative;width:260px}
+.input-framed{background:none;border:none;outline:none;font-family:'Patrick Hand',cursive;font-size:15px;color:#1C1917;padding:8px 10px;width:100%}
+.input-framed::placeholder{color:#A8A29E}
+.input-framed-wrap svg.frame{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.input-framed-wrap svg.frame rect{stroke:#D6D3D1;stroke-width:1.5;fill:none;filter:url(#hd)}
+.input-framed-wrap:focus-within svg.frame rect{stroke:#1C1917;stroke-width:2}
+/* checkbox */
+.cb-wrap{display:flex;align-items:center;gap:8px;cursor:pointer}
+.cb-box{position:relative;width:20px;height:20px;flex-shrink:0}
+.cb-box svg{width:20px;height:20px}
+.cb-box .checkmark{stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset 0.2s cubic-bezier(0.34,1.4,0.64,1)}
+input[type=checkbox]{position:absolute;opacity:0;width:0;height:0}
+input[type=checkbox]:checked~svg .checkmark{stroke-dashoffset:0}
+.cb-label{font-family:'Patrick Hand',cursive;font-size:14px;color:#1C1917}
+/* radio */
+.rb-wrap{display:flex;align-items:center;gap:8px;cursor:pointer}
+.rb-box{position:relative;width:20px;height:20px;flex-shrink:0;cursor:pointer}
+input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.rb-dot{transition:transform 0.18s cubic-bezier(0.34,1.4,0.64,1),opacity 0.18s;transform:scale(0);opacity:0}
+input[type=radio]:checked~svg .rb-dot{transform:scale(1);opacity:1}
+/* toggle */
+.toggle-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
+.toggle-track{width:44px;height:24px;position:relative;cursor:pointer}
+.toggle-track svg{width:44px;height:24px}
+.toggle-thumb{transition:cx 0.25s cubic-bezier(0.175,0.885,0.32,1.1)}
+input.toggle-inp{position:absolute;opacity:0;width:0;height:0}
+input.toggle-inp:checked~svg .toggle-fill{fill:#1C1917}
+input.toggle-inp:checked~svg .toggle-thumb{cx:32}
+/* error */
+.error-msg{font-family:'Caveat',cursive;font-size:13px;color:#C8534A;display:flex;align-items:center;gap:4px}
+.row{display:flex;gap:24px;flex-wrap:wrap;align-items:flex-end}
+</style></head><body>
+
+<div class="row">
+  <div class="field">
+    <label class="field-label">Your name</label>
+    <div class="input-line-wrap">
+      <input class="input-line" type="text" placeholder="write here...">
+      <svg class="underline" viewBox="0 0 260 8" preserveAspectRatio="none"><path d="M0 4 Q65 2 130 5 Q195 7 260 4"/></svg>
+    </div>
+  </div>
+  <div class="field">
+    <label class="field-label">Email</label>
+    <div class="input-framed-wrap">
+      <input class="input-framed" type="email" placeholder="your@email.com">
+      <svg class="frame" viewBox="0 0 260 38" preserveAspectRatio="none"><rect x="2" y="2" width="256" height="34"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="field">
+  <label class="field-label err">Password</label>
+  <div class="input-framed-wrap">
+    <input class="input-framed" type="password" value="bad">
+    <svg class="frame" viewBox="0 0 260 38" preserveAspectRatio="none"><rect x="2" y="2" width="256" height="34" style="stroke:#C8534A!important;stroke-width:2!important"/></svg>
+  </div>
+  <div class="error-msg">
+    <svg width="14" height="14" viewBox="0 0 14 14"><path d="M3 3 L11 11 M11 3 L3 11" stroke="#C8534A" stroke-width="1.8" stroke-linecap="round"/></svg>
+    Too short — try again
+  </div>
+</div>
+
+<div class="row" style="align-items:center;gap:20px">
+  <label class="cb-wrap">
+    <div class="cb-box">
+      <input type="checkbox" id="cb1">
+      <svg viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="2" width="16" height="16" stroke="#44403C" stroke-width="1.8" fill="none" rx="0" style="filter:url(#hd)"/>
+        <path class="checkmark" d="M4 10 L8 14 L16 6" stroke="#1C1917" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <span class="cb-label">I agree to the terms</span>
+  </label>
+  <label class="cb-wrap">
+    <div class="cb-box">
+      <input type="checkbox" id="cb2" checked>
+      <svg viewBox="0 0 20 20" fill="none">
+        <rect x="2" y="2" width="16" height="16" stroke="#44403C" stroke-width="1.8" fill="none" rx="0"/>
+        <path class="checkmark" d="M4 10 L8 14 L16 6" stroke="#1C1917" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke-dashoffset:0"/>
+      </svg>
+    </div>
+    <span class="cb-label">Already checked</span>
+  </label>
+</div>
+
+<div class="row" style="align-items:center;gap:20px">
+  <label class="rb-wrap">
+    <div class="rb-box">
+      <input type="radio" name="r1" id="r1">
+      <svg viewBox="0 0 20 20" fill="none" width="20" height="20">
+        <circle cx="10" cy="10" r="8" stroke="#44403C" stroke-width="1.8" fill="none"/>
+        <circle class="rb-dot" cx="10" cy="10" r="4" fill="#1C1917"/>
+      </svg>
+    </div>
+    <span class="cb-label">Option one</span>
+  </label>
+  <label class="rb-wrap">
+    <div class="rb-box">
+      <input type="radio" name="r1" id="r2" checked>
+      <svg viewBox="0 0 20 20" fill="none" width="20" height="20">
+        <circle cx="10" cy="10" r="8" stroke="#44403C" stroke-width="1.8" fill="none"/>
+        <circle class="rb-dot" cx="10" cy="10" r="4" fill="#1C1917" style="transform:scale(1);opacity:1"/>
+      </svg>
+    </div>
+    <span class="cb-label">Option two</span>
+  </label>
+</div>
+
+<div class="row" style="align-items:center">
+  <label class="toggle-wrap">
+    <div class="toggle-track">
+      <input class="toggle-inp" type="checkbox" id="tog1">
+      <svg viewBox="0 0 44 24" fill="none">
+        <rect x="1" y="1" width="42" height="22" rx="11" class="toggle-fill" stroke="#44403C" stroke-width="1.5" fill="transparent" style="transition:fill 0.25s"/>
+        <circle class="toggle-thumb" cx="12" cy="12" r="8" fill="#44403C"/>
+      </svg>
+    </div>
+    <span class="cb-label">Toggle switch</span>
+  </label>
+</div>
+
+<script>
+document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+  cb.addEventListener('change',()=>{
+    const svg=cb.nextElementSibling;
+    const mark=svg&&svg.querySelector('.checkmark');
+    if(mark) mark.style.strokeDashoffset=cb.checked?'0':'40';
+  });
+});
+document.querySelectorAll('input[type=radio]').forEach(rb=>{
+  rb.addEventListener('change',()=>{
+    document.querySelectorAll('input[name="'+rb.name+'"]').forEach(r=>{
+      const dot=r.nextElementSibling&&r.nextElementSibling.querySelector('.rb-dot');
+      if(dot){dot.style.transform=r.checked?'scale(1)':'scale(0)';dot.style.opacity=r.checked?'1':'0';}
+    });
+  });
+});
+document.querySelectorAll('.toggle-inp').forEach(t=>{
+  t.addEventListener('change',()=>{
+    const svg=t.nextElementSibling;
+    const fill=svg.querySelector('.toggle-fill');
+    const thumb=svg.querySelector('.toggle-thumb');
+    if(t.checked){fill.setAttribute('fill','#1C1917');thumb.setAttribute('cx','32');}
+    else{fill.setAttribute('fill','transparent');thumb.setAttribute('cx','12');}
+  });
+});
+</script>
+</body></html>

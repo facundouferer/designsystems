@@ -203,7 +203,7 @@ tr:hover td{background:rgba(74,127,191,0.1);color:var(--ink-bright)}
 
 /* ━ TOOLTIP ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .tooltip-demo{position:relative;display:inline-block;margin-bottom:32px}
-.tooltip-target{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.1em{text-transform:uppercase;padding:8px 14px;border:1px solid var(--line-light);color:var(--ink-bright);display:inline-block;cursor:default}
+.tooltip-target{font-family:var(--font-d);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:8px 14px;border:1px solid var(--line-light);color:var(--ink-bright);display:inline-block;cursor:default}
 .tooltip{position:absolute;bottom:calc(100% + 8px);left:0;background:var(--bg);border:1px solid var(--line);padding:8px 12px;font-size:10px;color:var(--ink);white-space:nowrap;z-index:10;min-width:180px;border-radius:0}
 .tooltip::after{content:'';position:absolute;top:100%;left:16px;width:8px;height:8px;background:var(--bg);border-right:1px solid var(--line);border-bottom:1px solid var(--line);transform:rotate(45deg);margin-top:-4px}
 
@@ -240,6 +240,12 @@ tr:hover td{background:rgba(74,127,191,0.1);color:var(--ink-bright)}
 /* ━ SPIRIT SECTION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .principles{font-family:var(--font-d);font-size:11px;color:var(--line);line-height:1.8;border:1px solid var(--line);padding:20px 24px;margin-top:32px;white-space:pre}
 .stamp{border:1px solid var(--line);padding:12px 20px;display:inline-block;font-family:var(--font-d);font-size:9px;color:var(--line);letter-spacing:0.12em;text-transform:uppercase;margin-top:16px}
+.site-footer{border-top:1px solid var(--line);background:var(--bg-panel);background-image:var(--dot-panel-svg);padding:20px 24px}
+.site-footer-inner{max-width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.site-footer-copy{font-family:var(--font-d);font-size:9px;color:var(--line-light);letter-spacing:0.16em;text-transform:uppercase}
+.site-footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.site-footer-links a{font-family:var(--font-d);font-size:10px;color:var(--ink-bright);letter-spacing:0.12em;text-transform:uppercase;text-decoration:none}
+.site-footer-links a:hover{color:var(--accent)}
 
 /* ━ RESPONSIVE ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 @media(max-width:960px){.shell{display:block}.sidebar{position:static;height:auto}.main{min-height:auto}}
@@ -1094,6 +1100,17 @@ tr:hover td{background:rgba(74,127,191,0.1);color:var(--ink-bright)}
 
   </main>
 </div>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <span class="site-footer-copy">Blueprint Design System · External References</span>
+    <div class="site-footer-links">
+      <a href="https://facundouferer.ar/" target="_blank" rel="noreferrer">Facundo Uferer</a>
+      <a href="https://github.com/facundouferer" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/facundouferer/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
 
 <script>
 // ━ NAVIGATION ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

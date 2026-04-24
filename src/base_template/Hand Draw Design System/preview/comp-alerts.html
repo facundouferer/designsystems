@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600;700&family=Lora:ital,wght@0,400&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hda"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" seed="9"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:20px;font-family:'Patrick Hand',cursive;display:flex;flex-direction:column;gap:12px}
+.alert{padding:14px 16px 14px 20px;position:relative;display:flex;gap:12px;align-items:flex-start;max-width:480px}
+.alert svg.frame{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.alert-icon{width:22px;height:22px;flex-shrink:0;margin-top:2px}
+.alert-content{flex:1}
+.alert-title{font-family:'Caveat',cursive;font-size:16px;font-weight:700;margin-bottom:2px}
+.alert-body{font-family:'Lora',serif;font-size:13px;line-height:1.5}
+.alert-dismiss{position:absolute;top:10px;right:12px;cursor:pointer;opacity:0.6}
+.alert-dismiss:hover{opacity:1}
+</style></head><body>
+
+<!-- INFO -->
+<div class="alert" style="background:#E8F2F8">
+  <svg class="frame" viewBox="0 0 480 70" preserveAspectRatio="none">
+    <rect x="2" y="2" width="476" height="66" stroke="#4A7FA5" stroke-width="1.8" fill="none" filter="url(#hda)"/>
+    <line x1="6" y1="2" x2="6" y2="68" stroke="#4A7FA5" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <svg class="alert-icon" viewBox="0 0 22 22" fill="none">
+    <circle cx="11" cy="11" r="9" stroke="#4A7FA5" stroke-width="1.8"/>
+    <line x1="11" y1="10" x2="11" y2="16" stroke="#4A7FA5" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="11" cy="7" r="1" fill="#4A7FA5"/>
+  </svg>
+  <div class="alert-content">
+    <div class="alert-title" style="color:#4A7FA5">Heads up</div>
+    <div class="alert-body" style="color:#44403C">Something worth knowing before you continue. Take a moment.</div>
+  </div>
+  <svg class="alert-dismiss" width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 Q5 5 7 7 Q9 9 12 12 M12 2 Q9 5 7 7 Q5 9 2 12" stroke="#44403C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+
+<!-- SUCCESS -->
+<div class="alert" style="background:#EAF4EE">
+  <svg class="frame" viewBox="0 0 480 70" preserveAspectRatio="none">
+    <rect x="2" y="2" width="476" height="66" stroke="#5A9E6F" stroke-width="1.8" fill="none" filter="url(#hda)"/>
+    <line x1="6" y1="2" x2="6" y2="68" stroke="#5A9E6F" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <svg class="alert-icon" viewBox="0 0 22 22" fill="none">
+    <circle cx="11" cy="11" r="9" stroke="#5A9E6F" stroke-width="1.8"/>
+    <path d="M6 11 L9 14 L16 8" stroke="#5A9E6F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <div class="alert-content">
+    <div class="alert-title" style="color:#5A9E6F">Looks good to me</div>
+    <div class="alert-body" style="color:#44403C">Everything went through without a hitch. You're all set.</div>
+  </div>
+  <svg class="alert-dismiss" width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 Q5 5 7 7 Q9 9 12 12 M12 2 Q9 5 7 7 Q5 9 2 12" stroke="#44403C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+
+<!-- WARNING -->
+<div class="alert" style="background:#FDF8E3">
+  <svg class="frame" viewBox="0 0 480 70" preserveAspectRatio="none">
+    <rect x="2" y="2" width="476" height="66" stroke="#E8C547" stroke-width="1.8" fill="none" filter="url(#hda)"/>
+    <line x1="6" y1="2" x2="6" y2="68" stroke="#E8C547" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <svg class="alert-icon" viewBox="0 0 22 22" fill="none">
+    <path d="M11 3 L20 19 L2 19 Z" stroke="#E8C547" stroke-width="1.8" stroke-linejoin="round"/>
+    <line x1="11" y1="10" x2="11" y2="14" stroke="#78716C" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="11" cy="17" r="1" fill="#78716C"/>
+  </svg>
+  <div class="alert-content">
+    <div class="alert-title" style="color:#78716C">Worth checking</div>
+    <div class="alert-body" style="color:#44403C">This might cause issues down the road. Worth a second look.</div>
+  </div>
+  <svg class="alert-dismiss" width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 Q5 5 7 7 Q9 9 12 12 M12 2 Q9 5 7 7 Q5 9 2 12" stroke="#44403C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+
+<!-- ERROR -->
+<div class="alert" style="background:#F9ECEA">
+  <svg class="frame" viewBox="0 0 480 70" preserveAspectRatio="none">
+    <rect x="2" y="2" width="476" height="66" stroke="#C8534A" stroke-width="1.8" fill="none" filter="url(#hda)"/>
+    <line x1="6" y1="2" x2="6" y2="68" stroke="#C8534A" stroke-width="4" stroke-linecap="round"/>
+  </svg>
+  <svg class="alert-icon" viewBox="0 0 22 22" fill="none">
+    <circle cx="11" cy="11" r="9" stroke="#C8534A" stroke-width="1.8"/>
+    <path d="M7 7 L15 15 M15 7 L7 15" stroke="#C8534A" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div class="alert-content">
+    <div class="alert-title" style="color:#C8534A">Something went wrong</div>
+    <div class="alert-body" style="color:#44403C">That didn't work — try again or check your input.</div>
+  </div>
+  <svg class="alert-dismiss" width="14" height="14" viewBox="0 0 14 14"><path d="M2 2 Q5 5 7 7 Q9 9 12 12 M12 2 Q9 5 7 7 Q5 9 2 12" stroke="#44403C" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+</div>
+
+</body></html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@500;700&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 24px; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  .group { display: flex; flex-direction: column; gap: 8px; }
+  .label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+  button { cursor: pointer; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 22px; border-radius: 2px; transition: all 150ms; }
+
+  .btn-primary { background: linear-gradient(135deg, #FF2D78, #BF00FF); color: #E8E8FF; border: none; box-shadow: 0 0 4px #FF2D78, 0 0 12px #FF2D7866; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 8px #FF2D78, 0 0 20px #FF2D78, 0 0 40px #FF2D7866; }
+
+  .btn-secondary { background: transparent; color: #00F0FF; border: 1px solid #00F0FF; box-shadow: 0 0 4px #00F0FF66, inset 0 0 4px #00F0FF22; }
+  .btn-secondary:hover { background: rgba(0,240,255,0.1); box-shadow: 0 0 8px #00F0FF, 0 0 16px #00F0FF66; }
+
+  .btn-ghost { background: transparent; color: #FF2D78; border: none; text-shadow: 0 0 6px #FF2D78; }
+  .btn-ghost:hover { text-shadow: 0 0 4px #FF2D78, 0 0 12px #FF2D78, 0 0 24px #FF2D7866; }
+
+  .btn-arcade { background: #13133A; color: #FFE600; border: 3px solid #FFE600; box-shadow: 4px 4px 0 #FFE600; font-family: 'Orbitron', sans-serif; font-size: 12px; }
+  .btn-arcade:hover { box-shadow: 2px 2px 0 #FFE600; transform: translate(2px, 2px); }
+  .btn-arcade:active { box-shadow: 1px 1px 0 #FFE600; transform: translate(3px, 3px); }
+
+  .btn-chrome { background: linear-gradient(180deg, #FFFFFF 0%, #C0C0D8 25%, #606080 50%, #C0C0D8 75%, #9898B8 100%); color: #0A0A1A; border: 1px solid #808098; font-family: 'Orbitron', sans-serif; font-size: 11px; box-shadow: 2px 2px 4px rgba(0,0,0,0.5), inset 0 1px 0 #FFFFFF; }
+
+  .btn-pixel { background: #C0C0C0; color: #000; border: 2px solid; border-color: #FFFFFF #808080 #808080 #FFFFFF; font-family: 'Share Tech Mono', monospace; font-size: 12px; letter-spacing: 0; padding: 8px 18px; }
+  .btn-pixel:active { border-color: #808080 #FFFFFF #FFFFFF #808080; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="label">Primary</div>
+    <button class="btn-primary">LAUNCH SYSTEM</button>
+  </div>
+  <div class="group">
+    <div class="label">Secondary</div>
+    <button class="btn-secondary">SCAN NETWORK</button>
+  </div>
+  <div class="group">
+    <div class="label">Ghost Neon</div>
+    <button class="btn-ghost">ENTER VOID</button>
+  </div>
+  <div class="group">
+    <div class="label">Arcade</div>
+    <button class="btn-arcade">INSERT COIN</button>
+  </div>
+  <div class="group">
+    <div class="label">Chrome 3D</div>
+    <button class="btn-chrome">ENGAGE DRIVE</button>
+  </div>
+  <div class="group">
+    <div class="label">Pixel / ERA E</div>
+    <button class="btn-pixel">OK</button>
+  </div>
+</body>
+</html>

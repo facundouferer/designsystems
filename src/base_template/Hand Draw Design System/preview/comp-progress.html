@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hdp"><feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" result="noise" seed="13"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px;font-family:'Patrick Hand',cursive;display:flex;flex-direction:column;gap:20px}
+.glabel{font-family:'Caveat',cursive;font-size:16px;font-weight:600;color:#78716C}
+/* progress bar */
+.progress-track{position:relative;width:320px;height:20px}
+.progress-track svg{width:100%;height:100%;overflow:visible}
+.progress-fill-rect{transition:width 1s cubic-bezier(0.45,0.05,0.55,1)}
+/* spinner */
+@keyframes spin-draw{0%{stroke-dashoffset:120;transform:rotate(0deg)}100%{stroke-dashoffset:120;transform:rotate(360deg)}}
+.spinner{animation:spin-loop 1.4s linear infinite;transform-origin:center}
+@keyframes spin-loop{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+/* skeleton */
+@keyframes shimmer{0%,100%{opacity:0.4}50%{opacity:0.7}}
+.skel{background:#E2DBCA;border-radius:2px;animation:shimmer 1.8s ease-in-out infinite}
+/* empty state */
+</style></head><body>
+
+<div class="glabel">Progress bar</div>
+<div class="progress-track">
+  <svg viewBox="0 0 320 20" fill="none">
+    <rect x="2" y="2" width="316" height="16" stroke="#D6D3D1" stroke-width="1.5" fill="#F7F3E9" filter="url(#hdp)"/>
+    <clipPath id="prog-clip"><rect x="2" y="2" width="316" height="16"/></clipPath>
+    <rect id="prog-fill" x="3" y="3" width="210" height="14" fill="#44403C" clip-path="url(#prog-clip)" rx="1"/>
+  </svg>
+</div>
+<div style="font-size:12px;color:#78716C">66% complete</div>
+
+<div class="glabel">Loading spinner</div>
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+  <circle class="spinner" cx="18" cy="18" r="14" stroke="#44403C" stroke-width="2" stroke-dasharray="60 28" stroke-linecap="round"/>
+</svg>
+
+<div class="glabel">Skeleton</div>
+<div style="display:flex;flex-direction:column;gap:8px;width:300px">
+  <div class="skel" style="height:16px;width:60%"></div>
+  <div class="skel" style="height:12px;width:100%"></div>
+  <div class="skel" style="height:12px;width:90%;animation-delay:0.15s"></div>
+  <div class="skel" style="height:12px;width:75%;animation-delay:0.3s"></div>
+  <div class="skel" style="height:48px;width:100%;margin-top:4px;animation-delay:0.1s"></div>
+</div>
+
+<div class="glabel">Empty state</div>
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;padding:24px;max-width:280px">
+  <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+    <rect x="12" y="8" width="46" height="58" rx="2" stroke="#D6D3D1" stroke-width="2" stroke-dasharray="4 3"/>
+    <path d="M28 30 L52 30 M28 38 L48 38 M28 46 L44 46" stroke="#D6D3D1" stroke-width="1.5" stroke-linecap="round"/>
+    <path d="M62 55 Q68 50 64 62" stroke="#A8A29E" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path d="M64 62 L60 60 M64 62 L66 58" stroke="#A8A29E" stroke-width="1.5" stroke-linecap="round"/>
+  </svg>
+  <div style="font-family:'Caveat',cursive;font-size:20px;font-weight:600;color:#44403C">Nothing here yet...</div>
+  <div style="font-family:'Lora',serif;font-size:13px;color:#78716C;text-align:center">Add your first item to get started.</div>
+</div>
+
+</body></html>

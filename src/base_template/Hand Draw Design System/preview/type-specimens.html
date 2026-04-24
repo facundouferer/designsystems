@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Lora:ital,wght@0,400;1,400&family=Patrick+Hand&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px 28px;display:flex;flex-direction:column;gap:20px}
+.group{display:flex;flex-direction:column;gap:8px}
+.glabel{font-family:'Patrick Hand',cursive;font-size:11px;color:#A8A29E;text-transform:uppercase;letter-spacing:0.08em}
+/* underline-single */
+.ul-single{font-family:'Lora',serif;font-size:16px;color:#1C1917;display:inline;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='8'%3E%3Cpath d='M0 4 Q25 2 50 5 Q75 7 100 4 Q125 2 150 5 Q175 7 200 4' stroke='%231C1917' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:0 100%;background-size:200px 8px;padding-bottom:4px}
+/* underline-double */
+.ul-double{font-family:'Lora',serif;font-size:16px;color:#1C1917;display:inline;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='10'%3E%3Cpath d='M0 3 Q50 1 100 4 Q150 6 200 3' stroke='%231C1917' stroke-width='1.2' fill='none'/%3E%3Cpath d='M0 7 Q50 5 100 8 Q150 9 200 7' stroke='%231C1917' stroke-width='1' fill='none'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:0 100%;background-size:200px 10px;padding-bottom:6px}
+/* underline-highlight */
+.ul-highlight{font-family:'Lora',serif;font-size:16px;color:#1C1917;display:inline;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='14'%3E%3Cpath d='M0 10 Q50 7 100 11 Q150 13 200 10' stroke='%23E8C547' stroke-width='8' fill='none' stroke-linecap='round' opacity='0.6'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-position:0 100%;background-size:200px 14px;padding-bottom:6px}
+/* strikethrough */
+.strike{font-family:'Lora',serif;font-size:16px;color:#78716C;position:relative;display:inline-block}
+.strike::after{content:'';position:absolute;left:-2px;right:-2px;top:50%;height:0;
+  border-top:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='6'%3E%3Cpath d='M0 3 Q50 1 100 4 Q150 5 200 3' stroke='%231C1917' stroke-width='1.8' fill='none'/%3E%3C/svg%3E");
+  background-repeat:repeat-x;background-size:200px 6px;height:6px;transform:translateY(-50%)}
+/* quote */
+.blockquote{font-family:'Caveat',cursive;font-size:28px;font-weight:700;color:#1C1917;position:relative;padding-left:40px;line-height:1.3}
+.quote-mark{position:absolute;left:0;top:-4px}
+/* family mix */
+.mix{line-height:1.6}
+</style></head><body>
+
+<div class="group">
+  <div class="glabel">Underline variants</div>
+  <div><span class="ul-single">Single wavy underline — organic stroke</span></div>
+  <div><span class="ul-double">Double underline — two irregular lines</span></div>
+  <div><span class="ul-highlight">Marker highlight — yellow wash behind text</span></div>
+</div>
+
+<div class="group">
+  <div class="glabel">Strikethrough</div>
+  <div><span class="strike">This idea was crossed out by hand</span></div>
+</div>
+
+<div class="group">
+  <div class="glabel">Block quote</div>
+  <div class="blockquote">
+    <svg class="quote-mark" width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <path d="M4 20 C3 14 6 8 12 6 L11 10 C8 11 7 14 8 17 L12 17 L12 24 L4 24 Z" stroke="#1C1917" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+      <path d="M16 20 C15 14 18 8 24 6 L23 10 C20 11 19 14 20 17 L24 17 L24 24 L16 24 Z" stroke="#1C1917" stroke-width="1.5" fill="none" stroke-linejoin="round"/>
+    </svg>
+    The sketch is the final product.
+  </div>
+</div>
+
+<div class="group">
+  <div class="glabel">Family combination</div>
+  <div class="mix">
+    <span style="font-family:'Caveat',cursive;font-size:22px;font-weight:700;color:#1C1917">Three typefaces,</span>
+    <span style="font-family:'Lora',serif;font-size:16px;color:#44403C;font-style:italic"> one voice — </span>
+    <span style="font-family:'Patrick Hand',cursive;font-size:14px;color:#78716C">written together.</span>
+  </div>
+</div>
+
+</body></html>

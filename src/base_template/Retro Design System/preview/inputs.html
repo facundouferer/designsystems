@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .group { }
+  .label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+
+  /* ERA D Input */
+  .input-d { width: 100%; background: #13133A; border: 1px solid #00F0FF; border-radius: 2px; padding: 10px 14px; color: #E8E8FF; font-family: 'Exo 2', sans-serif; font-size: 14px; outline: none; box-shadow: 0 0 4px #00F0FF44, inset 0 0 4px #00F0FF22; }
+  .input-d:focus { box-shadow: 0 0 8px #00F0FF, 0 0 16px #00F0FF66, inset 0 0 4px #00F0FF33; border-color: #00F0FF; }
+  .input-d::placeholder { color: #5858AA; }
+
+  /* Terminal Input */
+  .input-terminal { width: 100%; background: #000; border: none; border-bottom: 1px solid #00FF41; padding: 10px 14px; color: #00FF41; font-family: 'Share Tech Mono', monospace; font-size: 13px; outline: none; text-shadow: 0 0 6px #00FF41; caret-color: #00FF41; }
+  .input-terminal::placeholder { color: #00FF4166; }
+
+  /* ERA E Input */
+  .input-e { width: 100%; background: #FFFFFF; border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; padding: 6px 10px; color: #000; font-family: 'Share Tech Mono', monospace; font-size: 13px; outline: none; }
+
+  /* Checkbox ERA D */
+  .check-d { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .check-d input[type=checkbox] { appearance: none; width: 18px; height: 18px; background: #13133A; border: 1px solid #00F0FF; border-radius: 2px; box-shadow: 0 0 4px #00F0FF44; cursor: pointer; position: relative; }
+  .check-d input[type=checkbox]:checked { background: #00F0FF22; }
+  .check-d input[type=checkbox]:checked::after { content: '✓'; position: absolute; top: -1px; left: 3px; color: #00F0FF; font-size: 14px; text-shadow: 0 0 6px #00F0FF; }
+  .check-d span { font-family: 'Exo 2', sans-serif; font-size: 14px; color: #E8E8FF; }
+
+  /* Toggle ERA D */
+  .toggle-wrap { display: flex; align-items: center; gap: 10px; }
+  .toggle { position: relative; width: 48px; height: 26px; }
+  .toggle input { opacity: 0; width: 0; height: 0; }
+  .slider-tog { position: absolute; inset: 0; background: #13133A; border: 1px solid #5858AA; border-radius: 999px; cursor: pointer; transition: 300ms; }
+  .slider-tog::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #5858AA; border-radius: 50%; transition: 300ms; }
+  input:checked + .slider-tog { background: linear-gradient(90deg, #FF2A6D, #8B00FF); border-color: #FF2A6D; box-shadow: 0 0 8px #FF2A6D; }
+  input:checked + .slider-tog::before { transform: translateX(22px); background: #E8E8FF; }
+  .toggle-wrap span { font-family: 'Exo 2', sans-serif; font-size: 14px; color: #E8E8FF; }
+
+  /* ERA E checkbox */
+  .check-e { display: flex; align-items: center; gap: 8px; cursor: pointer; }
+  .check-e input[type=checkbox] { appearance: none; width: 14px; height: 14px; background: #FFFFFF; border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; cursor: pointer; position: relative; }
+  .check-e input[type=checkbox]:checked::after { content: '✓'; position: absolute; top: -3px; left: 1px; color: #000; font-size: 12px; }
+  .check-e span { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: #C0C0C0; }
+</style>
+</head>
+<body>
+  <div class="group">
+    <div class="label">Input — ERA D</div>
+    <input class="input-d" placeholder="ENTER COORDINATES..." />
+  </div>
+  <div class="group">
+    <div class="label">Input — Terminal</div>
+    <input class="input-terminal" placeholder="> type command_" />
+  </div>
+  <div class="group">
+    <div class="label">Input — ERA E / Win95</div>
+    <input class="input-e" value="C:\WINDOWS\SYSTEM32" />
+  </div>
+  <div class="group" style="display:flex;flex-direction:column;gap:12px;justify-content:center;">
+    <div class="label">Checkbox & Toggle</div>
+    <label class="check-d"><input type="checkbox" checked /><span>Enable scanlines</span></label>
+    <label class="check-e"><input type="checkbox" checked /><span>Read Only</span></label>
+    <div class="toggle-wrap">
+      <label class="toggle"><input type="checkbox" checked /><span class="slider-tog"></span></label>
+      <span>Neon Mode</span>
+    </div>
+  </div>
+</body>
+</html>

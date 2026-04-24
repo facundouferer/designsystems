@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px;font-family:'Patrick Hand',cursive;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.card{background:#FDFAF3;padding:20px 24px;display:flex;flex-direction:column;gap:6px;min-width:160px}
+.label{font-family:'Caveat',cursive;font-size:16px;font-weight:600;color:#44403C}
+.token{font-size:10px;color:#A8A29E}
+.flat{box-shadow:none;border:1px dashed #D6D3D1}
+.paper{box-shadow:1px 2px 4px rgba(28,25,23,0.08)}
+.lifted{box-shadow:2px 4px 12px rgba(28,25,23,0.12)}
+.floating{box-shadow:4px 8px 20px rgba(28,25,23,0.16)}
+.stacked{box-shadow:3px 3px 0 #E2DBCA,6px 6px 0 #D6D3D1}
+</style></head><body>
+<div class="card flat"><div class="label">flat</div><div class="token">--shadow-flat</div><div style="font-size:11px;color:#78716C">On the surface</div></div>
+<div class="card paper"><div class="label">paper</div><div class="token">--shadow-paper</div><div style="font-size:11px;color:#78716C">Card at rest</div></div>
+<div class="card lifted"><div class="label">lifted</div><div class="token">--shadow-lifted</div><div style="font-size:11px;color:#78716C">Card on hover</div></div>
+<div class="card floating"><div class="label">floating</div><div class="token">--shadow-floating</div><div style="font-size:11px;color:#78716C">Dropdown / tooltip</div></div>
+<div class="card stacked" style="margin-bottom:8px"><div class="label">stacked</div><div class="token">--shadow-stacked</div><div style="font-size:11px;color:#78716C">Layered sheets</div></div>
+</body></html>

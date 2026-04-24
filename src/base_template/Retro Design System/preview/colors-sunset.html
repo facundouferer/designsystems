@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 0; }
+  .sunset {
+    width: 100%; height: 120px;
+    background: linear-gradient(180deg, #0A0A1A 0%, #1A0A3A 20%, #3A0A5A 35%, #8B00FF 50%, #FF2A6D 65%, #FF6B1A 80%, #FFE600 100%);
+    display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;
+  }
+  .sun {
+    width: 60px; height: 60px; position: absolute; bottom: -10px;
+    background: linear-gradient(180deg, #FFE600 50%, transparent 50%);
+    border-radius: 50%;
+    box-shadow: 0 0 20px #FFE600, 0 0 40px #FF6B1A;
+  }
+  .label { font-family: 'Orbitron', sans-serif; font-size: 10px; letter-spacing: 0.2em; color: #E8E8FF; text-shadow: 0 0 8px #FF2A6D; z-index: 1; }
+  .stops { display: flex; justify-content: space-between; padding: 10px 20px; background: #0F0F2E; }
+  .stop { text-align: center; }
+  .dot { width: 16px; height: 16px; border-radius: 50%; margin: 0 auto 4px; }
+  .pct { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; }
+  .hex { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #9898CC; }
+</style>
+</head>
+<body>
+  <div class="sunset">
+    <div class="sun"></div>
+    <div class="label">SUNSET GRADIENT</div>
+  </div>
+  <div class="stops">
+    <div class="stop"><div class="dot" style="background:#0A0A1A; border:1px solid #1A1A5C;"></div><div class="pct">0%</div><div class="hex">#0A0A1A</div></div>
+    <div class="stop"><div class="dot" style="background:#1A0A3A;"></div><div class="pct">20%</div><div class="hex">#1A0A3A</div></div>
+    <div class="stop"><div class="dot" style="background:#8B00FF;"></div><div class="pct">50%</div><div class="hex">#8B00FF</div></div>
+    <div class="stop"><div class="dot" style="background:#FF2A6D;"></div><div class="pct">65%</div><div class="hex">#FF2A6D</div></div>
+    <div class="stop"><div class="dot" style="background:#FF6B1A;"></div><div class="pct">80%</div><div class="hex">#FF6B1A</div></div>
+    <div class="stop"><div class="dot" style="background:#FFE600;"></div><div class="pct">100%</div><div class="hex">#FFE600</div></div>
+  </div>
+</body>
+</html>

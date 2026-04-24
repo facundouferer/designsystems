@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@700&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 20px; display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-start; }
+  .label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .group { }
+
+  .badge { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 999px; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .badge-pink { background: linear-gradient(135deg, #FF2D78, #BF00FF); color: #E8E8FF; box-shadow: 0 0 6px #FF2D7866; }
+  .badge-cyan { background: linear-gradient(135deg, #00F0FF44, #00F0FF22); color: #00F0FF; border: 1px solid #00F0FF; box-shadow: 0 0 6px #00F0FF66; }
+  .badge-yellow { background: linear-gradient(135deg, #FFE60044, #FFE60022); color: #FFE600; border: 1px solid #FFE600; box-shadow: 0 0 6px #FFE60066; }
+  .badge-purple { background: linear-gradient(135deg, #BF00FF, #FF2D78); color: #E8E8FF; box-shadow: 0 0 6px #BF00FF66; }
+
+  .badge-outline-pink { background: transparent; color: #FF2D78; border: 1px solid #FF2D78; box-shadow: 0 0 6px #FF2D7844; border-radius: 999px; }
+  .badge-outline-cyan { background: transparent; color: #00F0FF; border: 1px solid #00F0FF; box-shadow: 0 0 6px #00F0FF44; border-radius: 999px; }
+
+  .badge-e { background: #C0C0C0; color: #000; border: 2px solid; border-color: #FFFFFF #808080 #808080 #FFFFFF; border-radius: 0; font-family: 'Share Tech Mono', monospace; font-size: 11px; letter-spacing: 0; padding: 3px 10px; }
+
+  .sticker { display: inline-block; padding: 6px 14px; font-family: 'Exo 2', sans-serif; font-weight: 700; font-size: 12px; text-transform: uppercase; transform: rotate(-4deg); border-radius: 2px; }
+  .sticker-sun { background: #FFE600; color: #0A0A1A; box-shadow: 2px 2px 0 #FF6B1A; }
+  .sticker-diamond { background: #0A0A1A; color: #FF2D78; border: 2px solid #FF2D78; transform: rotate(4deg); clip-path: polygon(50% 0%,100% 50%,50% 100%,0% 50%); width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 9px; }
+</style>
+</head>
+<body>
+  <div style="width:100%">
+    <div class="label">Filled Badges — ERA D</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <span class="badge badge-pink">SYNTHWAVE</span>
+      <span class="badge badge-cyan">OUTRUN</span>
+      <span class="badge badge-yellow">WARNING</span>
+      <span class="badge badge-purple">ARCADE</span>
+    </div>
+    <div class="label">Outlined Badges — ERA D</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <span class="badge badge-outline-pink">LIVE</span>
+      <span class="badge badge-outline-cyan">ONLINE</span>
+    </div>
+    <div class="label">System Badge — ERA E</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+      <span class="badge badge-e">New</span>
+      <span class="badge badge-e">Error</span>
+      <span class="badge badge-e">Read-Only</span>
+    </div>
+    <div class="label">Stickers</div>
+    <div style="display:flex;flex-wrap:wrap;gap:20px;align-items:center;">
+      <span class="sticker sticker-sun">★ RETRO ★</span>
+      <span class="sticker-diamond">HOT</span>
+    </div>
+  </div>
+</body>
+</html>

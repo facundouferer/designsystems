@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #008080; padding: 20px; display: flex; justify-content: center; }
+  .win { background: #C0C0C0; border: 2px solid; border-color: #FFFFFF #808080 #808080 #FFFFFF; width: 320px; box-shadow: 2px 2px 0 #000; }
+  .titlebar { background: linear-gradient(90deg, #000080, #1084D0); padding: 3px 6px; display: flex; align-items: center; justify-content: space-between; }
+  .title { color: #FFFFFF; font-family: 'Share Tech Mono', monospace; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .title-icon { width: 14px; height: 14px; background: #FFE600; border: 1px solid #808080; }
+  .win-btns { display: flex; gap: 2px; }
+  .wb { width: 16px; height: 14px; background: #C0C0C0; border: 2px solid; border-color: #FFFFFF #808080 #808080 #FFFFFF; display: flex; align-items: center; justify-content: center; font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #000; cursor: pointer; }
+  .wb:active { border-color: #808080 #FFFFFF #FFFFFF #808080; }
+  .menubar { background: #C0C0C0; border-bottom: 1px solid #808080; padding: 2px 4px; display: flex; gap: 0; }
+  .mi { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #000; padding: 2px 8px; cursor: pointer; }
+  .mi:hover { background: #000080; color: #FFF; }
+  .client { background: #FFFFFF; border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; margin: 6px; padding: 12px; min-height: 80px; font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #000; line-height: 1.8; }
+  .statusbar { background: #C0C0C0; border-top: 1px solid #808080; padding: 3px 8px; display: flex; gap: 8px; }
+  .status-cell { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #000; border: 1px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; padding: 1px 8px; flex: 1; }
+</style>
+</head>
+<body>
+  <div class="win">
+    <div class="titlebar">
+      <div class="title"><div class="title-icon"></div> Retro Design System</div>
+      <div class="win-btns">
+        <div class="wb">−</div>
+        <div class="wb">□</div>
+        <div class="wb" style="font-weight:bold;">×</div>
+      </div>
+    </div>
+    <div class="menubar">
+      <div class="mi">File</div><div class="mi">Edit</div><div class="mi">View</div><div class="mi">Help</div>
+    </div>
+    <div class="client">
+      C:\RETRO\DESIGN&gt; version<br>
+      RETRO DESIGN SYSTEM v1.0<br>
+      Copyright (C) 1995 Facundo Uferer<br>
+      All Rights Reserved.
+    </div>
+    <div class="statusbar">
+      <div class="status-cell">Ready</div>
+      <div class="status-cell">ERA E · Win95</div>
+    </div>
+  </div>
+</body>
+</html>

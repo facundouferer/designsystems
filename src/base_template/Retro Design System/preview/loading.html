@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+
+  /* Phosphor Loader */
+  .phosphor-loader { background: #000; padding: 16px; border-radius: 2px; border: 1px solid #00FF4144; }
+  .loading-text { font-family: 'Share Tech Mono', monospace; font-size: 13px; color: #00FF41; text-shadow: 0 0 6px #00FF41; }
+  .dots span { display: inline-block; animation: blink 1.4s steps(1) infinite; }
+  .dots span:nth-child(2) { animation-delay: 0.4s; }
+  .dots span:nth-child(3) { animation-delay: 0.8s; }
+  .progress-bar-d { height: 8px; background: #0A0A1A; border: 1px solid #00F0FF44; border-radius: 999px; margin-top: 10px; overflow: hidden; }
+  .progress-fill { height: 100%; width: 70%; background: linear-gradient(90deg, #00F0FF, #BF00FF); box-shadow: 0 0 8px #00F0FF; border-radius: 999px; animation: grow 2s ease-in-out infinite alternate; }
+  @keyframes grow { from { width: 20%; } to { width: 90%; } }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* Win95 Progress */
+  .win95-loader { background: #C0C0C0; padding: 12px; border: 2px solid; border-color: #FFFFFF #808080 #808080 #FFFFFF; }
+  .win95-bar { height: 20px; background: #FFFFFF; border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; overflow: hidden; margin-top: 8px; }
+  .win95-fill { height: 100%; width: 65%; background: repeating-linear-gradient(90deg, #000080 0px, #000080 16px, #C0C0C0 16px, #C0C0C0 20px); animation: slide95 0.5s linear infinite; }
+  @keyframes slide95 { from { background-position: 0 0; } to { background-position: 20px 0; } }
+  .win95-pct { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #000; text-align: center; margin-top: 4px; }
+
+  /* Countdown */
+  .countdown { text-align: center; padding: 12px; }
+  .count-num { font-family: 'Orbitron', sans-serif; font-size: 56px; font-weight: 700; color: #FF2D78; text-shadow: 0 0 8px #FF2D78, 0 0 24px #FF2D7866; line-height: 1; }
+  .count-label { font-family: 'Share Tech Mono', monospace; font-size: 10px; color: #5858AA; letter-spacing: 0.2em; margin-top: 4px; }
+
+  /* Atomic Spinner */
+  .atomic { display: flex; align-items: center; justify-content: center; height: 90px; }
+  .atom { position: relative; width: 70px; height: 70px; }
+  .nucleus { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: #FFE600; box-shadow: 0 0 8px #FFE600; }
+  .orbit { position: absolute; top: 50%; left: 50%; border: 1px solid #00F0FF44; border-radius: 50%; animation: spin linear infinite; }
+  .orbit::after { content: ""; position: absolute; top: -3px; left: 50%; width: 6px; height: 6px; border-radius: 50%; background: #00F0FF; box-shadow: 0 0 6px #00F0FF; transform: translateX(-50%); }
+  .o1 { width: 50px; height: 30px; margin-top: -15px; margin-left: -25px; animation-duration: 2s; }
+  .o2 { width: 50px; height: 30px; margin-top: -15px; margin-left: -25px; transform: rotate(60deg); animation-duration: 3s; }
+  .o3 { width: 50px; height: 30px; margin-top: -15px; margin-left: -25px; transform: rotate(-60deg); animation-duration: 4s; }
+  @keyframes spin { from { transform: rotate(var(--r, 0deg)); } to { transform: rotate(calc(var(--r, 0deg) + 360deg)); } }
+  .o1 { --r: 0deg; } .o2 { --r: 60deg; } .o3 { --r: -60deg; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="label">Phosphor Loader — ERA D</div>
+    <div class="phosphor-loader">
+      <div class="loading-text">LOADING<span class="dots"><span>.</span><span>.</span><span>.</span></span></div>
+      <div class="progress-bar-d"><div class="progress-fill"></div></div>
+    </div>
+  </div>
+  <div>
+    <div class="label">Progress Bar — ERA E / Win95</div>
+    <div class="win95-loader">
+      <div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:#000;">Copying files...</div>
+      <div class="win95-bar"><div class="win95-fill"></div></div>
+      <div class="win95-pct">65%</div>
+    </div>
+  </div>
+  <div>
+    <div class="label">Countdown — Universal</div>
+    <div class="countdown">
+      <div class="count-num">03</div>
+      <div class="count-label">T-MINUS · SYSTEM LAUNCH</div>
+    </div>
+  </div>
+  <div>
+    <div class="label">Atomic Spinner — ERA A</div>
+    <div class="atomic">
+      <div class="atom">
+        <div class="orbit o1"></div>
+        <div class="orbit o2"></div>
+        <div class="orbit o3"></div>
+        <div class="nucleus"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

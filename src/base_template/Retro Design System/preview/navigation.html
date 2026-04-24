@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Exo+2:wght@400;500&family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 0; }
+  .label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #5858AA; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 16px 4px; }
+
+  /* Navbar ERA D */
+  nav.era-d { background: #0A0A1A; border-bottom: 1px solid #00F0FF; box-shadow: 0 1px 12px #00F0FF44; padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+  nav.era-d::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px); pointer-events: none; }
+  .nav-logo { font-family: 'Orbitron', sans-serif; font-weight: 700; font-size: 16px; color: #E8E8FF; letter-spacing: 0.1em; text-shadow: 0 0 4px #FF2D78, 0 0 16px #FF2D7866; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { font-family: 'Exo 2', sans-serif; font-size: 13px; color: #9898CC; text-decoration: none; letter-spacing: 0.05em; transition: all 150ms; }
+  .nav-links a:hover, .nav-links a.active { color: #00F0FF; text-shadow: 0 0 6px #00F0FF; }
+
+  /* Navbar ERA E */
+  nav.era-e { background: #C0C0C0; border-bottom: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; padding: 4px 8px; display: flex; align-items: center; gap: 2px; }
+  .menu-item { font-family: 'Share Tech Mono', monospace; font-size: 12px; color: #000; padding: 4px 10px; cursor: pointer; }
+  .menu-item:hover, .menu-item.active { background: #000080; color: #FFFFFF; }
+  .menu-item.active { border: 2px solid; border-color: #808080 #FFFFFF #FFFFFF #808080; }
+</style>
+</head>
+<body>
+  <div class="label">Navbar — ERA D · Neon 80s</div>
+  <nav class="era-d">
+    <div class="nav-logo">RETRO//DS</div>
+    <div class="nav-links">
+      <a href="#" class="active">Home</a>
+      <a href="#">Colors</a>
+      <a href="#">Type</a>
+      <a href="#">Components</a>
+    </div>
+  </nav>
+
+  <div class="label" style="margin-top:16px;">Menubar — ERA E · Win95</div>
+  <nav class="era-e">
+    <div class="menu-item active">File</div>
+    <div class="menu-item">Edit</div>
+    <div class="menu-item">View</div>
+    <div class="menu-item">Help</div>
+  </nav>
+</body>
+</html>

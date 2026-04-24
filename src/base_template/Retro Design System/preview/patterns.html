@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0A0A1A; padding: 16px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .pat { height: 80px; border-radius: 2px; position: relative; overflow: hidden; border: 1px solid #1A1A5C; }
+  .pat-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(10,10,26,0.85); font-family: 'Share Tech Mono', monospace; font-size: 8px; color: #5858AA; padding: 4px 6px; letter-spacing: 0.05em; }
+
+  .bg-stars { background: #0A0A1A; background-image: radial-gradient(circle, #E8E8FF 1px, transparent 1px); background-size: 20px 20px; }
+  .bg-checker { background: repeating-conic-gradient(#FF2D78 0% 25%, #0A0A1A 0% 50%) 0 0 / 20px 20px; }
+  .bg-diag { background: repeating-linear-gradient(45deg, #1A1A5C 0px, #1A1A5C 4px, #0A0A1A 4px, #0A0A1A 16px); }
+  .bg-outrun { background: #0A0A1A; background-image: linear-gradient(to bottom, transparent 0%, #1A1A5C 100%), repeating-linear-gradient(transparent, transparent 30px, #1A1A5C 30px, #1A1A5C 31px); transform: perspective(200px) rotateX(30deg); transform-origin: top; }
+  .bg-sunset { background: linear-gradient(180deg, #0A0A1A 0%, #3A0A5A 35%, #8B00FF 50%, #FF2A6D 65%, #FF6B1A 80%, #FFE600 100%); }
+  .bg-scanlines { background: #13133A; }
+  .bg-scanlines::after { content:""; position:absolute; inset:0; background:repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px); }
+  .bg-halftone { background: #F5F0DC; background-image: radial-gradient(circle, #C8342A 1px, transparent 1px); background-size: 8px 8px; }
+  .bg-wallpaper { background: #008080; background-image: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 11px), repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(0,0,0,0.1) 10px, rgba(0,0,0,0.1) 11px); }
+  .bg-70s { background: #F0E8D0; background-image: repeating-linear-gradient(0deg, transparent, transparent 18px, #D4621A22 18px, #D4621A22 20px), repeating-linear-gradient(90deg, transparent, transparent 18px, #7A8C2A22 18px, #7A8C2A22 20px); }
+</style>
+</head>
+<body>
+  <div class="pat bg-outrun"><div class="pat-label">outrun-grid</div></div>
+  <div class="pat bg-sunset"><div class="pat-label">sunset</div></div>
+  <div class="pat bg-stars"><div class="pat-label">stars</div></div>
+  <div class="pat bg-checker"><div class="pat-label">checker-80s</div></div>
+  <div class="pat bg-diag"><div class="pat-label">diag-stripes</div></div>
+  <div class="pat bg-scanlines"><div class="pat-label">scanlines-crt</div></div>
+  <div class="pat bg-halftone"><div class="pat-label">halftone-60s</div></div>
+  <div class="pat bg-wallpaper"><div class="pat-label">wallpaper-90s</div></div>
+  <div class="pat bg-70s"><div class="pat-label">grid-70s</div></div>
+  <div class="pat" style="background:linear-gradient(135deg,#FF2D78,#BF00FF,#00F0FF);"><div class="pat-label">neon-gradient</div></div>
+</body>
+</html>

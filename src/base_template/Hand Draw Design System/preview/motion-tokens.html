@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:24px;font-family:'Patrick Hand',cursive;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.group{display:flex;flex-direction:column;gap:10px}
+.glabel{font-family:'Caveat',cursive;font-size:18px;font-weight:600;color:#1C1917;margin-bottom:4px}
+.row{display:flex;align-items:center;gap:12px}
+.token{font-size:11px;color:#A8A29E;min-width:140px}
+.bar{height:10px;background:#4A7FA5;border-radius:2px;transition:all 0.3s}
+.dur{font-size:11px;color:#78716C}
+</style></head><body>
+<div class="group">
+  <div class="glabel">Duration tokens</div>
+  <div class="row"><div class="token">--duration-snap</div><div class="bar" style="width:10px"></div><div class="dur">100ms — toggle feedback</div></div>
+  <div class="row"><div class="token">--duration-quick</div><div class="bar" style="width:18px"></div><div class="dur">180ms — hover color</div></div>
+  <div class="row"><div class="token">--duration-base</div><div class="bar" style="width:28px"></div><div class="dur">280ms — state transition</div></div>
+  <div class="row"><div class="token">--duration-draw</div><div class="bar" style="width:40px"></div><div class="dur">400ms — SVG draw-on</div></div>
+  <div class="row"><div class="token">--duration-page</div><div class="bar" style="width:50px"></div><div class="dur">500ms — page transition</div></div>
+</div>
+<div class="group">
+  <div class="glabel">Easing curves</div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <div style="background:#FDFAF3;padding:12px;box-shadow:1px 2px 4px rgba(28,25,23,0.08);min-width:130px">
+      <div style="font-size:11px;color:#44403C;margin-bottom:6px">bounce-soft</div>
+      <svg width="80" height="40" viewBox="0 0 80 40"><path d="M0 38 C20 38 30 2 50 6 Q60 8 80 4" stroke="#4A7FA5" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-size:10px;color:#A8A29E">0.34,1.4,0.64,1</div>
+    </div>
+    <div style="background:#FDFAF3;padding:12px;box-shadow:1px 2px 4px rgba(28,25,23,0.08);min-width:130px">
+      <div style="font-size:11px;color:#44403C;margin-bottom:6px">organic</div>
+      <svg width="80" height="40" viewBox="0 0 80 40"><path d="M0 38 C20 38 40 2 80 2" stroke="#5A9E6F" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-size:10px;color:#A8A29E">0.45,0.05,0.55,1</div>
+    </div>
+    <div style="background:#FDFAF3;padding:12px;box-shadow:1px 2px 4px rgba(28,25,23,0.08);min-width:130px">
+      <div style="font-size:11px;color:#44403C;margin-bottom:6px">spring</div>
+      <svg width="80" height="40" viewBox="0 0 80 40"><path d="M0 38 C10 38 20 0 45 4 Q60 6 80 4" stroke="#D4845A" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+      <div style="font-size:10px;color:#A8A29E">0.175,0.885,0.32,1.1</div>
+    </div>
+  </div>
+</div>
+</body></html>

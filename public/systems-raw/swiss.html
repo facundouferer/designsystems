@@ -883,6 +883,41 @@ tfoot td { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; 
   letter-spacing: 0.2em;
   color: var(--color-gray-700);
 }
+.site-footer {
+  border-top: 1px solid var(--color-black);
+  padding: var(--s-32) 0;
+}
+.site-footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--s-24);
+  flex-wrap: wrap;
+}
+.site-footer-copy {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-gray-500);
+}
+.site-footer-links {
+  display: flex;
+  gap: var(--s-24);
+  flex-wrap: wrap;
+}
+.site-footer-links a {
+  font-size: var(--t-11);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  border-top: 3px solid transparent;
+  padding-top: 4px;
+}
+.site-footer-links a:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
 
 /* ─────────────────────────────────────────────────────────────
    TWEAKS PANEL
@@ -1778,6 +1813,17 @@ tfoot td { font-size: var(--t-11); font-weight: 700; text-transform: uppercase; 
     </div>
   </div>
 </section>
+
+<footer class="site-footer">
+  <div class="container site-footer-inner">
+    <span class="site-footer-copy">Swiss Design System — Facundo Uferer</span>
+    <div class="site-footer-links">
+      <a href="https://facundouferer.ar/" target="_blank" rel="noreferrer">Facundo Uferer</a>
+      <a href="https://github.com/facundouferer" target="_blank" rel="noreferrer">GitHub</a>
+      <a href="https://www.linkedin.com/in/facundouferer/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+</footer>
 
 <!-- TWEAKS PANEL -->
 <div id="tweaks-panel">

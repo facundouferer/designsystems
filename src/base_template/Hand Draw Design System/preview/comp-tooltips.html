@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hdt"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" seed="17"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:32px;font-family:'Patrick Hand',cursive;display:flex;gap:40px;flex-wrap:wrap;align-items:flex-end}
+.tooltip-demo{display:flex;flex-direction:column;align-items:center;gap:8px}
+.target{font-family:'Patrick Hand',cursive;font-size:14px;color:#4A7FA5;cursor:pointer;text-decoration:underline dotted}
+.tooltip{position:relative;background:#FDFAF3;padding:8px 12px;font-family:'Patrick Hand',cursive;font-size:13px;color:#1C1917;box-shadow:4px 8px 20px rgba(28,25,23,0.16);max-width:180px;line-height:1.4;filter:url(#hdt)}
+.tooltip svg.frame{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.tooltip svg.frame path{stroke:#1C1917;stroke-width:1.5;fill:none}
+.arrow-tip{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%)}
+.glabel{font-family:'Caveat',cursive;font-size:15px;font-weight:600;color:#78716C;text-align:center}
+@keyframes ink-appear{from{opacity:0;filter:blur(2px)}to{opacity:1;filter:blur(0)}}
+.tooltip{animation:ink-appear 0.18s ease forwards}
+</style></head><body>
+
+<div class="tooltip-demo">
+  <div class="tooltip">
+    <svg class="frame" viewBox="0 0 180 52" preserveAspectRatio="none">
+      <path d="M4 4 Q90 2 176 4 Q178 4 178 8 L178 44 Q178 48 174 48 L10 48 Q4 48 4 44 L4 8 Q4 4 8 4 Z"/>
+      <polygon points="85,48 95,58 105,48" fill="#FDFAF3" stroke="#1C1917" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    <span style="position:relative">Drawn by hand,<br>displayed with care.</span>
+  </div>
+  <div class="target">hover target</div>
+  <div class="glabel">top tooltip</div>
+</div>
+
+<div class="tooltip-demo">
+  <div class="target">another element</div>
+  <div class="tooltip" style="margin-top:8px">
+    <svg class="frame" viewBox="0 0 160 48" preserveAspectRatio="none">
+      <path d="M4 4 Q80 2 156 4 Q158 4 158 8 L158 40 Q158 44 154 44 L10 44 Q4 44 4 40 L4 8 Q4 4 8 4 Z"/>
+      <polygon points="70,-2 80,8 90,-2" fill="#FDFAF3" stroke="#1C1917" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+    <span style="position:relative">Below the element.</span>
+  </div>
+  <div class="glabel">bottom tooltip</div>
+</div>
+
+</body></html>

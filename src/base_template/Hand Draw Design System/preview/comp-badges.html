@@ -1,0 +1,68 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<svg style="position:absolute;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="hdb"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="4" result="noise" seed="11"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+  </defs>
+</svg>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#F7F3E9;padding:20px;font-family:'Patrick Hand',cursive;display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start}
+.badge{position:relative;padding:4px 12px;font-family:'Patrick Hand',cursive;font-size:12px;display:inline-flex;align-items:center}
+.badge svg.frame{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.sticker{transform:rotate(-3deg);display:inline-flex}
+.sticker:hover{transform:rotate(0deg)}
+.glabel{font-family:'Caveat',cursive;font-size:16px;font-weight:600;color:#78716C;width:100%;margin-top:8px}
+</style></head><body>
+
+<div class="glabel">Plain badges</div>
+<span class="badge" style="color:#44403C">
+  <svg class="frame" viewBox="0 0 70 26" preserveAspectRatio="none"><rect x="1" y="1" width="68" height="24" stroke="#44403C" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  default
+</span>
+<span class="badge" style="color:#4A7FA5">
+  <svg class="frame" viewBox="0 0 60 26" preserveAspectRatio="none"><rect x="1" y="1" width="58" height="24" stroke="#4A7FA5" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  info
+</span>
+<span class="badge" style="color:#5A9E6F">
+  <svg class="frame" viewBox="0 0 68 26" preserveAspectRatio="none"><rect x="1" y="1" width="66" height="24" stroke="#5A9E6F" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  success
+</span>
+<span class="badge" style="color:#C8534A">
+  <svg class="frame" viewBox="0 0 58 26" preserveAspectRatio="none"><rect x="1" y="1" width="56" height="24" stroke="#C8534A" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  error
+</span>
+<span class="badge" style="color:#78716C">
+  <svg class="frame" viewBox="0 0 72 26" preserveAspectRatio="none"><rect x="1" y="1" width="70" height="24" stroke="#E8C547" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  warning
+</span>
+
+<div class="glabel">Wash-fill badges</div>
+<span class="badge" style="color:#4A7FA5;background:#E8F2F8">
+  <svg class="frame" viewBox="0 0 60 26" preserveAspectRatio="none"><rect x="1" y="1" width="58" height="24" stroke="#4A7FA5" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  note
+</span>
+<span class="badge" style="color:#5A9E6F;background:#EAF4EE">
+  <svg class="frame" viewBox="0 0 60 26" preserveAspectRatio="none"><rect x="1" y="1" width="58" height="24" stroke="#5A9E6F" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  done
+</span>
+<span class="badge" style="color:#8B6BAE;background:#F3EFF8">
+  <svg class="frame" viewBox="0 0 72 26" preserveAspectRatio="none"><rect x="1" y="1" width="70" height="24" stroke="#8B6BAE" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  feature
+</span>
+<span class="badge" style="color:#D4845A;background:#FDF0E8">
+  <svg class="frame" viewBox="0 0 58 26" preserveAspectRatio="none"><rect x="1" y="1" width="56" height="24" stroke="#D4845A" stroke-width="1.5" fill="none" filter="url(#hdb)"/></svg>
+  warm
+</span>
+
+<div class="glabel">Sticker tags</div>
+<span class="badge sticker" style="color:#44403C;background:#FDF8E3;font-size:12px;padding:5px 12px">
+  <svg class="frame" viewBox="0 0 80 30" preserveAspectRatio="none"><rect x="1" y="1" width="78" height="28" stroke="#E8C547" stroke-width="2" fill="none" filter="url(#hdb)"/></svg>
+  hand-made
+</span>
+<span class="badge sticker" style="color:#C8534A;background:#F9ECEA;font-size:12px;padding:5px 12px;transform:rotate(4deg)">
+  <svg class="frame" viewBox="0 0 68 30" preserveAspectRatio="none"><rect x="1" y="1" width="66" height="28" stroke="#C8534A" stroke-width="2" fill="none" filter="url(#hdb)"/></svg>
+  urgent
+</span>
+
+</body></html>
